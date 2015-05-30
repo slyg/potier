@@ -1,0 +1,5 @@
+- UI test
+- offer details
+- in-session cart
+- docker file
+- heroku hosting

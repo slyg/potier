@@ -1,0 +1,7 @@
+{
+  "node": true,
+  "esnext": true,
+  "-W106": true,
+  "-W030": true,
+  "-W124": true
+}

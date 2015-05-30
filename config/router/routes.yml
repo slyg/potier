@@ -1,0 +1,19 @@
+ROOT:
+  url: "/"
+  method: "get"
+  controller: "root#main"
+
+SHOP:
+  url: "/shop"
+  method: "get"
+  controller: "shop#main"
+
+BOOKS:
+  url: "/books"
+  method: "get"
+  controller: "books#main"
+
+BOOKS_OFFER:
+  url: "/books/bestoffer/:price/:isbns"
+  method: "get"
+  controller: "books#bestOffer"

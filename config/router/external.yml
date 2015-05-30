@@ -1,0 +1,4 @@
+BOOKS:
+  url: http://henri-potier.xebia.fr/books
+BOOKS_OFFERS:
+  url: http://henri-potier.xebia.fr/books/{%s}/commercialOffers

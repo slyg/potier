@@ -1,0 +1,143 @@
+// base properties
+
+$primary-color: #3498DB;
+$secondary-color: #9B59B6;
+$side-color: #edeff1;
+$transition-delay: .25s;
+$base-padding: 1em;
+$large-padding: 2em;
+$title-size: 1.4em;
+$default-border-radius: 0.4em;
+
+// Main theme
+
+body, h1, h2, h3 {
+  font-family: 'Roboto Slab', serif;
+  line-height: 1.4;
+}
+
+header {
+  background-color: $secondary-color;
+  color: #fff;
+  border-bottom: 3px solid lighten($secondary-color, 20%);
+  h1 {
+    font-size: $title-size;
+    padding: 0.2em 1em;
+    margin: 0;
+  }
+}
+
+.book-list {
+  ul {
+    padding-left: $base-padding;
+    padding-right: $base-padding;
+  }
+}
+
+.book-item {
+  padding: $large-padding;
+  h3 {
+    font-size: $title-size;
+    margin-bottom: 0.3em;
+  }
+  .price {
+    color: lighten(black, 75%)
+  }
+}
+
+.book-cover {
+  border-radius: $default-border-radius;
+}
+
+.cart-box {
+  padding: $large-padding;
+  min-height: 800px;
+  background-color: $side-color;
+  box-shadow: 0px 0px 3px darken($side-color, 20%);
+  h2 {
+    font-size: $title-size;
+    margin-bottom: 0.3em;
+    color: #aaa;
+  }
+  ul {
+    padding-left: 0;
+    list-style-type: none;
+  }
+  .title:hover {
+    text-decoration: line-through;
+    cursor: pointer;
+  }
+  .price {
+    color: lighten(black, 75%);
+  }
+  .total {
+    margin-top: $base-padding;
+    padding-top: $base-padding;
+    border-top: 1px solid darken($side-color, 20%);
+  }
+  .discount {
+    border-radius: $default-border-radius;
+    padding: $large-padding;
+    background-color: #FFFBF3;
+    border: 3px solid darken(#FFFBF3, 20%);
+    p {
+      font-size: $title-size;
+    }
+  }
+}
+
+// Responsive layout adaptations
+
+@media (max-width: 768px){
+  .cart-box, .book-list {
+    width: calc(100% - 1em)!important;
+  }
+}
+
+// helpers and UI elements theme
+
+.tac {
+  text-align: center;
+}
+.tar {
+  text-align: right;
+}
+
+.btn {
+  padding: 0.4em 0.8em;
+  line-height: 1.4;
+  border: none;
+  border-radius: 0.4em;
+  transition: border $transition-delay linear, color $transition-delay linear, background-color $transition-delay linear;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: $primary-color;
+  &:hover {
+    background-color: darken($primary-color, 15%)
+  }
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: $secondary-color;
+  &:hover {
+    background-color: darken($secondary-color, 15%)
+  }
+}
+
+.btn-large {
+  padding: 1em 1.5em;
+}
+
+// Animations
+
+.default_transition-appear {
+  opacity: 0.01;
+  transition: opacity .2s ease-in;
+}
+
+.default_transition-appear.default_transition-appear-active {
+  opacity: 1;
+}
