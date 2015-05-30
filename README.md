@@ -1,4 +1,5 @@
 # Flux/React app using brunch and ES6
+[![Build Status](https://travis-ci.org/slyg/potier.svg?branch=master)](https://travis-ci.org/slyg/potier)
 
 ## Setup
 
