@@ -50,6 +50,7 @@ header {
 }
 
 .cart-box {
+  position: fixed;
   padding: $large-padding;
   min-height: 800px;
   background-color: $side-color;
@@ -91,6 +92,9 @@ header {
 @media (max-width: 768px){
   .cart-box, .book-list {
     width: calc(100% - 1em)!important;
+  }
+  .cart-box {
+    position: relative;
   }
 }
 
