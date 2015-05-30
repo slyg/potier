@@ -585,6 +585,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = window.React,
+    _ = window._,
     BookList = require('./BookList'),
     Cart = require('./Cart'),
     PayBox = require('./PayBox'),
@@ -592,9 +593,6 @@ var React = window.React,
     CartStore = require('../stores/CartStore'),
     BestOfferStore = require('../stores/BestOfferStore'),
     ShopActions = require('../actions/ShopActions');
-
-var BOOKS_FIXTURE = require('../fixtures/books');
-var BOOKS_IN_CART_FIXTURE = require('../fixtures/booksInCart');
 
 var ShopApp = (function (_React$Component) {
   function ShopApp() {
@@ -608,10 +606,7 @@ var ShopApp = (function (_React$Component) {
 
     this.state = {
       books: [],
-      cart: {
-        totalPrice: 0,
-        books: []
-      },
+      cart: { totalPrice: 0, books: [] },
       discount: null
     };
 
@@ -625,16 +620,20 @@ var ShopApp = (function (_React$Component) {
   _createClass(ShopApp, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      BookStore.addChangeListener(this._onBooksChange);
-      CartStore.addChangeListener(this._onBooksChange);
-      BestOfferStore.addChangeListener(this._onBooksChange);
+      var _this = this;
+
+      _.each([BookStore, CartStore, BestOfferStore], (function (store) {
+        store.addChangeListener(_this._onBooksChange);
+      }).bind(this));
     }
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      BookStore.removeChangeListener(this._onBooksChange);
-      CartStore.removeChangeListener(this._onBooksChange);
-      BestOfferStore.removeChangeListener(this._onBooksChange);
+      var _this2 = this;
+
+      _.each([BookStore, CartStore, BestOfferStore], (function (store) {
+        store.removeChangeListener(_this2._onBooksChange);
+      }).bind(this));
     }
   }, {
     key: '_onBooksChange',

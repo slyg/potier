@@ -1,4 +1,5 @@
 var React = window.React,
+    _ = window._,
     BookList = require('./BookList'),
     Cart = require('./Cart'),
     PayBox = require('./PayBox'),
@@ -6,9 +7,6 @@ var React = window.React,
     CartStore = require('../stores/CartStore'),
     BestOfferStore = require('../stores/BestOfferStore'),
     ShopActions = require('../actions/ShopActions');
-
-var BOOKS_FIXTURE = require('../fixtures/books');
-var BOOKS_IN_CART_FIXTURE = require('../fixtures/booksInCart');
 
 class ShopApp extends React.Component {
 
@@ -18,10 +16,7 @@ class ShopApp extends React.Component {
 
     this.state = {
       books: [],
-      cart: {
-        totalPrice: 0,
-        books: []
-      },
+      cart: { totalPrice: 0, books: [] },
       discount : null
     };
 
@@ -32,15 +27,15 @@ class ShopApp extends React.Component {
   }
 
   componentDidMount () {
-    BookStore.addChangeListener(this._onBooksChange);
-    CartStore.addChangeListener(this._onBooksChange);
-    BestOfferStore.addChangeListener(this._onBooksChange);
+    _.each([BookStore, CartStore, BestOfferStore], (store) => {
+      store.addChangeListener(this._onBooksChange);
+    }.bind(this));
   }
 
   componentWillUnmount () {
-    BookStore.removeChangeListener(this._onBooksChange);
-    CartStore.removeChangeListener(this._onBooksChange);
-    BestOfferStore.removeChangeListener(this._onBooksChange);
+    _.each([BookStore, CartStore, BestOfferStore], (store) => {
+      store.removeChangeListener(this._onBooksChange);
+    }.bind(this));
   }
 
   _onBooksChange () {
