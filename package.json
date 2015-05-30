@@ -19,16 +19,14 @@
   "scripts": {
     "start": "node --harmony_arrow_functions app",
     "test": "mocha --harmony_arrow_functions app/**/__tests__",
-    "build": "./node_modules/.bin/brunch build",
-    "watch": "brunch watch",
     "dev": "brunch watch --server",
-    "dev-start": "nodemon --harmony_arrow_functions",
-    "postinstall": "./node_modules/.bin/bower install"
+    "dev-build": "brunch build",
+    "dev-watch": "brunch watch",
+    "dev-start": "nodemon --harmony_arrow_functions"
   },
   "devDependencies": {
     "auto-reload-brunch": "^1.7.8",
     "babel-brunch": "^5.1.2",
-    "bower": "^1.4.1",
     "brunch": "^1.8.3",
     "chai": "^2.3.0",
     "co": "^4.5.4",
