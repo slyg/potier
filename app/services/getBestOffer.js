@@ -31,17 +31,15 @@ var chooseBestOffer = (offers, totalPrice) => {
  *  Get offers from external service for a given set of isbn references
  *  then chooses the best offer amongst them
  *
- *  @param String totalPrice
- *  @param String isbn...
- *  @returns Object bestOffer
+ *  @param    {String}        totalPrice
+ *  @param    {Array<String>} isbn
+ *  @returns  {Object}        bestOffer
  *
  *  Returned Object looks like following
- *  { type: 'percentage' , finalPrice: 3 }
+ *  { type: 'percentage' , finalPrice: 3, totalPrice: 4 }
  *
  */
-module.exports = function *getBestOffer(totalPrice) {
-
-  let isbns = Array.prototype.slice.call(arguments, 1);
+module.exports = function *getBestOffer(totalPrice, ...isbns) {
 
   let response = yield request(router.getExternalRoute('BOOKS_OFFERS', isbns));
 
