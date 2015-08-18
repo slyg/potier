@@ -3,7 +3,7 @@ import ShopAppDispatcher  from '../dispatcher/ShopAppDispatcher';
 import ShopService        from '../services/ShopService';
 import CartStore          from '../stores/CartStore';
 
-export function queryForBooks() {
+export function queryBooks() {
 
   ShopAppDispatcher.dispatch({
     actionType: ShopConstants.SEARCH_BOOK_START

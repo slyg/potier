@@ -115,7 +115,7 @@ require.register("shop/actions/ShopActions", function(exports, require, module) 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-exports.queryForBooks = queryForBooks;
+exports.queryBooks = queryBooks;
 exports.receiveBooks = receiveBooks;
 exports.receiveBestOffer = receiveBestOffer;
 exports.receiveServerError = receiveServerError;
@@ -140,7 +140,7 @@ var _storesCartStore = require('../stores/CartStore');
 
 var _storesCartStore2 = _interopRequireDefault(_storesCartStore);
 
-function queryForBooks() {
+function queryBooks() {
 
   _dispatcherShopAppDispatcher2['default'].dispatch({
     actionType: _constantsShopConstants2['default'].SEARCH_BOOK_START
@@ -333,8 +333,6 @@ var _default = (function (_React$Component) {
   _createClass(_default, [{
     key: 'render',
     value: function render() {
-
-      var self = this;
 
       // If no results
       if (this.props.items.length < 1) {
@@ -699,7 +697,7 @@ var _default = (function (_React$Component) {
 
     this._onBooksChange = this._onBooksChange.bind(this);
 
-    (0, _actionsShopActions.queryForBooks)();
+    (0, _actionsShopActions.queryBooks)();
   }
 
   _createClass(_default, [{
@@ -774,7 +772,11 @@ var _default = (function (_React$Component) {
         React.createElement(
           'div',
           { className: 'cart-box' },
-          cart
+          React.createElement(
+            'div',
+            { className: '' },
+            cart
+          )
         )
       );
       /* jshint ignore:end */

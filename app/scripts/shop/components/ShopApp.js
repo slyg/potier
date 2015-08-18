@@ -1,7 +1,7 @@
 import BookList         from './BookList';
 import Cart             from './Cart';
 import PayBox           from './PayBox';
-import {queryForBooks}  from '../actions/ShopActions';
+import { queryBooks }   from '../actions/ShopActions';
 import BookStore        from '../stores/BookStore';
 import CartStore        from '../stores/CartStore';
 import BestOfferStore   from '../stores/BestOfferStore';
@@ -20,7 +20,7 @@ export default class extends React.Component {
 
     this._onBooksChange = this._onBooksChange.bind(this);
 
-    queryForBooks();
+    queryBooks();
 
   }
 
@@ -49,7 +49,7 @@ export default class extends React.Component {
 
   render(){
 
-    var cart = (
+    let cart = (
       /* jshint ignore:start */
       <div></div>
       /* jshint ignore:end */
@@ -82,7 +82,9 @@ export default class extends React.Component {
           <BookList items={this.state.books} />
         </div>
 
-        <div className="cart-box">{cart}</div>
+        <div className="cart-box">
+          <div className="">{cart}</div>
+        </div>
 
       </div>
     );

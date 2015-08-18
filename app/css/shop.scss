@@ -51,10 +51,14 @@ header {
 
 .cart-box {
   position: fixed;
-  padding: $large-padding;
   min-height: 800px;
   background-color: $side-color;
   box-shadow: 0px 0px 3px darken($side-color, 20%);
+
+  > div {
+    padding: $large-padding;
+  }
+
   h2 {
     font-size: $title-size;
     margin-bottom: 0.3em;

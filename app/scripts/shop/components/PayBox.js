@@ -3,7 +3,7 @@ export default class extends React.Component {
   render(){
 
     /* jshint ignore:start */
-    var discountOffer = (
+    let discountOffer = (
       <div></div>
     );
     /* jshint ignore:end */

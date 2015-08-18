@@ -42,58 +42,60 @@ header {
 /* line 52, stdin */
 .cart-box {
   position: fixed;
-  padding: 2em;
   min-height: 800px;
   background-color: #edeff1;
   box-shadow: 0px 0px 3px #b4bcc4; }
   /* line 58, stdin */
+  .cart-box > div {
+    padding: 2em; }
+  /* line 62, stdin */
   .cart-box h2 {
     font-size: 1.4em;
     margin-bottom: 0.3em;
     color: #aaa; }
-  /* line 63, stdin */
+  /* line 67, stdin */
   .cart-box ul {
     padding-left: 0;
     list-style-type: none; }
-  /* line 67, stdin */
+  /* line 71, stdin */
   .cart-box .title:hover {
     text-decoration: line-through;
     cursor: pointer; }
-  /* line 71, stdin */
+  /* line 75, stdin */
   .cart-box .price {
     color: #bfbfbf; }
-  /* line 74, stdin */
+  /* line 78, stdin */
   .cart-box .total {
     margin-top: 1em;
     padding-top: 1em;
     border-top: 1px solid #b4bcc4; }
-  /* line 79, stdin */
+  /* line 83, stdin */
   .cart-box .discount {
     border-radius: 0.4em;
     padding: 2em;
     background-color: #FFFBF3;
     border: 3px solid #ffd98d; }
-    /* line 84, stdin */
+    /* line 88, stdin */
     .cart-box .discount p {
       font-size: 1.4em; }
 
 @media (max-width: 768px) {
-  /* line 93, stdin */
+  /* line 97, stdin */
   .cart-box, .book-list {
     width: calc(100% - 1em) !important; }
-  /* line 96, stdin */
+  /* line 100, stdin */
   .cart-box {
     position: relative; } }
 
-/* line 103, stdin */
+/* line 107, stdin */
 .tac {
   text-align: center; }
 
-/* line 106, stdin */
+/* line 110, stdin */
 .tar {
   text-align: right; }
 
-/* line 110, stdin */
+/* line 114, stdin */
 .btn {
   padding: 0.4em 0.8em;
   line-height: 1.4;
@@ -101,32 +103,32 @@ header {
   border-radius: 0.4em;
   transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear; }
 
-/* line 118, stdin */
+/* line 122, stdin */
 .btn-primary {
   color: #fff;
   background-color: #3498DB; }
-  /* line 121, stdin */
+  /* line 125, stdin */
   .btn-primary:hover {
     background-color: #1d6fa5; }
 
-/* line 126, stdin */
+/* line 130, stdin */
 .btn-secondary {
   color: #fff;
   background-color: #9B59B6; }
-  /* line 129, stdin */
+  /* line 133, stdin */
   .btn-secondary:hover {
     background-color: #713b87; }
 
-/* line 134, stdin */
+/* line 138, stdin */
 .btn-large {
   padding: 1em 1.5em; }
 
-/* line 140, stdin */
+/* line 144, stdin */
 .default_transition-appear {
   opacity: 0.01;
   transition: opacity .2s ease-in; }
 
-/* line 145, stdin */
+/* line 149, stdin */
 .default_transition-appear.default_transition-appear-active {
   opacity: 1; }
 

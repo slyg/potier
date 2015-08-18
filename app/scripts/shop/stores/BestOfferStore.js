@@ -1,6 +1,6 @@
-import AppDispatcher  from '../dispatcher/ShopAppDispatcher';
-import ShopConstants  from '../constants/ShopConstants';
-import Store          from './Store';
+import AppDispatcher from '../dispatcher/ShopAppDispatcher';
+import ShopConstants from '../constants/ShopConstants';
+import Store         from './Store';
 
 class BestOfferStoreClass extends Store {
 

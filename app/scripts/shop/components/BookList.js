@@ -7,8 +7,6 @@ export default class extends React.Component {
 
   render(){
 
-    let self = this;
-
     // If no results
     if (this.props.items.length < 1) {
       return (
