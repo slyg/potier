@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     "isbn": "c8fabf68-8374-48fe-a7ea-a00ccd07afff",
     "title": "Henri Potier à l'école des sorciers",

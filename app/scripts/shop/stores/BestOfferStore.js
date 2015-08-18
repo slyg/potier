@@ -1,6 +1,6 @@
-var AppDispatcher   = require('../dispatcher/ShopAppDispatcher'),
-    ShopConstants   = require('../constants/ShopConstants'),
-    Store           = require('./Store');
+import AppDispatcher  from '../dispatcher/ShopAppDispatcher';
+import ShopConstants  from '../constants/ShopConstants';
+import Store          from './Store';
 
 class BestOfferStoreClass extends Store {
 
@@ -47,4 +47,4 @@ AppDispatcher.register((action) => {
 
 });
 
-module.exports = BestOfferStore;
+export default BestOfferStore;

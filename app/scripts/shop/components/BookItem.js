@@ -1,7 +1,6 @@
-var React = window.React,
-    ShopActions = require('../actions/ShopActions');
+import { addBookToCart } from '../actions/ShopActions';
 
-class BookItem extends React.Component {
+export default class extends React.Component {
 
   constructor(...args) {
     super(...args);
@@ -9,7 +8,7 @@ class BookItem extends React.Component {
   }
 
   _onAddToCart() {
-    ShopActions.addBookToCart(this.props.item);
+    addBookToCart(this.props.item);
   }
 
   render(){
@@ -36,5 +35,3 @@ class BookItem extends React.Component {
   }
 
 }
-
-module.exports = BookItem;

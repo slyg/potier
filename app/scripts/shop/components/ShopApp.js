@@ -1,14 +1,12 @@
-var React = window.React,
-    _ = window._,
-    BookList = require('./BookList'),
-    Cart = require('./Cart'),
-    PayBox = require('./PayBox'),
-    BookStore = require('../stores/BookStore'),
-    CartStore = require('../stores/CartStore'),
-    BestOfferStore = require('../stores/BestOfferStore'),
-    ShopActions = require('../actions/ShopActions');
+import BookList         from './BookList';
+import Cart             from './Cart';
+import PayBox           from './PayBox';
+import {queryForBooks}  from '../actions/ShopActions';
+import BookStore        from '../stores/BookStore';
+import CartStore        from '../stores/CartStore';
+import BestOfferStore   from '../stores/BestOfferStore';
 
-class ShopApp extends React.Component {
+export default class extends React.Component {
 
   constructor(...args) {
 
@@ -22,7 +20,7 @@ class ShopApp extends React.Component {
 
     this._onBooksChange = this._onBooksChange.bind(this);
 
-    ShopActions.queryForBooks();
+    queryForBooks();
 
   }
 
@@ -93,5 +91,3 @@ class ShopApp extends React.Component {
   }
 
 }
-
-module.exports = ShopApp;

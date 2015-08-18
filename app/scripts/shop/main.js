@@ -1,5 +1,4 @@
-var React = window.React, // Argh... brunch
-    ShopApp = require('./components/ShopApp');
+import ShopApp from './components/ShopApp';
 
 React.render(
   /* jshint ignore:start */

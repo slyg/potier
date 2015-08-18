@@ -48,4 +48,4 @@ class Store extends EventEmitter {
 
 }
 
-module.exports = Store;
+export default Store;

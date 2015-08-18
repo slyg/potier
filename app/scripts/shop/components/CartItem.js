@@ -1,7 +1,6 @@
-var React = window.React,
-    ShopActions = require('../actions/ShopActions');
+import { removeFromCart } from '../actions/ShopActions';
 
-class CartItem extends React.Component {
+export default class extends React.Component {
 
   constructor(...args) {
     super(...args);
@@ -9,7 +8,7 @@ class CartItem extends React.Component {
   }
 
   _onRemoveFromCart() {
-    ShopActions.removeFromCart(this.props.item);
+    removeFromCart(this.props.item);
   }
 
   render(){
@@ -28,5 +27,3 @@ class CartItem extends React.Component {
   }
 
 }
-
-module.exports = CartItem;

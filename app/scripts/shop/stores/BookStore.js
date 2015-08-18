@@ -1,6 +1,6 @@
-var AppDispatcher   = require('../dispatcher/ShopAppDispatcher'),
-    ShopConstants   = require('../constants/ShopConstants'),
-    Store           = require('./Store');
+import AppDispatcher from '../dispatcher/ShopAppDispatcher';
+import ShopConstants from '../constants/ShopConstants';
+import Store         from './Store';
 
 var BookStore = new Store();
 
@@ -18,4 +18,4 @@ AppDispatcher.register((action) => {
 
 });
 
-module.exports = BookStore;
+export default BookStore;

@@ -1,6 +1,4 @@
-var React = window.React;
-
-class PayBox extends React.Component {
+export default class extends React.Component {
 
   render(){
 
@@ -42,5 +40,3 @@ class PayBox extends React.Component {
   }
 
 }
-
-module.exports = PayBox;

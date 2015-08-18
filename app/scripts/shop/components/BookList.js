@@ -1,9 +1,9 @@
-var React = window.React,
-    BookItem = require('./BookItem'),
-    ReactCSSTransitionGroup = React.addons.CSSTransitionGroup,
-        _ = window._;
+import BookItem from './BookItem';
 
-class BookList extends React.Component {
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup,
+    _ = window._;
+
+export default class extends React.Component {
 
   render(){
 
@@ -36,12 +36,8 @@ class BookList extends React.Component {
       /* jshint ignore:end */
     );
 
-
-
   }
 
 }
-
-module.exports = BookList;
 
 //<BookItem />

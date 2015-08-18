@@ -1,2 +1,1 @@
-var Flux = window.Flux;
-module.exports = new Flux.Dispatcher();
+export default new Flux.Dispatcher();

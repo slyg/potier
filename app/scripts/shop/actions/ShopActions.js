@@ -1,9 +1,9 @@
-var ShopConstants       = require('../constants/ShopConstants'),
-    ShopAppDispatcher   = require('../dispatcher/ShopAppDispatcher'),
-    ShopService         = require('../services/ShopService'),
-    CartStore           = require('../stores/CartStore');
+import ShopConstants      from '../constants/ShopConstants';
+import ShopAppDispatcher  from '../dispatcher/ShopAppDispatcher';
+import ShopService        from '../services/ShopService';
+import CartStore          from '../stores/CartStore';
 
-exports.queryForBooks = () => {
+export function queryForBooks() {
 
   ShopAppDispatcher.dispatch({
     actionType: ShopConstants.SEARCH_BOOK_START
@@ -13,7 +13,7 @@ exports.queryForBooks = () => {
 
 };
 
-exports.receiveBooks = (books) => {
+export function receiveBooks (books) {
 
   ShopAppDispatcher.dispatch({
     actionType: ShopConstants.RECEIVE_BOOKS,
@@ -22,7 +22,7 @@ exports.receiveBooks = (books) => {
 
 };
 
-exports.receiveBestOffer = (bestOffer) => {
+export function receiveBestOffer (bestOffer) {
 
   ShopAppDispatcher.dispatch({
     actionType: ShopConstants.RECEIVE_BEST_OFFER,
@@ -31,7 +31,7 @@ exports.receiveBestOffer = (bestOffer) => {
 
 };
 
-exports.receiveServerError = (err) => {
+export function receiveServerError (err) {
 
   ShopAppDispatcher.dispatch({
     actionType: ShopConstants.RECEIVE_SERVER_ERROR,
@@ -40,7 +40,7 @@ exports.receiveServerError = (err) => {
 
 };
 
-exports.addBookToCart = (book) => {
+export function addBookToCart (book) {
 
   ShopAppDispatcher.dispatch({
     actionType: ShopConstants.ADD_BOOK_TO_CART,
@@ -55,7 +55,7 @@ exports.addBookToCart = (book) => {
 };
 
 
-exports.removeFromCart = (book) => {
+export function removeFromCart (book) {
 
   ShopAppDispatcher.dispatch({
     actionType: ShopConstants.REMOVE_BOOK_FROM_CART,

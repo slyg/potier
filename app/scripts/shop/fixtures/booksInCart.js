@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     "isbn": "fcd1e6fa-a63f-4f75-9da4-b560020b6acc",
     "title": "Henri Potier et le Prisonnier d'Azkaban",

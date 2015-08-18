@@ -44116,7 +44116,10 @@ module.exports = warning;
     },
 
     stylesheet: function stylesheet() {
-      [].slice.call(document.querySelectorAll('link[rel="stylesheet"][href]:not([data-autoreload="false"]')).forEach(function (link) {
+      [].slice.call(document.querySelectorAll('link[rel=stylesheet]')).filter(function (link) {
+        var val = link.getAttribute('data-autoreload');
+        return link.href && val != 'false';
+      }).forEach(function (link) {
         link.href = cacheBuster(link.href);
       });
 

@@ -1,9 +1,9 @@
-var React = window.React,
-    CartItem = require('./CartItem'),
-    ReactCSSTransitionGroup = React.addons.CSSTransitionGroup,
+import CartItem from './CartItem';
+
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup,
     _ = window._;
 
-class Cart extends React.Component {
+export default class extends React.Component {
 
   render(){
 
@@ -34,5 +34,3 @@ class Cart extends React.Component {
   }
 
 }
-
-module.exports = Cart;
