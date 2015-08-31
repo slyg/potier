@@ -1,7 +1,8 @@
+import React from 'react/addons';
 import BookList         from './BookList';
 import Cart             from './Cart';
 import PayBox           from './PayBox';
-import { queryBooks }   from '../actions/ShopActions';
+import { queryBooks }   from '../actions/ShopActionsCreator';
 import BookStore        from '../stores/BookStore';
 import CartStore        from '../stores/CartStore';
 import BestOfferStore   from '../stores/BestOfferStore';

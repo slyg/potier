@@ -1,16 +1,17 @@
 # Flux/React app using brunch and ES6
 [![Build Status](https://travis-ci.org/slyg/potier.svg?branch=master)](https://travis-ci.org/slyg/potier)
 
-## Setup
-
 #### Prerequisites
 
-- use iojs > 2.0.0 (you may use `n` globally installed, e.g. `n use iojs 2.0.0`)
-- bower globally installed (`npm install bower -g`)
+use iojs > 2.0.0 (you may use `n` globally installed, e.g. `n use iojs 2.0.0`)
 
 #### Install dependencies
 
 `npm install`
+
+#### Build dependencies
+
+`npm build`
 
 #### Start the application
 
@@ -18,12 +19,6 @@
 
 Port is set to `3000` by default, however you can change it in `config/all.json`.
 
-## Dev mode
-
-Dev mode allows you to modify sources while reloading the application. I'd recommend to use chrome as browser for dev.
+#### Dev mode
 
 `npm run dev`
-
-Server restarts on server files changes and client-side resources live reload is activated by default.
-
-For other commands listing, use `npm run`.

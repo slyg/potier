@@ -1,34 +1,18 @@
-var request = window.$,
-    ShopActions = require('../actions/ShopActions');
+import request from 'jquery';
 
-var BOOKS_URL = () => '/books';
-var BEST_OFFER_URL = (price, isbns) => {
-  let isbnsString = isbns.join(',');
-  return `/books/bestoffer/${price}/${isbnsString}`;
-};
+export function getBooks () {
 
-exports.getBooks = () => {
-
-  request
-    .getJSON(BOOKS_URL(), ShopActions.receiveBooks)
-    .fail(ShopActions.receiveServerError);
+  return request.getJSON('/books');
 
 };
 
-exports.getBestOffer = (price, isbns) => {
+export function getBestOffer (price, isbns) {
 
-  request
-    .getJSON(
-      BEST_OFFER_URL(price, isbns),
-      ShopActions.receiveBestOffer
-    )
-    .fail((err) => {
+  let generateBestOfferUrl = (price, isbns) => {
+    let isbnsString = isbns.join(',');
+    return `/books/bestoffer/${price}/${isbnsString}`;
+  };
 
-      if(err.status === 404){
-        return ShopActions.receiveBestOffer(null);
-      }
-
-      ShopActions.receiveServerError(err);
-    });
+  return request.getJSON(generateBestOfferUrl(price, isbns));
 
 };

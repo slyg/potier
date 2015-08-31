@@ -1,4 +1,5 @@
-import { addBookToCart } from '../actions/ShopActions';
+import React from 'react';
+import { addBookToCart } from '../actions/ShopActionsCreator';
 
 export default class extends React.Component {
 

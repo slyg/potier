@@ -1,3 +1,5 @@
+import React from 'react/addons';
+
 export default class extends React.Component {
 
   render(){

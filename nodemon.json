@@ -2,8 +2,6 @@
   "ignore": [
     "public/",
     "app/scripts/*",
-    "node_modules",
-    "bower_components",
-    "brunch-config"
+    "node_modules"
   ]
 }

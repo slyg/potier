@@ -7,12 +7,17 @@
   "engine-strict": true,
   "dependencies": {
     "co-request": "^0.2.1",
+    "eventemitter2": "^0.4.14",
+    "flux": "^2.1.1",
+    "jquery": "^2.1.4",
+    "knacss": "^4.3.3",
     "koa": "^0.20.0",
     "koa-jade": "^1.0.1",
     "koa-router": "^5.0.1",
     "koa-static": "^1.4.9",
-    "lodash": "^3.9.1",
+    "lodash": "^3.10.1",
     "ramda": "^0.14.0",
+    "react": "^0.13.3",
     "require-dir": "^0.3.0",
     "yamljs": "^0.2.3"
   },
@@ -20,21 +25,21 @@
   "scripts": {
     "start": "node --harmony_arrow_functions --harmony_rest_parameters app",
     "test": "mocha --harmony_arrow_functions --harmony_rest_parameters app/**/__tests__",
-    "dev": "brunch watch --server",
-    "dev-build": "brunch build",
-    "dev-watch": "brunch watch",
-    "dev-start": "nodemon --harmony_arrow_functions --harmony_rest_parameters"
+    "build": "webpack",
+    "dev": "webpack --watch && nodemon --harmony_arrow_functions --harmony_rest_parameters"
   },
   "devDependencies": {
-    "auto-reload-brunch": "^1.7.8",
-    "babel-brunch": "^5.1.2",
-    "brunch": "^1.8.3",
     "chai": "^2.3.0",
     "co": "^4.5.4",
-    "css-brunch": "^1.7.0",
     "mocha": "slyg/mocha",
     "nodemon": "^1.3.7",
     "rewire": "^2.3.3",
-    "sass-brunch": "^1.8.10"
+    "babel-core": "^5.8.23",
+    "babel-loader": "^5.3.2",
+    "css-loader": "^0.16.0",
+    "node-sass": "^3.3.2",
+    "sass-loader": "^2.0.1",
+    "style-loader": "^0.12.3",
+    "webpack": "^1.12.0"
   }
 }

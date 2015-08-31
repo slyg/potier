@@ -1,7 +1,8 @@
 import BookItem from './BookItem';
+import React from 'react/addons';
+import _ from 'lodash';
 
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup,
-    _ = window._;
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 export default class extends React.Component {
 

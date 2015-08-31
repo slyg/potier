@@ -1,6 +1,7 @@
 import AppDispatcher from '../dispatcher/ShopAppDispatcher';
 import ShopConstants from '../constants/ShopConstants';
 import Store         from './Store';
+import _             from 'lodash';
 
 class CartStoreClass extends Store {
 
@@ -25,6 +26,10 @@ class CartStoreClass extends Store {
       this.items[item.isbn].amount = 1;
     }
     return this;
+  }
+
+  getIsbns () {
+    return _.map(this.getItems(), (item) => item.isbn)
   }
 
 }

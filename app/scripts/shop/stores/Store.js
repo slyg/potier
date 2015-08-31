@@ -1,4 +1,5 @@
-var EventEmitter = window.EventEmitter2;
+import EventEmitter from 'EventEmitter2';
+import _            from 'lodash';
 
 class Store extends EventEmitter {
 

@@ -1,12 +1,10 @@
 extend layout
 
 block scripts
-  script(src='javascripts/vendor.js')
-  script(src='javascripts/main.js')
-  script(type='text/javascript') require('shop/main');
+  script(src='bundle.js')
 
 block header
-  header 
+  header
     h1= title
 
 block content
