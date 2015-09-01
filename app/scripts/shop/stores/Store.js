@@ -1,5 +1,5 @@
 import EventEmitter from 'EventEmitter2';
-import _            from 'lodash';
+import { pipe, values, forEach } from 'ramda';
 
 class Store extends EventEmitter {
 
@@ -33,9 +33,12 @@ class Store extends EventEmitter {
 
   setItems (list) {
     this.reset();
-    _.each(list, (item) => {
-      this.createItem(item);
-    });
+    pipe(
+      values,
+      forEach(
+        (item) => this.createItem(item)
+      )
+    )(list);
     return this;
   }
 

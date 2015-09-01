@@ -1,7 +1,7 @@
 import AppDispatcher from '../dispatcher/ShopAppDispatcher';
 import ShopConstants from '../constants/ShopConstants';
 import Store         from './Store';
-import _             from 'lodash';
+import { reduce, pipe, values } from 'ramda';
 
 class CartStoreClass extends Store {
 
@@ -10,9 +10,14 @@ class CartStoreClass extends Store {
   }
 
   getTotalPrice () {
-    return _.reduce(this.items, (total, item) => {
-      return (total + item.price*item.amount);
-    }, 0);
+
+    return pipe(
+      values,
+      reduce(
+        (total, item) => (total + item.price*item.amount), 0
+      )
+    )(this.items);
+
   }
 
   createItem (item) {

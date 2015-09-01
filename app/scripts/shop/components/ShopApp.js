@@ -6,6 +6,7 @@ import { queryBooks }   from '../actions/ShopActionsCreator';
 import BookStore        from '../stores/BookStore';
 import CartStore        from '../stores/CartStore';
 import BestOfferStore   from '../stores/BestOfferStore';
+import R                from 'ramda';
 
 export default class extends React.Component {
 
@@ -26,15 +27,15 @@ export default class extends React.Component {
   }
 
   componentDidMount () {
-    _.each([BookStore, CartStore, BestOfferStore], (store) => {
+    R.forEach((store) => {
       store.addChangeListener(this._onBooksChange);
-    }.bind(this));
+    }.bind(this), [BookStore, CartStore, BestOfferStore]);
   }
 
   componentWillUnmount () {
-    _.each([BookStore, CartStore, BestOfferStore], (store) => {
+    R.forEach((store) => {
       store.removeChangeListener(this._onBooksChange);
-    }.bind(this));
+    }.bind(this), [BookStore, CartStore, BestOfferStore]);
   }
 
   _onBooksChange () {

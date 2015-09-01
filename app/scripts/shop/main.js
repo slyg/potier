@@ -1,5 +1,5 @@
 import 'knacss/sass/knacss.scss';
-import '../../css/shop.scss'
+import '../../css/shop.scss';
 
 import React from 'react';
 import ShopApp from './components/ShopApp';

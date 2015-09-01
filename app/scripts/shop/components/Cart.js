@@ -1,6 +1,6 @@
 import CartItem from './CartItem';
 import React from 'react/addons';
-import _ from 'lodash';
+import { values, map, pipe } from 'ramda';
 
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
@@ -8,15 +8,20 @@ export default class extends React.Component {
 
   render(){
 
-    var cartItems = _.map(this.props.cart.books, function(item) {
-      /* jshint ignore:start */
-      return (
-        <li key={item.isbn}>
-          <CartItem item={item} />
-        </li>
-      );
-      /* jshint ignore:end */
-    });
+    let cartItems = pipe(
+      values,
+      map(
+        (item) => {
+          return (
+            /* jshint ignore:start */
+            <li key={item.isbn}>
+              <CartItem item={item} />
+            </li>
+            /* jshint ignore:end */
+          );
+        }
+      )
+    )(this.props.cart.books);
 
     /* jshint ignore:start */
     return (

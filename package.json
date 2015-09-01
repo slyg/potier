@@ -15,7 +15,6 @@
     "koa-jade": "^1.0.1",
     "koa-router": "^5.0.1",
     "koa-static": "^1.4.9",
-    "lodash": "^3.10.1",
     "ramda": "^0.14.0",
     "react": "^0.13.3",
     "require-dir": "^0.3.0",
@@ -26,7 +25,7 @@
     "start": "node --harmony_arrow_functions --harmony_rest_parameters app",
     "test": "mocha --harmony_arrow_functions --harmony_rest_parameters app/**/__tests__",
     "build": "webpack",
-    "dev": "webpack --watch && nodemon --harmony_arrow_functions --harmony_rest_parameters"
+    "dev": "webpack --watch & nodemon --harmony_arrow_functions --harmony_rest_parameters"
   },
   "devDependencies": {
     "chai": "^2.3.0",

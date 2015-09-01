@@ -1,6 +1,6 @@
 import BookItem from './BookItem';
 import React from 'react/addons';
-import _ from 'lodash';
+import { values, map, pipe } from 'ramda';
 
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
@@ -17,15 +17,20 @@ export default class extends React.Component {
       );
     }
 
-    var bookItems = _.map(this.props.items, function(bookItem) {
-      return (
-        /* jshint ignore:start */
-        <li key={bookItem.isbn}>
-          <BookItem item={bookItem} />
-        </li>
-        /* jshint ignore:end */
-      );
-    });
+    let bookItems = pipe(
+      values,
+      map(
+        (item) => {
+          return (
+            /* jshint ignore:start */
+            <li key={item.isbn}>
+              <BookItem item={item} />
+            </li>
+            /* jshint ignore:end */
+          );
+        }
+      )
+    )(this.props.items);
 
     return (
       /* jshint ignore:start */
@@ -38,5 +43,3 @@ export default class extends React.Component {
   }
 
 }
-
-//<BookItem />
