@@ -1,9 +1,9 @@
-# Flux/React app using brunch and ES6
+# Flux/React app using <s>brunch</s> webpack and ES6
 [![Build Status](https://travis-ci.org/slyg/potier.svg?branch=master)](https://travis-ci.org/slyg/potier)
 
 #### Prerequisites
 
-use iojs > 2.0.0 (you may use `n` globally installed, e.g. `n use iojs 2.0.0`)
+use iojs 2.x.x (you may use `n` globally installed, e.g. `n use iojs 2.0.0`)
 
 #### Install dependencies
 
