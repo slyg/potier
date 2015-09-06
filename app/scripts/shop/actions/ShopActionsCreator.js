@@ -10,7 +10,7 @@ let handleServerError = (err) => {
     error: err
   });
 
-}
+};
 
 let receiveBestOffer = (bestOffer) => {
 
