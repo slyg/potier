@@ -2,7 +2,7 @@ import React from 'react/addons';
 import BookList         from './BookList';
 import Cart             from './Cart';
 import PayBox           from './PayBox';
-import { queryBooks, addBookToCart }   from '../actions/ShopActionsCreator';
+import { queryBooks, addBookToCart, removeFromCart } from '../actions/ShopActionsCreator';
 import BookStore        from '../stores/BookStore';
 import CartStore        from '../stores/CartStore';
 import BestOfferStore   from '../stores/BestOfferStore';
@@ -64,7 +64,7 @@ export default class extends React.Component {
         <div>
 
           <div className="cart pbl">
-            <Cart cart={this.state.cart} />
+            <Cart cart={this.state.cart} onRemoveFromCart={(item) => removeFromCart(item)} />
           </div>
 
           <div className="offer pbl">

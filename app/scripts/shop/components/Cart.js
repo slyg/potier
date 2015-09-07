@@ -15,7 +15,7 @@ export default class extends React.Component {
           return (
             /* jshint ignore:start */
             <li key={item.isbn}>
-              <CartItem item={item} />
+              <CartItem item={item} onRemoveFromCart={this.props.onRemoveFromCart} />
             </li>
             /* jshint ignore:end */
           );

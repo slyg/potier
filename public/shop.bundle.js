@@ -42339,6 +42339,7 @@
 	  _createClass(_default, [{
 	    key: 'render',
 	    value: function render() {
+	      var _this = this;
 	
 	      var cartItems = (0, _ramda.pipe)(_ramda.values, (0, _ramda.map)(function (item) {
 	        return(
@@ -42346,7 +42347,7 @@
 	          _reactAddons2['default'].createElement(
 	            'li',
 	            { key: item.isbn },
-	            _reactAddons2['default'].createElement(_CartItem2['default'], { item: item })
+	            _reactAddons2['default'].createElement(_CartItem2['default'], { item: item, onRemoveFromCart: _this.props.onRemoveFromCart })
 	          )
 	          /* jshint ignore:end */
 	
@@ -42421,22 +42422,13 @@
 	  function _default() {
 	    _classCallCheck(this, _default);
 	
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-	
-	    _get(Object.getPrototypeOf(_default.prototype), 'constructor', this).apply(this, args);
-	    this._onRemoveFromCart = this._onRemoveFromCart.bind(this);
+	    _get(Object.getPrototypeOf(_default.prototype), 'constructor', this).apply(this, arguments);
 	  }
 	
 	  _createClass(_default, [{
-	    key: '_onRemoveFromCart',
-	    value: function _onRemoveFromCart() {
-	      (0, _actionsShopActionsCreator.removeFromCart)(this.props.item);
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this = this;
 	
 	      var item = this.props.item;
 	
@@ -42446,7 +42438,9 @@
 	        { className: 'grid-4-1' },
 	        _reactAddons2['default'].createElement(
 	          'div',
-	          { className: 'title', onClick: this._onRemoveFromCart },
+	          { className: 'title', onClick: function () {
+	              return _this.props.onRemoveFromCart(item);
+	            } },
 	          item.title
 	        ),
 	        _reactAddons2['default'].createElement(
@@ -42919,7 +42913,9 @@
 	          _reactAddons2['default'].createElement(
 	            'div',
 	            { className: 'cart pbl' },
-	            _reactAddons2['default'].createElement(_Cart2['default'], { cart: this.state.cart })
+	            _reactAddons2['default'].createElement(_Cart2['default'], { cart: this.state.cart, onRemoveFromCart: function (item) {
+	                return (0, _actionsShopActionsCreator.removeFromCart)(item);
+	              } })
 	          ),
 	          _reactAddons2['default'].createElement(
 	            'div',
