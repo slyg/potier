@@ -66,30 +66,11 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	_store2['default'].dispatch({
-	  type: 'RECEIVE_BOOKS',
-	  books: [{ isbn: '1', title: 'A', price: 10 }, { isbn: '2', title: 'B', price: 15 }]
-	});
-	_store2['default'].dispatch({
-	  type: 'ADD_BOOK_TO_CART',
-	  book: { isbn: '1', title: 'A', price: 10 }
-	});
-	_store2['default'].dispatch({
-	  type: 'ADD_BOOK_TO_CART',
-	  book: { isbn: '2', title: 'B', price: 15 }
-	});
-	_store2['default'].dispatch({
-	  type: 'ADD_BOOK_TO_CART',
-	  book: { isbn: '2', title: 'B', price: 15 }
-	});
-	_store2['default'].dispatch({
-	  type: 'ADD_BOOK_TO_CART',
-	  book: { isbn: '2', title: 'B', price: 15 }
-	});
-	_store2['default'].dispatch({
-	  type: 'REMOVE_BOOK_FROM_CART',
-	  book: { isbn: '1' }
-	});
+	var _fixturesScenario = __webpack_require__(225);
+	
+	var _fixturesScenario2 = _interopRequireDefault(_fixturesScenario);
+	
+	(0, _fixturesScenario2['default'])(_store2['default']);
 	console.log(_store2['default'].getState());
 	
 	_react2['default'].render(
@@ -42776,10 +42757,11 @@
 	
 	var _cart2 = _interopRequireDefault(_cart);
 	
-	exports['default'] = (0, _redux.combineReducers)({
-	  books: _books2['default'],
-	  cart: _cart2['default']
-	});
+	var _discount = __webpack_require__(224);
+	
+	var _discount2 = _interopRequireDefault(_discount);
+	
+	exports['default'] = (0, _redux.combineReducers)({ books: _books2['default'], cart: _cart2['default'], discount: _discount2['default'] });
 	module.exports = exports['default'];
 
 /***/ },
@@ -43054,6 +43036,106 @@
 	  }
 	
 	  return state;
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 224 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = discount;
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _constantsShopConstants = __webpack_require__(203);
+	
+	var _ramda = __webpack_require__(211);
+	
+	var _ramda2 = _interopRequireDefault(_ramda);
+	
+	function discount(state, action) {
+	  if (state === undefined) state = null;
+	
+	  switch (action.type) {
+	
+	    case _constantsShopConstants.RECEIVE_BEST_OFFER:
+	      {
+	        return action.bestOffer;
+	        break;
+	      }
+	
+	  }
+	
+	  return state;
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 225 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = scenario;
+	
+	function scenario(store) {
+	
+	  store.dispatch({
+	    type: 'RECEIVE_BOOKS',
+	    books: [{ isbn: '1', title: 'A', price: 10 }, { isbn: '2', title: 'B', price: 15 }]
+	  });
+	  store.dispatch({
+	    type: 'ADD_BOOK_TO_CART',
+	    book: { isbn: '1', title: 'A', price: 10 }
+	  });
+	  store.dispatch({
+	    type: 'ADD_BOOK_TO_CART',
+	    book: { isbn: '2', title: 'B', price: 15 }
+	  });
+	  store.dispatch({
+	    type: 'ADD_BOOK_TO_CART',
+	    book: { isbn: '2', title: 'B', price: 15 }
+	  });
+	  store.dispatch({
+	    type: 'ADD_BOOK_TO_CART',
+	    book: { isbn: '2', title: 'B', price: 15 }
+	  });
+	  store.dispatch({
+	    type: 'REMOVE_BOOK_FROM_CART',
+	    book: { isbn: '1' }
+	  });
+	  store.dispatch({
+	    type: 'RECEIVE_BEST_OFFER',
+	    bestOffer: {
+	      finalPrice: 27.84,
+	      totalPrice: 29,
+	      type: 'percentage',
+	      value: 4
+	    }
+	  });
+	  store.dispatch({
+	    type: 'RECEIVE_BEST_OFFER',
+	    bestOffer: {
+	      finalPrice: 26.1,
+	      totalPrice: 29,
+	      type: 'percentage',
+	      value: 10
+	    }
+	  });
+	  store.dispatch({
+	    type: 'RECEIVE_BEST_OFFER',
+	    bestOffer: null
+	  });
 	}
 	
 	module.exports = exports['default'];
