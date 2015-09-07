@@ -34,7 +34,7 @@ class CartStoreClass extends Store {
   }
 
   getIsbns () {
-    return _.map(this.getItems(), (item) => item.isbn)
+    return values(this.getItems(), (item) => item.isbn)
   }
 
 }
