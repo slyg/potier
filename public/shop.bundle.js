@@ -66,11 +66,31 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	// store.dispatch({
-	//   type: 'RECEIVE_BOOKS',
-	//   books: [{isbn: '1', title: 'A'}, {isbn: '2', title: 'B'}]
-	// });
-	// console.log(store.getState());
+	_store2['default'].dispatch({
+	  type: 'RECEIVE_BOOKS',
+	  books: [{ isbn: '1', title: 'A', price: 10 }, { isbn: '2', title: 'B', price: 15 }]
+	});
+	_store2['default'].dispatch({
+	  type: 'ADD_BOOK_TO_CART',
+	  book: { isbn: '1', title: 'A', price: 10 }
+	});
+	_store2['default'].dispatch({
+	  type: 'ADD_BOOK_TO_CART',
+	  book: { isbn: '2', title: 'B', price: 15 }
+	});
+	_store2['default'].dispatch({
+	  type: 'ADD_BOOK_TO_CART',
+	  book: { isbn: '2', title: 'B', price: 15 }
+	});
+	_store2['default'].dispatch({
+	  type: 'ADD_BOOK_TO_CART',
+	  book: { isbn: '2', title: 'B', price: 15 }
+	});
+	_store2['default'].dispatch({
+	  type: 'REMOVE_BOOK_FROM_CART',
+	  book: { isbn: '1' }
+	});
+	console.log(_store2['default'].getState());
 	
 	_react2['default'].render(
 	/* jshint ignore:start */
@@ -42752,8 +42772,13 @@
 	
 	var _books2 = _interopRequireDefault(_books);
 	
+	var _cart = __webpack_require__(223);
+	
+	var _cart2 = _interopRequireDefault(_cart);
+	
 	exports['default'] = (0, _redux.combineReducers)({
-	  books: _books2['default']
+	  books: _books2['default'],
+	  cart: _cart2['default']
 	});
 	module.exports = exports['default'];
 
@@ -42961,6 +42986,76 @@
 	})(_reactAddons2['default'].Component);
 	
 	exports['default'] = _default;
+	module.exports = exports['default'];
+
+/***/ },
+/* 223 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = cart;
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _constantsShopConstants = __webpack_require__(203);
+	
+	var _ramda = __webpack_require__(211);
+	
+	var _ramda2 = _interopRequireDefault(_ramda);
+	
+	var initialState = {
+	  books: {},
+	  totalPrice: 0
+	};
+	
+	var countPrice = _ramda2['default'].pipe(_ramda2['default'].values, _ramda2['default'].reduce(function (acc, item) {
+	  return acc + item.price * item.amount;
+	}, 0));
+	
+	function cart(state, action) {
+	  if (state === undefined) state = initialState;
+	
+	  var item = action.book;
+	  var newState = _ramda2['default'].clone(state);
+	
+	  switch (action.type) {
+	
+	    case _constantsShopConstants.ADD_BOOK_TO_CART:
+	      {
+	        var exists = state.books[item.isbn] ? true : false;
+	        var books = newState.books;
+	        if (exists) {
+	          books[item.isbn].amount++;
+	        } else {
+	          books[item.isbn] = item;
+	          books[item.isbn].amount = 1;
+	        }
+	        return Object.assign({}, {
+	          books: books,
+	          totalPrice: countPrice(books)
+	        });
+	        break;
+	      }
+	
+	    case _constantsShopConstants.REMOVE_BOOK_FROM_CART:
+	      {
+	        var books = _ramda2['default'].omit([item.isbn], newState.books);
+	        return Object.assign({}, {
+	          books: books,
+	          totalPrice: countPrice(books)
+	        });
+	        break;
+	      }
+	
+	  }
+	
+	  return state;
+	}
+	
 	module.exports = exports['default'];
 
 /***/ }

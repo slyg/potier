@@ -6,11 +6,31 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import store from './store';
 
-// store.dispatch({
-//   type: 'RECEIVE_BOOKS',
-//   books: [{isbn: '1', title: 'A'}, {isbn: '2', title: 'B'}]
-// });
-// console.log(store.getState());
+store.dispatch({
+  type: 'RECEIVE_BOOKS',
+  books: [{isbn: '1', title: 'A', price: 10}, {isbn: '2', title: 'B', price: 15}]
+});
+store.dispatch({
+  type: 'ADD_BOOK_TO_CART',
+  book: {isbn: '1', title: 'A', price: 10}
+});
+store.dispatch({
+  type: 'ADD_BOOK_TO_CART',
+  book: {isbn: '2', title: 'B', price: 15}
+});
+store.dispatch({
+  type: 'ADD_BOOK_TO_CART',
+  book: {isbn: '2', title: 'B', price: 15}
+});
+store.dispatch({
+  type: 'ADD_BOOK_TO_CART',
+  book: {isbn: '2', title: 'B', price: 15}
+});
+store.dispatch({
+  type: 'REMOVE_BOOK_FROM_CART',
+  book: {isbn: '1'}
+});
+console.log(store.getState());
 
 React.render(
   /* jshint ignore:start */
