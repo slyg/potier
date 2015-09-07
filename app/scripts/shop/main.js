@@ -7,14 +7,16 @@ import App from './components/App';
 import store from './store';
 import scenario from './fixtures/scenario';
 
-scenario(store);
-console.log(store.getState());
+// store.subscribe(state => console.log('hey', store.getState()));
+// scenario(store);
+// console.log(store.getState());
+
 
 React.render(
   /* jshint ignore:start */
-  <Provider store={store}>
-    {() => <App />}
-  </Provider>,
+  <App store={store} />,
   /* jshint ignore:end */
   document.getElementById('shop')
 );
+
+scenario(store);

@@ -2,7 +2,7 @@ import React from 'react/addons';
 import BookList         from './BookList';
 import Cart             from './Cart';
 import PayBox           from './PayBox';
-import { queryBooks }   from '../actions/ShopActionsCreator';
+import { queryBooks, addBookToCart }   from '../actions/ShopActionsCreator';
 import BookStore        from '../stores/BookStore';
 import CartStore        from '../stores/CartStore';
 import BestOfferStore   from '../stores/BestOfferStore';
@@ -20,7 +20,7 @@ export default class extends React.Component {
       discount : null
     };
 
-    this._onBooksChange = this._onBooksChange.bind(this);
+    this.onBooksChange = this.onBooksChange.bind(this);
 
     queryBooks();
 
@@ -28,17 +28,17 @@ export default class extends React.Component {
 
   componentDidMount () {
     R.forEach((store) => {
-      store.addChangeListener(this._onBooksChange);
+      store.addChangeListener(this.onBooksChange);
     }.bind(this), [BookStore, CartStore, BestOfferStore]);
   }
 
   componentWillUnmount () {
     R.forEach((store) => {
-      store.removeChangeListener(this._onBooksChange);
+      store.removeChangeListener(this.onBooksChange);
     }.bind(this), [BookStore, CartStore, BestOfferStore]);
   }
 
-  _onBooksChange () {
+  onBooksChange () {
     this.setState({
       books: BookStore.getItems(),
       cart : {
@@ -81,7 +81,7 @@ export default class extends React.Component {
       <div className="grid-2-1">
 
         <div className="book-list">
-          <BookList items={this.state.books} />
+          <BookList items={this.state.books} onAddToCart={(item) => addBookToCart(item)} />
         </div>
 
         <div className="cart-box">

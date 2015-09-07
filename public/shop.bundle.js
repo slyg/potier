@@ -70,20 +70,17 @@
 	
 	var _fixturesScenario2 = _interopRequireDefault(_fixturesScenario);
 	
-	(0, _fixturesScenario2['default'])(_store2['default']);
-	console.log(_store2['default'].getState());
+	// store.subscribe(state => console.log('hey', store.getState()));
+	// scenario(store);
+	// console.log(store.getState());
 	
 	_react2['default'].render(
 	/* jshint ignore:start */
-	_react2['default'].createElement(
-	  _reactRedux.Provider,
-	  { store: _store2['default'] },
-	  function () {
-	    return _react2['default'].createElement(_componentsApp2['default'], null);
-	  }
-	),
+	_react2['default'].createElement(_componentsApp2['default'], { store: _store2['default'] }),
 	/* jshint ignore:end */
 	document.getElementById('shop'));
+	
+	(0, _fixturesScenario2['default'])(_store2['default']);
 
 /***/ },
 /* 1 */
@@ -24169,6 +24166,7 @@
 	  _createClass(_default, [{
 	    key: 'render',
 	    value: function render() {
+	      var _this = this;
 	
 	      // If no results
 	      if (this.props.items.length < 1) {
@@ -24190,7 +24188,7 @@
 	          _reactAddons2['default'].createElement(
 	            'li',
 	            { key: item.isbn },
-	            _reactAddons2['default'].createElement(_BookItem2['default'], { item: item })
+	            _reactAddons2['default'].createElement(_BookItem2['default'], { item: item, onAddToCart: _this.props.onAddToCart })
 	          )
 	          /* jshint ignore:end */
 	
@@ -24244,30 +24242,19 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _actionsShopActionsCreator = __webpack_require__(202);
-	
 	var _default = (function (_React$Component) {
 	  _inherits(_default, _React$Component);
 	
 	  function _default() {
 	    _classCallCheck(this, _default);
 	
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-	
-	    _get(Object.getPrototypeOf(_default.prototype), 'constructor', this).apply(this, args);
-	    this._onAddToCart = this._onAddToCart.bind(this);
+	    _get(Object.getPrototypeOf(_default.prototype), 'constructor', this).apply(this, arguments);
 	  }
 	
 	  _createClass(_default, [{
-	    key: '_onAddToCart',
-	    value: function _onAddToCart() {
-	      (0, _actionsShopActionsCreator.addBookToCart)(this.props.item);
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this = this;
 	
 	      var item = this.props.item;
 	
@@ -24299,7 +24286,9 @@
 	            null,
 	            _react2['default'].createElement(
 	              'button',
-	              { onClick: this._onAddToCart, type: 'submit', className: 'btn btn-secondary' },
+	              { onClick: function () {
+	                  return _this.props.onAddToCart(item);
+	                }, type: 'submit', className: 'btn btn-secondary' },
 	              'Ajouter au panier'
 	            )
 	          )
@@ -42876,7 +42865,7 @@
 	      discount: null
 	    };
 	
-	    this._onBooksChange = this._onBooksChange.bind(this);
+	    this.onBooksChange = this.onBooksChange.bind(this);
 	
 	    (0, _actionsShopActionsCreator.queryBooks)();
 	  }
@@ -42887,7 +42876,7 @@
 	      var _this = this;
 	
 	      _ramda2['default'].forEach((function (store) {
-	        store.addChangeListener(_this._onBooksChange);
+	        store.addChangeListener(_this.onBooksChange);
 	      }).bind(this), [_storesBookStore2['default'], _storesCartStore2['default'], _storesBestOfferStore2['default']]);
 	    }
 	  }, {
@@ -42896,12 +42885,12 @@
 	      var _this2 = this;
 	
 	      _ramda2['default'].forEach((function (store) {
-	        store.removeChangeListener(_this2._onBooksChange);
+	        store.removeChangeListener(_this2.onBooksChange);
 	      }).bind(this), [_storesBookStore2['default'], _storesCartStore2['default'], _storesBestOfferStore2['default']]);
 	    }
 	  }, {
-	    key: '_onBooksChange',
-	    value: function _onBooksChange() {
+	    key: 'onBooksChange',
+	    value: function onBooksChange() {
 	      this.setState({
 	        books: _storesBookStore2['default'].getItems(),
 	        cart: {
@@ -42948,7 +42937,9 @@
 	        _reactAddons2['default'].createElement(
 	          'div',
 	          { className: 'book-list' },
-	          _reactAddons2['default'].createElement(_BookList2['default'], { items: this.state.books })
+	          _reactAddons2['default'].createElement(_BookList2['default'], { items: this.state.books, onAddToCart: function (item) {
+	              return (0, _actionsShopActionsCreator.addBookToCart)(item);
+	            } })
 	        ),
 	        _reactAddons2['default'].createElement(
 	          'div',
