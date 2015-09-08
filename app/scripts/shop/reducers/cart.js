@@ -1,4 +1,4 @@
-import { ADD_BOOK_TO_CART, REMOVE_BOOK_FROM_CART } from '../constants/ShopConstants';
+import { ADD_BOOK_TO_CART, REMOVE_BOOK_FROM_CART } from '../constants';
 import R from 'ramda';
 
 const initialState = {

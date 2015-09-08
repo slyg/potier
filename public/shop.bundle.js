@@ -22038,7 +22038,7 @@
 	
 	var _PayBox2 = _interopRequireDefault(_PayBox);
 	
-	var _actionsShopActionsCreator = __webpack_require__(206);
+	var _actionCreators = __webpack_require__(206);
 	
 	var App = (function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -22054,7 +22054,7 @@
 	    value: function componentDidMount() {
 	      var dispatch = this.props.dispatch;
 	
-	      (0, _actionsShopActionsCreator.queryBooks)().then(dispatch);
+	      (0, _actionCreators.queryBooks)().then(dispatch);
 	    }
 	  }, {
 	    key: 'render',
@@ -22073,7 +22073,7 @@
 	            'div',
 	            { className: 'cart pbl' },
 	            _reactAddons2['default'].createElement(_Cart2['default'], { cart: this.props.cart, onRemoveFromCart: function (item) {
-	                return dispatch((0, _actionsShopActionsCreator.removeFromCart)(item));
+	                return dispatch((0, _actionCreators.removeFromCart)(item));
 	              } })
 	          ),
 	          _reactAddons2['default'].createElement(
@@ -22091,7 +22091,7 @@
 	          'div',
 	          { className: 'book-list' },
 	          _reactAddons2['default'].createElement(_BookList2['default'], { items: this.props.books, onAddToCart: function (item) {
-	              return dispatch((0, _actionsShopActionsCreator.addBookToCart)(item));
+	              return dispatch((0, _actionCreators.addBookToCart)(item));
 	            } })
 	        ),
 	        _reactAddons2['default'].createElement(
@@ -32215,14 +32215,14 @@
 	exports.addBookToCart = addBookToCart;
 	exports.removeFromCart = removeFromCart;
 	
-	var _constantsShopConstants = __webpack_require__(207);
+	var _constants = __webpack_require__(207);
 	
-	var _servicesShopService = __webpack_require__(208);
+	var _webApi = __webpack_require__(215);
 	
 	var handleServerError = function handleServerError(error) {
 	
 	  return {
-	    type: _constantsShopConstants.RECEIVE_SERVER_ERROR,
+	    type: _constants.RECEIVE_SERVER_ERROR,
 	    error: error
 	  };
 	};
@@ -32230,7 +32230,7 @@
 	var receiveBestOffer = function receiveBestOffer(bestOffer) {
 	
 	  return {
-	    type: _constantsShopConstants.RECEIVE_BEST_OFFER,
+	    type: _constants.RECEIVE_BEST_OFFER,
 	    bestOffer: bestOffer
 	  };
 	};
@@ -32241,9 +32241,9 @@
 	  //   type: SEARCH_BOOK_START
 	  // };
 	
-	  return (0, _servicesShopService.getBooks)().then(function (books) {
+	  return (0, _webApi.getBooks)().then(function (books) {
 	    return {
-	      type: _constantsShopConstants.RECEIVE_BOOKS,
+	      type: _constants.RECEIVE_BOOKS,
 	      books: books
 	    };
 	  }).fail(handleServerError);
@@ -32254,7 +32254,7 @@
 	function addBookToCart(book) {
 	
 	  return {
-	    type: _constantsShopConstants.ADD_BOOK_TO_CART,
+	    type: _constants.ADD_BOOK_TO_CART,
 	    book: book
 	  };
 	
@@ -32274,7 +32274,7 @@
 	function removeFromCart(book) {
 	
 	  return {
-	    type: _constantsShopConstants.REMOVE_BOOK_FROM_CART,
+	    type: _constants.REMOVE_BOOK_FROM_CART,
 	    book: book
 	  };
 	
@@ -32312,43 +32312,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 208 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports.getBooks = getBooks;
-	exports.getBestOffer = getBestOffer;
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _jquery = __webpack_require__(209);
-	
-	var _jquery2 = _interopRequireDefault(_jquery);
-	
-	function getBooks() {
-	
-	  return _jquery2['default'].getJSON('/books');
-	}
-	
-	;
-	
-	function getBestOffer(price, isbns) {
-	
-	  var generateBestOfferUrl = function generateBestOfferUrl(price, isbns) {
-	    var isbnsString = isbns.join(',');
-	    return '/books/bestoffer/' + price + '/' + isbnsString;
-	  };
-	
-	  return _jquery2['default'].getJSON(generateBestOfferUrl(price, isbns));
-	}
-	
-	;
-
-/***/ },
+/* 208 */,
 /* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -41578,11 +41542,11 @@
 	
 	var _redux = __webpack_require__(171);
 	
-	var _reducersIndex = __webpack_require__(211);
+	var _reducers = __webpack_require__(211);
 	
-	var _reducersIndex2 = _interopRequireDefault(_reducersIndex);
+	var _reducers2 = _interopRequireDefault(_reducers);
 	
-	exports['default'] = (0, _redux.createStore)(_reducersIndex2['default']);
+	exports['default'] = (0, _redux.createStore)(_reducers2['default']);
 	module.exports = exports['default'];
 
 /***/ },
@@ -41627,7 +41591,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _constantsShopConstants = __webpack_require__(207);
+	var _constants = __webpack_require__(207);
 	
 	var _ramda = __webpack_require__(200);
 	
@@ -41638,7 +41602,7 @@
 	
 	  switch (action.type) {
 	
-	    case _constantsShopConstants.RECEIVE_BOOKS:
+	    case _constants.RECEIVE_BOOKS:
 	      return Object.assign({}, state, _ramda2['default'].reduce(function (acc, value) {
 	        var obj = {};
 	        obj[value.isbn] = value;
@@ -41667,7 +41631,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _constantsShopConstants = __webpack_require__(207);
+	var _constants = __webpack_require__(207);
 	
 	var _ramda = __webpack_require__(200);
 	
@@ -41690,7 +41654,7 @@
 	
 	  switch (action.type) {
 	
-	    case _constantsShopConstants.ADD_BOOK_TO_CART:
+	    case _constants.ADD_BOOK_TO_CART:
 	      {
 	        var exists = state.books[item.isbn] ? true : false;
 	        var books = newState.books;
@@ -41707,7 +41671,7 @@
 	        break;
 	      }
 	
-	    case _constantsShopConstants.REMOVE_BOOK_FROM_CART:
+	    case _constants.REMOVE_BOOK_FROM_CART:
 	      {
 	        var books = _ramda2['default'].omit([item.isbn], newState.books);
 	        return Object.assign({}, {
@@ -41737,7 +41701,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _constantsShopConstants = __webpack_require__(207);
+	var _constants = __webpack_require__(207);
 	
 	var _ramda = __webpack_require__(200);
 	
@@ -41748,7 +41712,7 @@
 	
 	  switch (action.type) {
 	
-	    case _constantsShopConstants.RECEIVE_BEST_OFFER:
+	    case _constants.RECEIVE_BEST_OFFER:
 	      {
 	        return action.bestOffer;
 	        break;
@@ -41760,6 +41724,43 @@
 	}
 	
 	module.exports = exports['default'];
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports.getBooks = getBooks;
+	exports.getBestOffer = getBestOffer;
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _jquery = __webpack_require__(209);
+	
+	var _jquery2 = _interopRequireDefault(_jquery);
+	
+	function getBooks() {
+	
+	  return _jquery2['default'].getJSON('/books');
+	}
+	
+	;
+	
+	function getBestOffer(price, isbns) {
+	
+	  var generateBestOfferUrl = function generateBestOfferUrl(price, isbns) {
+	    var isbnsString = isbns.join(',');
+	    return '/books/bestoffer/' + price + '/' + isbnsString;
+	  };
+	
+	  return _jquery2['default'].getJSON(generateBestOfferUrl(price, isbns));
+	}
+	
+	;
 
 /***/ }
 /******/ ]);

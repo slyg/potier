@@ -5,8 +5,8 @@ import {
   RECEIVE_BOOKS,
   ADD_BOOK_TO_CART,
   REMOVE_BOOK_FROM_CART
-} from '../constants/ShopConstants';
-import { getBooks, getBestOffer } from '../services/ShopService';
+} from './constants';
+import { getBooks, getBestOffer } from './webApi';
 
 let handleServerError = (error) => {
 

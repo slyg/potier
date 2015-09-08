@@ -1,4 +1,4 @@
-import { RECEIVE_BOOKS } from '../constants/ShopConstants';
+import { RECEIVE_BOOKS } from '../constants';
 import R from 'ramda';
 
 export default function books(state = {}, action){

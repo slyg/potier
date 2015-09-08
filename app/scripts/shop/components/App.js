@@ -5,7 +5,7 @@ import R           from 'ramda';
 import BookList    from './BookList';
 import Cart        from './Cart';
 import PayBox      from './PayBox';
-import { queryBooks, addBookToCart, removeFromCart } from '../actions/ShopActionsCreator';
+import { queryBooks, addBookToCart, removeFromCart } from '../actionCreators';
 
 class App extends React.Component {
 
