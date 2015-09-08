@@ -1,39 +1,44 @@
-import ShopConstants from '../constants/ShopConstants';
-import ShopAppDispatcher            from '../dispatcher/ShopAppDispatcher';
-import CartStore                    from '../stores/CartStore';
-import { getBooks, getBestOffer }   from '../services/ShopService';
+import {
+  RECEIVE_SERVER_ERROR,
+  RECEIVE_BEST_OFFER,
+  SEARCH_BOOK_START,
+  RECEIVE_BOOKS,
+  ADD_BOOK_TO_CART,
+  REMOVE_BOOK_FROM_CART
+} from '../constants/ShopConstants';
+import { getBooks, getBestOffer } from '../services/ShopService';
 
-let handleServerError = (err) => {
+let handleServerError = (error) => {
 
-  ShopAppDispatcher.dispatch({
-    actionType: ShopConstants.RECEIVE_SERVER_ERROR,
-    error: err
-  });
+  return {
+    type: RECEIVE_SERVER_ERROR,
+    error
+  };
 
 };
 
 let receiveBestOffer = (bestOffer) => {
 
-  ShopAppDispatcher.dispatch({
-    actionType: ShopConstants.RECEIVE_BEST_OFFER,
+  return {
+    type: RECEIVE_BEST_OFFER,
     bestOffer
-  });
+  };
 
 };
 
 export function queryBooks() {
 
-  ShopAppDispatcher.dispatch({
-    actionType: ShopConstants.SEARCH_BOOK_START
-  });
+  // return {
+  //   type: SEARCH_BOOK_START
+  // };
 
-  getBooks()
+  return getBooks()
     .then(
       (books) => {
-        ShopAppDispatcher.dispatch({
-          actionType: ShopConstants.RECEIVE_BOOKS,
+        return {
+          type: RECEIVE_BOOKS,
           books
-        });
+        };
       }
     )
     .fail(handleServerError)
@@ -43,38 +48,38 @@ export function queryBooks() {
 
 export function addBookToCart (book) {
 
-  ShopAppDispatcher.dispatch({
-    actionType: ShopConstants.ADD_BOOK_TO_CART,
+  return {
+    type: ADD_BOOK_TO_CART,
     book
-  });
+  };
 
-  getBestOffer(CartStore.getTotalPrice(), CartStore.getIsbns())
-    .then(receiveBestOffer)
-    .fail((err) => {
-      if (err.status === 404) {
-        return receiveBestOffer(null);
-      }
-      handleServerError(err);
-    })
-  ;
+  // getBestOffer(CartStore.getTotalPrice(), CartStore.getIsbns())
+  //   .then(receiveBestOffer)
+  //   .fail((err) => {
+  //     if (err.status === 404) {
+  //       return receiveBestOffer(null);
+  //     }
+  //     handleServerError(err);
+  //   })
+  // ;
 
 };
 
 export function removeFromCart (book) {
 
-  ShopAppDispatcher.dispatch({
-    actionType: ShopConstants.REMOVE_BOOK_FROM_CART,
+  return {
+    type: REMOVE_BOOK_FROM_CART,
     book
-  });
+  };
 
-  getBestOffer(CartStore.getTotalPrice(), CartStore.getIsbns())
-    .then(receiveBestOffer)
-    .fail((err) => {
-      if (err.status === 404) {
-        return receiveBestOffer(null);
-      }
-      handleServerError(err);
-    })
-  ;
+  // getBestOffer(CartStore.getTotalPrice(), CartStore.getIsbns())
+  //   .then(receiveBestOffer)
+  //   .fail((err) => {
+  //     if (err.status === 404) {
+  //       return receiveBestOffer(null);
+  //     }
+  //     handleServerError(err);
+  //   })
+  // ;
 
 };

@@ -1,87 +1,50 @@
-import React from 'react/addons';
-import BookList         from './BookList';
-import Cart             from './Cart';
-import PayBox           from './PayBox';
+import React       from 'react/addons';
+import { connect } from 'react-redux';
+import R           from 'ramda';
+
+import BookList    from './BookList';
+import Cart        from './Cart';
+import PayBox      from './PayBox';
 import { queryBooks, addBookToCart, removeFromCart } from '../actions/ShopActionsCreator';
-import BookStore        from '../stores/BookStore';
-import CartStore        from '../stores/CartStore';
-import BestOfferStore   from '../stores/BestOfferStore';
-import R                from 'ramda';
 
-export default class extends React.Component {
+class App extends React.Component {
 
-  constructor(...args) {
-
-    super(...args);
-
-    this.state = {
-      books: [],
-      cart: { totalPrice: 0, books: [] },
-      discount : null
-    };
-
-    this.onBooksChange = this.onBooksChange.bind(this);
-
-    queryBooks();
-
-  }
-
-  componentDidMount () {
-    R.forEach((store) => {
-      store.addChangeListener(this.onBooksChange);
-    }.bind(this), [BookStore, CartStore, BestOfferStore]);
-  }
-
-  componentWillUnmount () {
-    R.forEach((store) => {
-      store.removeChangeListener(this.onBooksChange);
-    }.bind(this), [BookStore, CartStore, BestOfferStore]);
-  }
-
-  onBooksChange () {
-    this.setState({
-      books: BookStore.getItems(),
-      cart : {
-        totalPrice: CartStore.getTotalPrice(),
-        books: CartStore.getItems()
-      },
-      discount : BestOfferStore.getItem()
-    });
+  componentDidMount(){
+    let { dispatch } = this.props;
+    queryBooks().then(dispatch);
   }
 
   render(){
 
+    let { dispatch } = this.props;
+
+    /* jshint ignore:start */
     let cart = (
-      /* jshint ignore:start */
       <div></div>
-      /* jshint ignore:end */
     );
 
     // Display cart content only when it is filled-in
-    if (this.state.cart.totalPrice > 0){
-      /* jshint ignore:start */
+    if (this.props.cart.totalPrice > 0){
       cart = (
         <div>
 
           <div className="cart pbl">
-            <Cart cart={this.state.cart} onRemoveFromCart={(item) => removeFromCart(item)} />
+            <Cart cart={this.props.cart} onRemoveFromCart={(item) => dispatch(removeFromCart(item))} />
           </div>
 
           <div className="offer pbl">
-            <PayBox discount={this.state.discount} cart={this.state.cart} />
+            <PayBox discount={this.props.discount} cart={this.props.cart} />
           </div>
 
         </div>
       );
-      /* jshint ignore:end */
     }
 
-    /* jshint ignore:start */
     return (
       <div className="grid-2-1">
 
         <div className="book-list">
-          <BookList items={this.state.books} onAddToCart={(item) => addBookToCart(item)} />
+          <BookList items={this.props.books} onAddToCart={(item) => dispatch(addBookToCart(item))} />
         </div>
 
         <div className="cart-box">
@@ -95,3 +58,5 @@ export default class extends React.Component {
   }
 
 }
+
+export default connect(state => state)(App);

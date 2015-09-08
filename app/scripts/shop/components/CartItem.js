@@ -1,5 +1,4 @@
 import React from 'react/addons';
-import { removeFromCart } from '../actions/ShopActionsCreator';
 
 export default class extends React.Component {
 
