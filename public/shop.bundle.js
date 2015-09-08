@@ -32303,7 +32303,7 @@
 	    return (0, _webApi.getBestOffer)(totalPrice, isbns).then(function (bestOffer) {
 	      return dispatch(receiveBestOffer(bestOffer));
 	    }, function (error) {
-	      dispatch(err.status === 404 ? receiveBestOffer(null) : handleServerError(error));
+	      dispatch(error.status === 404 ? receiveBestOffer(null) : handleServerError(error));
 	    });
 	  };
 	}

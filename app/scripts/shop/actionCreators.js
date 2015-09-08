@@ -88,7 +88,7 @@ export function removeFromCart (book) {
       .then(
         bestOffer => dispatch(receiveBestOffer(bestOffer)),
         error => {
-          dispatch((err.status === 404) ? receiveBestOffer(null) : handleServerError(error));
+          dispatch((error.status === 404) ? receiveBestOffer(null) : handleServerError(error));
         }
       )
     ;
