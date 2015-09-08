@@ -14,14 +14,14 @@ let countPrice = R.pipe(
 export default function cart(state = initialState, action){
 
   let item = action.book;
-  let newState = R.clone(state);
+  let nextState = R.clone(state);
 
   switch (action.type) {
 
     case ADD_BOOK_TO_CART:
     {
       let exists = state.books[item.isbn] ? true : false;
-      let books = newState.books;
+      let books = nextState.books;
       if (exists) {
         books[item.isbn].amount++;
       } else {
@@ -38,7 +38,7 @@ export default function cart(state = initialState, action){
 
     case REMOVE_BOOK_FROM_CART:
     {
-      let books = R.omit([item.isbn], newState.books);
+      let books = R.omit([item.isbn], nextState.books);
       return Object.assign({}, {
         books,
         totalPrice: countPrice(books)

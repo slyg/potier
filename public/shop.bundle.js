@@ -41686,14 +41686,14 @@
 	  if (state === undefined) state = initialState;
 	
 	  var item = action.book;
-	  var newState = _ramda2['default'].clone(state);
+	  var nextState = _ramda2['default'].clone(state);
 	
 	  switch (action.type) {
 	
 	    case _constants.ADD_BOOK_TO_CART:
 	      {
 	        var exists = state.books[item.isbn] ? true : false;
-	        var books = newState.books;
+	        var books = nextState.books;
 	        if (exists) {
 	          books[item.isbn].amount++;
 	        } else {
@@ -41709,7 +41709,7 @@
 	
 	    case _constants.REMOVE_BOOK_FROM_CART:
 	      {
-	        var books = _ramda2['default'].omit([item.isbn], newState.books);
+	        var books = _ramda2['default'].omit([item.isbn], nextState.books);
 	        return Object.assign({}, {
 	          books: books,
 	          totalPrice: countPrice(books)
