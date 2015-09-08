@@ -32225,10 +32225,6 @@
 	
 	var _webApi = __webpack_require__(208);
 	
-	var _store = __webpack_require__(210);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
 	var handleServerError = function handleServerError(error) {
 	  return {
 	    type: _constants.RECEIVE_SERVER_ERROR,
@@ -32260,7 +32256,7 @@
 	
 	    return (0, _webApi.getBooks)().then(function (books) {
 	      return dispatch(reveiveBooks(books));
-	    }).fail(function (error) {
+	    }, function (error) {
 	      return dispatch(handleServerError(error));
 	    });
 	  };
@@ -32270,19 +32266,20 @@
 	
 	function addBookToCart(book) {
 	
-	  return function (dispatch) {
+	  return function (dispatch, getState) {
 	
 	    dispatch({
 	      type: _constants.ADD_BOOK_TO_CART,
 	      book: book
 	    });
 	
-	    var totalPrice = _store2['default'].getState().cart.totalPrice;
-	    var isbns = _ramda2['default'].keys(_store2['default'].getState().cart.books);
+	    var state = getState();
+	    var totalPrice = state.cart.totalPrice;
+	    var isbns = _ramda2['default'].keys(state.cart.books);
 	
 	    return (0, _webApi.getBestOffer)(totalPrice, isbns).then(function (bestOffer) {
 	      return dispatch(receiveBestOffer(bestOffer));
-	    }).fail(function (error) {
+	    }, function (error) {
 	      return dispatch(handleServerError(error));
 	    });
 	  };
@@ -32292,19 +32289,20 @@
 	
 	function removeFromCart(book) {
 	
-	  return function (dispatch) {
+	  return function (dispatch, getState) {
 	
 	    dispatch({
 	      type: _constants.REMOVE_BOOK_FROM_CART,
 	      book: book
 	    });
 	
-	    var totalPrice = _store2['default'].getState().cart.totalPrice;
-	    var isbns = _ramda2['default'].keys(_store2['default'].getState().cart.books);
+	    var state = getState();
+	    var totalPrice = state.cart.totalPrice;
+	    var isbns = _ramda2['default'].keys(state.cart.books);
 	
 	    return (0, _webApi.getBestOffer)(totalPrice, isbns).then(function (bestOffer) {
 	      return dispatch(receiveBestOffer(bestOffer));
-	    }).fail(function (error) {
+	    }, function (error) {
 	      dispatch(err.status === 404 ? receiveBestOffer(null) : handleServerError(error));
 	    });
 	  };

@@ -8,7 +8,6 @@ import {
 } from './constants';
 import R from 'ramda';
 import { getBooks, getBestOffer } from './webApi';
-import store from './store'
 
 let handleServerError = (error) => {
   return {
@@ -41,9 +40,7 @@ export function queryBooks() {
 
     return getBooks()
       .then(
-        books => dispatch(reveiveBooks(books))
-      )
-      .fail(
+        books => dispatch(reveiveBooks(books)),
         error => dispatch(handleServerError(error))
       );
   };
@@ -52,21 +49,20 @@ export function queryBooks() {
 
 export function addBookToCart (book) {
 
-  return dispatch => {
+  return (dispatch, getState) => {
 
     dispatch({
       type: ADD_BOOK_TO_CART,
       book
     });
 
-    let totalPrice = store.getState().cart.totalPrice;
-    let isbns = R.keys(store.getState().cart.books);
+    let state = getState();
+    let totalPrice = state.cart.totalPrice;
+    let isbns = R.keys(state.cart.books);
 
     return getBestOffer(totalPrice, isbns)
       .then(
-        bestOffer => dispatch(receiveBestOffer(bestOffer))
-      )
-      .fail(
+        bestOffer => dispatch(receiveBestOffer(bestOffer)),
         error => dispatch(handleServerError(error))
       )
     ;
@@ -77,21 +73,20 @@ export function addBookToCart (book) {
 
 export function removeFromCart (book) {
 
-  return dispatch => {
+  return (dispatch, getState) => {
 
     dispatch({
       type: REMOVE_BOOK_FROM_CART,
       book
     });
 
-    let totalPrice = store.getState().cart.totalPrice;
-    let isbns = R.keys(store.getState().cart.books);
+    let state = getState();
+    let totalPrice = state.cart.totalPrice;
+    let isbns = R.keys(state.cart.books);
 
     return getBestOffer(totalPrice, isbns)
       .then(
-        bestOffer => dispatch(receiveBestOffer(bestOffer))
-      )
-      .fail(
+        bestOffer => dispatch(receiveBestOffer(bestOffer)),
         error => {
           dispatch((err.status === 404) ? receiveBestOffer(null) : handleServerError(error));
         }
