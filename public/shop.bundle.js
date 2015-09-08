@@ -22049,6 +22049,8 @@
 	    _get(Object.getPrototypeOf(App.prototype), 'constructor', this).apply(this, arguments);
 	  }
 	
+	  // Select root properties of state used by app
+	
 	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
@@ -22111,9 +22113,15 @@
 	  return App;
 	})(_reactAddons2['default'].Component);
 	
-	exports['default'] = (0, _reactRedux.connect)(function (state) {
-	  return state;
-	})(App);
+	function select(_ref) {
+	  var books = _ref.books;
+	  var cart = _ref.cart;
+	  var discount = _ref.discount;
+	
+	  return { books: books, cart: cart, discount: discount };
+	}
+	
+	exports['default'] = (0, _reactRedux.connect)(select)(App);
 	module.exports = exports['default'];
 
 /***/ },
@@ -32349,7 +32357,6 @@
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
 	function getBooks() {
-	
 	  return _jquery2['default'].getJSON('/books');
 	}
 	

@@ -59,4 +59,9 @@ class App extends React.Component {
 
 }
 
-export default connect(state => state)(App);
+// Select root properties of state used by app
+function select({books, cart, discount}) {
+  return {books, cart, discount};
+}
+
+export default connect(select)(App);
