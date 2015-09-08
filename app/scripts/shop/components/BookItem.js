@@ -1,16 +1,6 @@
 import React from 'react';
-import { addBookToCart } from '../actions/ShopActionsCreator';
 
 export default class extends React.Component {
-
-  constructor(...args) {
-    super(...args);
-    this._onAddToCart = this._onAddToCart.bind(this);
-  }
-
-  _onAddToCart() {
-    addBookToCart(this.props.item);
-  }
 
   render(){
 
@@ -26,7 +16,7 @@ export default class extends React.Component {
           <h3>{item.title}</h3>
           <p className='pbs price'>{item.price}€</p>
           <p>
-            <button onClick={this._onAddToCart} type='submit' className='btn btn-secondary'>Ajouter au panier</button>
+            <button onClick={() => this.props.onAddToCart(item)} type='submit' className='btn btn-secondary'>Ajouter au panier</button>
           </p>
         </div>
       </article>

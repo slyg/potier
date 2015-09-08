@@ -24,7 +24,7 @@ export default class extends React.Component {
           return (
             /* jshint ignore:start */
             <li key={item.isbn}>
-              <BookItem item={item} />
+              <BookItem item={item} onAddToCart={this.props.onAddToCart} />
             </li>
             /* jshint ignore:end */
           );

@@ -1,5 +1,7 @@
-# Flux/React app using <s>brunch</s> webpack and ES6
+# Flux/Redux/React/Koa sandbox app build with webpack and ES2015
 [![Build Status](https://travis-ci.org/slyg/potier.svg?branch=master)](https://travis-ci.org/slyg/potier)
+
+Should work here: http://potier.herokuapp.com/  
 
 #### Prerequisites
 
