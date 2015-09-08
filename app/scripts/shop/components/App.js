@@ -11,7 +11,7 @@ class App extends React.Component {
 
   componentDidMount(){
     let { dispatch } = this.props;
-    queryBooks().then(dispatch);
+    dispatch(queryBooks())
   }
 
   render(){

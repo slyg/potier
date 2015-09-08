@@ -22054,7 +22054,7 @@
 	    value: function componentDidMount() {
 	      var dispatch = this.props.dispatch;
 	
-	      (0, _actionCreators.queryBooks)().then(dispatch);
+	      dispatch((0, _actionCreators.queryBooks)());
 	    }
 	  }, {
 	    key: 'render',
@@ -32215,12 +32215,21 @@
 	exports.addBookToCart = addBookToCart;
 	exports.removeFromCart = removeFromCart;
 	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
 	var _constants = __webpack_require__(207);
+	
+	var _ramda = __webpack_require__(200);
+	
+	var _ramda2 = _interopRequireDefault(_ramda);
 	
 	var _webApi = __webpack_require__(208);
 	
-	var handleServerError = function handleServerError(error) {
+	var _store = __webpack_require__(210);
 	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var handleServerError = function handleServerError(error) {
 	  return {
 	    type: _constants.RECEIVE_SERVER_ERROR,
 	    error: error
@@ -32228,65 +32237,77 @@
 	};
 	
 	var receiveBestOffer = function receiveBestOffer(bestOffer) {
-	
 	  return {
 	    type: _constants.RECEIVE_BEST_OFFER,
 	    bestOffer: bestOffer
 	  };
 	};
 	
+	var reveiveBooks = function reveiveBooks(books) {
+	  return {
+	    type: _constants.RECEIVE_BOOKS,
+	    books: books
+	  };
+	};
+	
 	function queryBooks() {
 	
-	  // return {
-	  //   type: SEARCH_BOOK_START
-	  // };
+	  return function (dispatch) {
 	
-	  return (0, _webApi.getBooks)().then(function (books) {
-	    return {
-	      type: _constants.RECEIVE_BOOKS,
-	      books: books
-	    };
-	  }).fail(handleServerError);
+	    dispatch({
+	      type: _constants.SEARCH_BOOK_START
+	    });
+	
+	    return (0, _webApi.getBooks)().then(function (books) {
+	      return dispatch(reveiveBooks(books));
+	    }).fail(function (error) {
+	      return dispatch(handleServerError(error));
+	    });
+	  };
 	}
 	
 	;
 	
 	function addBookToCart(book) {
 	
-	  return {
-	    type: _constants.ADD_BOOK_TO_CART,
-	    book: book
-	  };
+	  return function (dispatch) {
 	
-	  // getBestOffer(CartStore.getTotalPrice(), CartStore.getIsbns())
-	  //   .then(receiveBestOffer)
-	  //   .fail((err) => {
-	  //     if (err.status === 404) {
-	  //       return receiveBestOffer(null);
-	  //     }
-	  //     handleServerError(err);
-	  //   })
-	  // ;
+	    dispatch({
+	      type: _constants.ADD_BOOK_TO_CART,
+	      book: book
+	    });
+	
+	    var totalPrice = _store2['default'].getState().cart.totalPrice;
+	    var isbns = _ramda2['default'].keys(_store2['default'].getState().cart.books);
+	
+	    return (0, _webApi.getBestOffer)(totalPrice, isbns).then(function (bestOffer) {
+	      return dispatch(receiveBestOffer(bestOffer));
+	    }).fail(function (error) {
+	      return dispatch(handleServerError(error));
+	    });
+	  };
 	}
 	
 	;
 	
 	function removeFromCart(book) {
 	
-	  return {
-	    type: _constants.REMOVE_BOOK_FROM_CART,
-	    book: book
-	  };
+	  return function (dispatch) {
 	
-	  // getBestOffer(CartStore.getTotalPrice(), CartStore.getIsbns())
-	  //   .then(receiveBestOffer)
-	  //   .fail((err) => {
-	  //     if (err.status === 404) {
-	  //       return receiveBestOffer(null);
-	  //     }
-	  //     handleServerError(err);
-	  //   })
-	  // ;
+	    dispatch({
+	      type: _constants.REMOVE_BOOK_FROM_CART,
+	      book: book
+	    });
+	
+	    var totalPrice = _store2['default'].getState().cart.totalPrice;
+	    var isbns = _ramda2['default'].keys(_store2['default'].getState().cart.books);
+	
+	    return (0, _webApi.getBestOffer)(totalPrice, isbns).then(function (bestOffer) {
+	      return dispatch(receiveBestOffer(bestOffer));
+	    }).fail(function (error) {
+	      dispatch(err.status === 404 ? receiveBestOffer(null) : handleServerError(error));
+	    });
+	  };
 	}
 	
 	;
@@ -41578,11 +41599,33 @@
 	
 	var _redux = __webpack_require__(171);
 	
+	var _reduxThunk = __webpack_require__(215);
+	
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+	
 	var _reducers = __webpack_require__(211);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
-	exports['default'] = (0, _redux.createStore)(_reducers2['default']);
+	/**
+	 * Logs all actions and states after they are dispatched.
+	 */
+	var logger = function logger(store) {
+	  return function (next) {
+	    return function (action) {
+	      console.group(action.type);
+	      console.info('dispatching', action);
+	      var result = next(action);
+	      console.log('next state', store.getState());
+	      console.groupEnd(action.type);
+	      return result;
+	    };
+	  };
+	};
+	
+	var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2['default'] /*, logger*/)(_redux.createStore);
+	
+	exports['default'] = createStoreWithMiddleware(_reducers2['default']);
 	module.exports = exports['default'];
 
 /***/ },
@@ -41757,6 +41800,28 @@
 	  }
 	
 	  return state;
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 215 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports['default'] = thunkMiddleware;
+	
+	function thunkMiddleware(_ref) {
+	  var dispatch = _ref.dispatch;
+	  var getState = _ref.getState;
+	
+	  return function (next) {
+	    return function (action) {
+	      return typeof action === 'function' ? action(dispatch, getState) : next(action);
+	    };
+	  };
 	}
 	
 	module.exports = exports['default'];

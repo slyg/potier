@@ -6,80 +6,98 @@ import {
   ADD_BOOK_TO_CART,
   REMOVE_BOOK_FROM_CART
 } from './constants';
+import R from 'ramda';
 import { getBooks, getBestOffer } from './webApi';
+import store from './store'
 
 let handleServerError = (error) => {
-
   return {
     type: RECEIVE_SERVER_ERROR,
     error
   };
-
 };
 
 let receiveBestOffer = (bestOffer) => {
-
   return {
     type: RECEIVE_BEST_OFFER,
     bestOffer
   };
-
 };
+
+let reveiveBooks = (books) => {
+  return {
+    type: RECEIVE_BOOKS,
+    books
+  };
+}
 
 export function queryBooks() {
 
-  // return {
-  //   type: SEARCH_BOOK_START
-  // };
+  return dispatch => {
 
-  return getBooks()
-    .then(
-      (books) => {
-        return {
-          type: RECEIVE_BOOKS,
-          books
-        };
-      }
-    )
-    .fail(handleServerError)
-  ;
+    dispatch({
+      type: SEARCH_BOOK_START
+    });
+
+    return getBooks()
+      .then(
+        books => dispatch(reveiveBooks(books))
+      )
+      .fail(
+        error => dispatch(handleServerError(error))
+      );
+  };
 
 };
 
 export function addBookToCart (book) {
 
-  return {
-    type: ADD_BOOK_TO_CART,
-    book
-  };
+  return dispatch => {
 
-  // getBestOffer(CartStore.getTotalPrice(), CartStore.getIsbns())
-  //   .then(receiveBestOffer)
-  //   .fail((err) => {
-  //     if (err.status === 404) {
-  //       return receiveBestOffer(null);
-  //     }
-  //     handleServerError(err);
-  //   })
-  // ;
+    dispatch({
+      type: ADD_BOOK_TO_CART,
+      book
+    });
+
+    let totalPrice = store.getState().cart.totalPrice;
+    let isbns = R.keys(store.getState().cart.books);
+
+    return getBestOffer(totalPrice, isbns)
+      .then(
+        bestOffer => dispatch(receiveBestOffer(bestOffer))
+      )
+      .fail(
+        error => dispatch(handleServerError(error))
+      )
+    ;
+
+  };
 
 };
 
 export function removeFromCart (book) {
 
-  return {
-    type: REMOVE_BOOK_FROM_CART,
-    book
-  };
+  return dispatch => {
 
-  // getBestOffer(CartStore.getTotalPrice(), CartStore.getIsbns())
-  //   .then(receiveBestOffer)
-  //   .fail((err) => {
-  //     if (err.status === 404) {
-  //       return receiveBestOffer(null);
-  //     }
-  //     handleServerError(err);
-  //   })
-  // ;
+    dispatch({
+      type: REMOVE_BOOK_FROM_CART,
+      book
+    });
+
+    let totalPrice = store.getState().cart.totalPrice;
+    let isbns = R.keys(store.getState().cart.books);
+
+    return getBestOffer(totalPrice, isbns)
+      .then(
+        bestOffer => dispatch(receiveBestOffer(bestOffer))
+      )
+      .fail(
+        error => {
+          dispatch((err.status === 404) ? receiveBestOffer(null) : handleServerError(error));
+        }
+      )
+    ;
+
+  };
 
 };
