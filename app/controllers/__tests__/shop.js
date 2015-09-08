@@ -17,7 +17,6 @@ describe('shop controller', () => {
       let ctx = {
         render : (templateRef, data) => {
           expect(templateRef).to.eql('shop');
-          expect(data).to.have.property('title').that.is.a('string');
           this.rendered = true;
         }
       };

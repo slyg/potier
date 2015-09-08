@@ -32217,7 +32217,7 @@
 	
 	var _constants = __webpack_require__(207);
 	
-	var _webApi = __webpack_require__(215);
+	var _webApi = __webpack_require__(208);
 	
 	var handleServerError = function handleServerError(error) {
 	
@@ -32312,7 +32312,43 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 208 */,
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports.getBooks = getBooks;
+	exports.getBestOffer = getBestOffer;
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _jquery = __webpack_require__(209);
+	
+	var _jquery2 = _interopRequireDefault(_jquery);
+	
+	function getBooks() {
+	
+	  return _jquery2['default'].getJSON('/books');
+	}
+	
+	;
+	
+	function getBestOffer(price, isbns) {
+	
+	  var generateBestOfferUrl = function generateBestOfferUrl(price, isbns) {
+	    var isbnsString = isbns.join(',');
+	    return '/books/bestoffer/' + price + '/' + isbnsString;
+	  };
+	
+	  return _jquery2['default'].getJSON(generateBestOfferUrl(price, isbns));
+	}
+	
+	;
+
+/***/ },
 /* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -41724,43 +41760,6 @@
 	}
 	
 	module.exports = exports['default'];
-
-/***/ },
-/* 215 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports.getBooks = getBooks;
-	exports.getBestOffer = getBestOffer;
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _jquery = __webpack_require__(209);
-	
-	var _jquery2 = _interopRequireDefault(_jquery);
-	
-	function getBooks() {
-	
-	  return _jquery2['default'].getJSON('/books');
-	}
-	
-	;
-	
-	function getBestOffer(price, isbns) {
-	
-	  var generateBestOfferUrl = function generateBestOfferUrl(price, isbns) {
-	    var isbnsString = isbns.join(',');
-	    return '/books/bestoffer/' + price + '/' + isbnsString;
-	  };
-	
-	  return _jquery2['default'].getJSON(generateBestOfferUrl(price, isbns));
-	}
-	
-	;
 
 /***/ }
 /******/ ]);
