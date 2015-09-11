@@ -5,7 +5,7 @@ Should work here: http://potier.herokuapp.com/
 
 #### Prerequisites
 
-use iojs 2.x.x (you may use `n` globally installed, e.g. `n use iojs 2.0.0`)
+use node 4.x.x (you may use `n` globally installed, e.g. `n use 4.0.0`)
 
 #### Install dependencies
 
