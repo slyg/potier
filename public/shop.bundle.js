@@ -637,7 +637,9 @@
 	        currentQueue = queue;
 	        queue = [];
 	        while (++queueIndex < len) {
-	            currentQueue[queueIndex].run();
+	            if (currentQueue) {
+	                currentQueue[queueIndex].run();
+	            }
 	        }
 	        queueIndex = -1;
 	        len = queue.length;
@@ -689,7 +691,6 @@
 	    throw new Error('process.binding is not supported');
 	};
 	
-	// TODO(shtylman)
 	process.cwd = function () { return '/' };
 	process.chdir = function (dir) {
 	    throw new Error('process.chdir is not supported');
@@ -41604,37 +41605,43 @@
 	
 	var _redux = __webpack_require__(171);
 	
-	var _reduxThunk = __webpack_require__(215);
+	var _reduxThunk = __webpack_require__(211);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _reducers = __webpack_require__(211);
+	var _reducers = __webpack_require__(212);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
-	/**
-	 * Logs all actions and states after they are dispatched.
-	 */
-	var logger = function logger(store) {
-	  return function (next) {
-	    return function (action) {
-	      console.group(action.type);
-	      console.info('dispatching', action);
-	      var result = next(action);
-	      console.log('next state', store.getState());
-	      console.groupEnd(action.type);
-	      return result;
-	    };
-	  };
-	};
-	
-	var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2['default'] /*, logger*/)(_redux.createStore);
+	var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2['default'])(_redux.createStore);
 	
 	exports['default'] = createStoreWithMiddleware(_reducers2['default']);
 	module.exports = exports['default'];
 
 /***/ },
 /* 211 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports['default'] = thunkMiddleware;
+	
+	function thunkMiddleware(_ref) {
+	  var dispatch = _ref.dispatch;
+	  var getState = _ref.getState;
+	
+	  return function (next) {
+	    return function (action) {
+	      return typeof action === 'function' ? action(dispatch, getState) : next(action);
+	    };
+	  };
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41647,15 +41654,15 @@
 	
 	var _redux = __webpack_require__(171);
 	
-	var _books = __webpack_require__(212);
+	var _books = __webpack_require__(213);
 	
 	var _books2 = _interopRequireDefault(_books);
 	
-	var _cart = __webpack_require__(213);
+	var _cart = __webpack_require__(214);
 	
 	var _cart2 = _interopRequireDefault(_cart);
 	
-	var _discount = __webpack_require__(214);
+	var _discount = __webpack_require__(215);
 	
 	var _discount2 = _interopRequireDefault(_discount);
 	
@@ -41663,7 +41670,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 212 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41703,7 +41710,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 213 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41773,7 +41780,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 214 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41805,28 +41812,6 @@
 	  }
 	
 	  return state;
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 215 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	exports['default'] = thunkMiddleware;
-	
-	function thunkMiddleware(_ref) {
-	  var dispatch = _ref.dispatch;
-	  var getState = _ref.getState;
-	
-	  return function (next) {
-	    return function (action) {
-	      return typeof action === 'function' ? action(dispatch, getState) : next(action);
-	    };
-	  };
 	}
 	
 	module.exports = exports['default'];
