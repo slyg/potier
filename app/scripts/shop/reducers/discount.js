@@ -1,5 +1,4 @@
 import { RECEIVE_BEST_OFFER } from '../constants';
-import R from 'ramda';
 
 export default function discount(state = null, action){
 

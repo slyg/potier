@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react/addons';
 
 export default class extends React.Component {
 

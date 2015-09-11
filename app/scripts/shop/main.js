@@ -1,7 +1,7 @@
 import 'knacss/sass/knacss.scss';
 import '../../css/shop.scss';
 
-import React        from 'react';
+import React        from 'react/addons';
 import { Provider } from 'react-redux';
 import App          from './components/App';
 import store        from './store';
