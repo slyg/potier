@@ -18,8 +18,7 @@ var routes = R.mapObj((value) => {
 }, ROUTES);
 
 exports.getRoute = (alias) => routes[alias].url;
-exports.getExternalRoute = (alias) => {
-  let parameters = Array.prototype.slice.call(arguments, 1);
+exports.getExternalRoute = (alias, ...parameters) => {
   parameters.unshift(EXTERNAL_ROUTES[alias].url);
   return util.format.apply(this, parameters);
 };

@@ -17,7 +17,7 @@ describe('shop controller', () => {
       let ctx = {
         render : (templateRef, data) => {
           expect(templateRef).to.eql('shop');
-          this.rendered = true;
+          ctx.rendered = true;
         }
       };
 

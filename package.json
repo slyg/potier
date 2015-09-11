@@ -2,7 +2,7 @@
   "name": "potier",
   "repository": "https://github.com/slyg/potier",
   "engines": {
-    "iojs": "2.0.0"
+    "node": "4.0.0"
   },
   "engine-strict": true,
   "dependencies": {
@@ -22,10 +22,10 @@
   },
   "main": "app.js",
   "scripts": {
-    "start": "node --harmony_arrow_functions --harmony_rest_parameters app",
-    "test": "mocha --harmony_arrow_functions --harmony_rest_parameters app/**/__tests__",
+    "start": "node --harmony_rest_parameters app",
+    "test": "mocha --harmony_rest_parameters app/**/__tests__",
     "build": "webpack",
-    "dev": "webpack --watch & nodemon --harmony_arrow_functions --harmony_rest_parameters"
+    "dev": "webpack --watch & nodemon --harmony_rest_parameters"
   },
   "devDependencies": {
     "chai": "^2.3.0",

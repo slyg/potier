@@ -23,7 +23,7 @@ describe('root controller', () => {
       let ctx = {
         redirect : (path) => {
           expect(path).to.eql('/route');
-          this.redirected = true;
+          ctx.redirected = true;
         }
       };
 
