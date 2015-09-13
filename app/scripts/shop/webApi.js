@@ -5,12 +5,5 @@ export function getBooks () {
 };
 
 export function getBestOffer (price, isbns) {
-
-  let generateBestOfferUrl = (price, isbns) => {
-    let isbnsString = isbns.join(',');
-    return `/books/bestoffer/${price}/${isbnsString}`;
-  };
-
-  return request.getJSON(generateBestOfferUrl(price, isbns));
-
+  return request.getJSON(`/books/bestoffer/${price}/${isbns.join(',')}`);
 };

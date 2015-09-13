@@ -32370,13 +32370,7 @@
 	;
 	
 	function getBestOffer(price, isbns) {
-	
-	  var generateBestOfferUrl = function generateBestOfferUrl(price, isbns) {
-	    var isbnsString = isbns.join(',');
-	    return '/books/bestoffer/' + price + '/' + isbnsString;
-	  };
-	
-	  return _jquery2['default'].getJSON(generateBestOfferUrl(price, isbns));
+	  return _jquery2['default'].getJSON('/books/bestoffer/' + price + '/' + isbns.join(','));
 	}
 	
 	;
