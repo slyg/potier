@@ -23638,7 +23638,9 @@
 	   *
 	   * @param {Object} action A plain object representing “what changed”. It is
 	   * a good idea to keep actions serializable so you can record and replay user
-	   * sessions, or use the time travelling `redux-devtools`.
+	   * sessions, or use the time travelling `redux-devtools`. An action must have
+	   * a `type` property which may not be `undefined`. It is a good idea to use
+	   * string constants for action types.
 	   *
 	   * @returns {Object} For convenience, the same action object you dispatched.
 	   *
@@ -23647,7 +23649,11 @@
 	   */
 	  function dispatch(action) {
 	    if (!_utilsIsPlainObject2['default'](action)) {
-	      throw new Error('Actions must be plain objects. Use custom middleware for async actions.');
+	      throw new Error('Actions must be plain objects. ' + 'Use custom middleware for async actions.');
+	    }
+	
+	    if (typeof action.type === 'undefined') {
+	      throw new Error('Actions may not have an undefined "type" property. ' + 'Have you misspelled a constant?');
 	    }
 	
 	    if (isDispatching) {
@@ -23950,9 +23956,9 @@
 	    return bindActionCreator(actionCreators, dispatch);
 	  }
 	
-	  if (typeof actionCreators !== 'object' || actionCreators == null) {
+	  if (typeof actionCreators !== 'object' || actionCreators === null || actionCreators === undefined) {
 	    // eslint-disable-line no-eq-null
-	    throw new Error('bindActionCreators expected an object or a function, instead received ' + typeof actionCreators + '. ' + 'Did you write "import ActionCreators from" instead of "import * as ActionCreators from"?');
+	    throw new Error('bindActionCreators expected an object or a function, instead received ' + (actionCreators === null ? 'null' : typeof actionCreators) + '. ' + 'Did you write "import ActionCreators from" instead of "import * as ActionCreators from"?');
 	  }
 	
 	  return _utilsMapValues2['default'](actionCreators, function (actionCreator) {
