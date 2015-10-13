@@ -7,14 +7,14 @@ import Cart        from './Cart';
 import PayBox      from './PayBox';
 import { queryBooks, addBookToCart, removeFromCart } from '../actionCreators';
 
-class App extends React.Component {
+let app = React.createClass({
 
-  componentDidMount(){
+  componentDidMount: function(){
     let { dispatch } = this.props;
     dispatch(queryBooks())
-  }
+  },
 
-  render(){
+  render: function(){
 
     let { dispatch } = this.props;
 
@@ -57,11 +57,11 @@ class App extends React.Component {
 
   }
 
-}
+});
 
 // Select root properties of state used by app
 function select({books, cart, discount}) {
   return {books, cart, discount};
 }
 
-export default connect(select)(App);
+export default connect(select)(app);

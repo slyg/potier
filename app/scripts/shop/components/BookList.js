@@ -4,9 +4,9 @@ import { values, map, pipe } from 'ramda';
 
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-export default class extends React.Component {
+export default React.createClass({
 
-  render(){
+  render: function(){
 
     // If no results
     if (this.props.items.length < 1) {
@@ -42,4 +42,4 @@ export default class extends React.Component {
 
   }
 
-}
+});

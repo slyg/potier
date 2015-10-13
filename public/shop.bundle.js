@@ -24134,15 +24134,7 @@
 	  value: true
 	});
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var _reactAddons = __webpack_require__(7);
 	
@@ -24168,79 +24160,67 @@
 	
 	var _actionCreators = __webpack_require__(206);
 	
-	var App = (function (_React$Component) {
-	  _inherits(App, _React$Component);
+	var app = _reactAddons2['default'].createClass({
+	  displayName: 'app',
 	
-	  function App() {
-	    _classCallCheck(this, App);
+	  componentDidMount: function componentDidMount() {
+	    var dispatch = this.props.dispatch;
 	
-	    _get(Object.getPrototypeOf(App.prototype), 'constructor', this).apply(this, arguments);
-	  }
+	    dispatch((0, _actionCreators.queryBooks)());
+	  },
 	
-	  // Select root properties of state used by app
+	  render: function render() {
+	    var dispatch = this.props.dispatch;
 	
-	  _createClass(App, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var dispatch = this.props.dispatch;
+	    /* jshint ignore:start */
+	    var cart = _reactAddons2['default'].createElement('div', null);
 	
-	      dispatch((0, _actionCreators.queryBooks)());
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var dispatch = this.props.dispatch;
-	
-	      /* jshint ignore:start */
-	      var cart = _reactAddons2['default'].createElement('div', null);
-	
-	      // Display cart content only when it is filled-in
-	      if (this.props.cart.totalPrice > 0) {
-	        cart = _reactAddons2['default'].createElement(
-	          'div',
-	          null,
-	          _reactAddons2['default'].createElement(
-	            'div',
-	            { className: 'cart pbl' },
-	            _reactAddons2['default'].createElement(_Cart2['default'], { cart: this.props.cart, onRemoveFromCart: function (item) {
-	                return dispatch((0, _actionCreators.removeFromCart)(item));
-	              } })
-	          ),
-	          _reactAddons2['default'].createElement(
-	            'div',
-	            { className: 'offer pbl' },
-	            _reactAddons2['default'].createElement(_PayBox2['default'], { discount: this.props.discount, cart: this.props.cart })
-	          )
-	        );
-	      }
-	
-	      return _reactAddons2['default'].createElement(
+	    // Display cart content only when it is filled-in
+	    if (this.props.cart.totalPrice > 0) {
+	      cart = _reactAddons2['default'].createElement(
 	        'div',
-	        { className: 'grid-2-1' },
+	        null,
 	        _reactAddons2['default'].createElement(
 	          'div',
-	          { className: 'book-list' },
-	          _reactAddons2['default'].createElement(_BookList2['default'], { items: this.props.books, onAddToCart: function (item) {
-	              return dispatch((0, _actionCreators.addBookToCart)(item));
+	          { className: 'cart pbl' },
+	          _reactAddons2['default'].createElement(_Cart2['default'], { cart: this.props.cart, onRemoveFromCart: function (item) {
+	              return dispatch((0, _actionCreators.removeFromCart)(item));
 	            } })
 	        ),
 	        _reactAddons2['default'].createElement(
 	          'div',
-	          { className: 'cart-box' },
-	          _reactAddons2['default'].createElement(
-	            'div',
-	            { className: '' },
-	            cart
-	          )
+	          { className: 'offer pbl' },
+	          _reactAddons2['default'].createElement(_PayBox2['default'], { discount: this.props.discount, cart: this.props.cart })
 	        )
 	      );
-	      /* jshint ignore:end */
 	    }
-	  }]);
 	
-	  return App;
-	})(_reactAddons2['default'].Component);
+	    return _reactAddons2['default'].createElement(
+	      'div',
+	      { className: 'grid-2-1' },
+	      _reactAddons2['default'].createElement(
+	        'div',
+	        { className: 'book-list' },
+	        _reactAddons2['default'].createElement(_BookList2['default'], { items: this.props.books, onAddToCart: function (item) {
+	            return dispatch((0, _actionCreators.addBookToCart)(item));
+	          } })
+	      ),
+	      _reactAddons2['default'].createElement(
+	        'div',
+	        { className: 'cart-box' },
+	        _reactAddons2['default'].createElement(
+	          'div',
+	          { className: '' },
+	          cart
+	        )
+	      )
+	    );
+	    /* jshint ignore:end */
+	  }
 	
+	});
+	
+	// Select root properties of state used by app
 	function select(_ref) {
 	  var books = _ref.books;
 	  var cart = _ref.cart;
@@ -24249,7 +24229,7 @@
 	  return { books: books, cart: cart, discount: discount };
 	}
 	
-	exports['default'] = (0, _reactRedux.connect)(select)(App);
+	exports['default'] = (0, _reactRedux.connect)(select)(app);
 	module.exports = exports['default'];
 
 /***/ },
@@ -31779,15 +31759,7 @@
 	  value: true
 	});
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var _BookItem = __webpack_require__(202);
 	
@@ -31801,68 +31773,56 @@
 	
 	var ReactCSSTransitionGroup = _reactAddons2['default'].addons.CSSTransitionGroup;
 	
-	var _default = (function (_React$Component) {
-	  _inherits(_default, _React$Component);
+	exports['default'] = _reactAddons2['default'].createClass({
+	  displayName: 'BookList',
 	
-	  function _default() {
-	    _classCallCheck(this, _default);
+	  render: function render() {
+	    var _this = this;
 	
-	    _get(Object.getPrototypeOf(_default.prototype), 'constructor', this).apply(this, arguments);
-	  }
-	
-	  _createClass(_default, [{
-	    key: 'render',
-	    value: function render() {
-	      var _this = this;
-	
-	      // If no results
-	      if (this.props.items.length < 1) {
-	        return(
-	          /* jshint ignore:start */
-	          _reactAddons2['default'].createElement(
-	            'p',
-	            { className: 'tac ptl' },
-	            'Chargement...'
-	          )
-	          /* jshint ignore:end */
-	
-	        );
-	      }
-	
-	      var bookItems = (0, _ramda.pipe)(_ramda.values, (0, _ramda.map)(function (item) {
-	        return(
-	          /* jshint ignore:start */
-	          _reactAddons2['default'].createElement(
-	            'li',
-	            { key: item.isbn },
-	            _reactAddons2['default'].createElement(_BookItem2['default'], { item: item, onAddToCart: _this.props.onAddToCart })
-	          )
-	          /* jshint ignore:end */
-	
-	        );
-	      }))(this.props.items);
-	
+	    // If no results
+	    if (this.props.items.length < 1) {
 	      return(
 	        /* jshint ignore:start */
 	        _reactAddons2['default'].createElement(
-	          ReactCSSTransitionGroup,
-	          { transitionName: 'default_transition', transitionAppear: true },
-	          _reactAddons2['default'].createElement(
-	            'ul',
-	            { className: 'ul grid-2' },
-	            bookItems
-	          )
+	          'p',
+	          { className: 'tac ptl' },
+	          'Chargement...'
 	        )
 	        /* jshint ignore:end */
 	
 	      );
 	    }
-	  }]);
 	
-	  return _default;
-	})(_reactAddons2['default'].Component);
+	    var bookItems = (0, _ramda.pipe)(_ramda.values, (0, _ramda.map)(function (item) {
+	      return(
+	        /* jshint ignore:start */
+	        _reactAddons2['default'].createElement(
+	          'li',
+	          { key: item.isbn },
+	          _reactAddons2['default'].createElement(_BookItem2['default'], { item: item, onAddToCart: _this.props.onAddToCart })
+	        )
+	        /* jshint ignore:end */
 	
-	exports['default'] = _default;
+	      );
+	    }))(this.props.items);
+	
+	    return(
+	      /* jshint ignore:start */
+	      _reactAddons2['default'].createElement(
+	        ReactCSSTransitionGroup,
+	        { transitionName: 'default_transition', transitionAppear: true },
+	        _reactAddons2['default'].createElement(
+	          'ul',
+	          { className: 'ul grid-2' },
+	          bookItems
+	        )
+	      )
+	      /* jshint ignore:end */
+	
+	    );
+	  }
+	
+	});
 	module.exports = exports['default'];
 
 /***/ },
@@ -31875,80 +31835,60 @@
 	  value: true
 	});
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var _reactAddons = __webpack_require__(7);
 	
 	var _reactAddons2 = _interopRequireDefault(_reactAddons);
 	
-	var _default = (function (_React$Component) {
-	  _inherits(_default, _React$Component);
+	exports['default'] = _reactAddons2['default'].createClass({
+	  displayName: 'BookItem',
 	
-	  function _default() {
-	    _classCallCheck(this, _default);
+	  render: function render() {
+	    var _this = this;
 	
-	    _get(Object.getPrototypeOf(_default.prototype), 'constructor', this).apply(this, arguments);
-	  }
+	    var item = this.props.item;
 	
-	  _createClass(_default, [{
-	    key: 'render',
-	    value: function render() {
-	      var _this = this;
-	
-	      var item = this.props.item;
-	
-	      /* jshint ignore:start */
-	      return _reactAddons2['default'].createElement(
-	        'article',
-	        { className: 'book-item mbs grid-2' },
+	    /* jshint ignore:start */
+	    return _reactAddons2['default'].createElement(
+	      'article',
+	      { className: 'book-item mbs grid-2' },
+	      _reactAddons2['default'].createElement(
+	        'div',
+	        null,
+	        _reactAddons2['default'].createElement('img', { className: 'book-cover', src: item.cover })
+	      ),
+	      _reactAddons2['default'].createElement(
+	        'div',
+	        null,
 	        _reactAddons2['default'].createElement(
-	          'div',
+	          'h3',
 	          null,
-	          _reactAddons2['default'].createElement('img', { className: 'book-cover', src: item.cover })
+	          item.title
 	        ),
 	        _reactAddons2['default'].createElement(
-	          'div',
+	          'p',
+	          { className: 'pbs price' },
+	          item.price,
+	          '€'
+	        ),
+	        _reactAddons2['default'].createElement(
+	          'p',
 	          null,
 	          _reactAddons2['default'].createElement(
-	            'h3',
-	            null,
-	            item.title
-	          ),
-	          _reactAddons2['default'].createElement(
-	            'p',
-	            { className: 'pbs price' },
-	            item.price,
-	            '€'
-	          ),
-	          _reactAddons2['default'].createElement(
-	            'p',
-	            null,
-	            _reactAddons2['default'].createElement(
-	              'button',
-	              { onClick: function () {
-	                  return _this.props.onAddToCart(item);
-	                }, type: 'submit', className: 'btn btn-secondary' },
-	              'Ajouter au panier'
-	            )
+	            'button',
+	            { onClick: function () {
+	                return _this.props.onAddToCart(item);
+	              }, type: 'submit', className: 'btn btn-secondary' },
+	            'Ajouter au panier'
 	          )
 	        )
-	      );
-	      /* jshint ignore:end */
-	    }
-	  }]);
+	      )
+	    );
+	    /* jshint ignore:end */
+	  }
 	
-	  return _default;
-	})(_reactAddons2['default'].Component);
-	
-	exports['default'] = _default;
+	});
 	module.exports = exports['default'];
 
 /***/ },
@@ -31961,15 +31901,7 @@
 	  value: true
 	});
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var _CartItem = __webpack_require__(204);
 	
@@ -31983,67 +31915,55 @@
 	
 	var ReactCSSTransitionGroup = _reactAddons2['default'].addons.CSSTransitionGroup;
 	
-	var _default = (function (_React$Component) {
-	  _inherits(_default, _React$Component);
+	exports['default'] = _reactAddons2['default'].createClass({
+	  displayName: 'Cart',
 	
-	  function _default() {
-	    _classCallCheck(this, _default);
+	  render: function render() {
+	    var _this = this;
 	
-	    _get(Object.getPrototypeOf(_default.prototype), 'constructor', this).apply(this, arguments);
-	  }
+	    var cartItems = (0, _ramda.pipe)(_ramda.values, (0, _ramda.map)(function (item) {
+	      return(
+	        /* jshint ignore:start */
+	        _reactAddons2['default'].createElement(
+	          'li',
+	          { key: item.isbn },
+	          _reactAddons2['default'].createElement(_CartItem2['default'], { item: item, onRemoveFromCart: _this.props.onRemoveFromCart })
+	        )
+	        /* jshint ignore:end */
 	
-	  _createClass(_default, [{
-	    key: 'render',
-	    value: function render() {
-	      var _this = this;
+	      );
+	    }))(this.props.cart.books);
 	
-	      var cartItems = (0, _ramda.pipe)(_ramda.values, (0, _ramda.map)(function (item) {
-	        return(
-	          /* jshint ignore:start */
-	          _reactAddons2['default'].createElement(
-	            'li',
-	            { key: item.isbn },
-	            _reactAddons2['default'].createElement(_CartItem2['default'], { item: item, onRemoveFromCart: _this.props.onRemoveFromCart })
-	          )
-	          /* jshint ignore:end */
-	
-	        );
-	      }))(this.props.cart.books);
-	
-	      /* jshint ignore:start */
-	      return _reactAddons2['default'].createElement(
-	        ReactCSSTransitionGroup,
-	        { transitionName: 'default_transition', transitionAppear: true },
+	    /* jshint ignore:start */
+	    return _reactAddons2['default'].createElement(
+	      ReactCSSTransitionGroup,
+	      { transitionName: 'default_transition', transitionAppear: true },
+	      _reactAddons2['default'].createElement(
+	        'div',
+	        null,
+	        _reactAddons2['default'].createElement(
+	          'h2',
+	          null,
+	          'Votre panier'
+	        ),
+	        _reactAddons2['default'].createElement(
+	          'ul',
+	          null,
+	          cartItems
+	        ),
 	        _reactAddons2['default'].createElement(
 	          'div',
-	          null,
-	          _reactAddons2['default'].createElement(
-	            'h2',
-	            null,
-	            'Votre panier'
-	          ),
-	          _reactAddons2['default'].createElement(
-	            'ul',
-	            null,
-	            cartItems
-	          ),
-	          _reactAddons2['default'].createElement(
-	            'div',
-	            { className: 'tar total' },
-	            'Total: ',
-	            this.props.cart.totalPrice,
-	            '€'
-	          )
+	          { className: 'tar total' },
+	          'Total: ',
+	          this.props.cart.totalPrice,
+	          '€'
 	        )
-	      );
-	      /* jshint ignore:end */
-	    }
-	  }]);
+	      )
+	    );
+	    /* jshint ignore:end */
+	  }
 	
-	  return _default;
-	})(_reactAddons2['default'].Component);
-	
-	exports['default'] = _default;
+	});
 	module.exports = exports['default'];
 
 /***/ },
@@ -32056,64 +31976,44 @@
 	  value: true
 	});
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var _reactAddons = __webpack_require__(7);
 	
 	var _reactAddons2 = _interopRequireDefault(_reactAddons);
 	
-	var _default = (function (_React$Component) {
-	  _inherits(_default, _React$Component);
+	exports['default'] = _reactAddons2['default'].createClass({
+	  displayName: 'CartItem',
 	
-	  function _default() {
-	    _classCallCheck(this, _default);
+	  render: function render() {
+	    var _this = this;
 	
-	    _get(Object.getPrototypeOf(_default.prototype), 'constructor', this).apply(this, arguments);
+	    var item = this.props.item;
+	
+	    /* jshint ignore:start */
+	    return _reactAddons2['default'].createElement(
+	      'div',
+	      { className: 'grid-4-1' },
+	      _reactAddons2['default'].createElement(
+	        'div',
+	        { className: 'title', onClick: function () {
+	            return _this.props.onRemoveFromCart(item);
+	          } },
+	        item.title
+	      ),
+	      _reactAddons2['default'].createElement(
+	        'div',
+	        { className: 'tar price' },
+	        item.amount,
+	        ' × ',
+	        item.price,
+	        '€'
+	      )
+	    );
+	    /* jshint ignore:end */
 	  }
 	
-	  _createClass(_default, [{
-	    key: 'render',
-	    value: function render() {
-	      var _this = this;
-	
-	      var item = this.props.item;
-	
-	      /* jshint ignore:start */
-	      return _reactAddons2['default'].createElement(
-	        'div',
-	        { className: 'grid-4-1' },
-	        _reactAddons2['default'].createElement(
-	          'div',
-	          { className: 'title', onClick: function () {
-	              return _this.props.onRemoveFromCart(item);
-	            } },
-	          item.title
-	        ),
-	        _reactAddons2['default'].createElement(
-	          'div',
-	          { className: 'tar price' },
-	          item.amount,
-	          ' × ',
-	          item.price,
-	          '€'
-	        )
-	      );
-	      /* jshint ignore:end */
-	    }
-	  }]);
-	
-	  return _default;
-	})(_reactAddons2['default'].Component);
-	
-	exports['default'] = _default;
+	});
 	module.exports = exports['default'];
 
 /***/ },
@@ -32126,95 +32026,75 @@
 	  value: true
 	});
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var _reactAddons = __webpack_require__(7);
 	
 	var _reactAddons2 = _interopRequireDefault(_reactAddons);
 	
-	var _default = (function (_React$Component) {
-	  _inherits(_default, _React$Component);
+	exports['default'] = _reactAddons2['default'].createClass({
+	  displayName: 'PayBox',
 	
-	  function _default() {
-	    _classCallCheck(this, _default);
+	  render: function render() {
 	
-	    _get(Object.getPrototypeOf(_default.prototype), 'constructor', this).apply(this, arguments);
-	  }
+	    /* jshint ignore:start */
+	    var discountOffer = _reactAddons2['default'].createElement('div', null);
+	    /* jshint ignore:end */
 	
-	  _createClass(_default, [{
-	    key: 'render',
-	    value: function render() {
+	    if (this.props.discount !== null) {
 	
-	      /* jshint ignore:start */
-	      var discountOffer = _reactAddons2['default'].createElement('div', null);
-	      /* jshint ignore:end */
-	
-	      if (this.props.discount !== null) {
-	
-	        var finalPrice = (Math.round((this.props.discount.finalPrice + 0.00001) * 100) / 100).toFixed(2);
-	
-	        /* jshint ignore:start */
-	        discountOffer = _reactAddons2['default'].createElement(
-	          'div',
-	          { className: 'mbm' },
-	          _reactAddons2['default'].createElement(
-	            'h2',
-	            null,
-	            'Vous bénéficiez d\'une offre spéciale !'
-	          ),
-	          _reactAddons2['default'].createElement(
-	            'p',
-	            { className: 'tac' },
-	            finalPrice,
-	            '€ ',
-	            _reactAddons2['default'].createElement(
-	              'small',
-	              null,
-	              'au lieu de ',
-	              _reactAddons2['default'].createElement(
-	                'strike',
-	                null,
-	                this.props.discount.totalPrice,
-	                '€'
-	              ),
-	              ' !'
-	            )
-	          )
-	        );
-	        /* jshint ignore:end */
-	      }
+	      var finalPrice = (Math.round((this.props.discount.finalPrice + 0.00001) * 100) / 100).toFixed(2);
 	
 	      /* jshint ignore:start */
-	      return _reactAddons2['default'].createElement(
+	      discountOffer = _reactAddons2['default'].createElement(
 	        'div',
-	        { className: this.props.discount ? 'discount' : '' },
-	        discountOffer,
+	        { className: 'mbm' },
 	        _reactAddons2['default'].createElement(
-	          'div',
+	          'h2',
+	          null,
+	          'Vous bénéficiez d\'une offre spéciale !'
+	        ),
+	        _reactAddons2['default'].createElement(
+	          'p',
 	          { className: 'tac' },
+	          finalPrice,
+	          '€ ',
 	          _reactAddons2['default'].createElement(
-	            'button',
-	            { className: 'btn btn-primary btn-large', type: 'submit' },
-	            'Passer ma commande'
+	            'small',
+	            null,
+	            'au lieu de ',
+	            _reactAddons2['default'].createElement(
+	              'strike',
+	              null,
+	              this.props.discount.totalPrice,
+	              '€'
+	            ),
+	            ' !'
 	          )
 	        )
 	      );
 	      /* jshint ignore:end */
 	    }
-	  }]);
 	
-	  return _default;
-	})(_reactAddons2['default'].Component);
+	    /* jshint ignore:start */
+	    return _reactAddons2['default'].createElement(
+	      'div',
+	      { className: this.props.discount ? 'discount' : '' },
+	      discountOffer,
+	      _reactAddons2['default'].createElement(
+	        'div',
+	        { className: 'tac' },
+	        _reactAddons2['default'].createElement(
+	          'button',
+	          { className: 'btn btn-primary btn-large', type: 'submit' },
+	          'Passer ma commande'
+	        )
+	      )
+	    );
+	    /* jshint ignore:end */
+	  }
 	
-	exports['default'] = _default;
+	});
 	module.exports = exports['default'];
 
 /***/ },

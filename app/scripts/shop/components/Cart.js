@@ -4,9 +4,9 @@ import { values, map, pipe } from 'ramda';
 
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-export default class extends React.Component {
+export default React.createClass({
 
-  render(){
+  render: function(){
 
     let cartItems = pipe(
       values,
@@ -39,4 +39,4 @@ export default class extends React.Component {
 
   }
 
-}
+});

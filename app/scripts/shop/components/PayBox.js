@@ -1,8 +1,8 @@
 import React from 'react/addons';
 
-export default class extends React.Component {
+export default React.createClass({
 
-  render(){
+  render: function(){
 
     /* jshint ignore:start */
     let discountOffer = (
@@ -41,4 +41,4 @@ export default class extends React.Component {
 
   }
 
-}
+});

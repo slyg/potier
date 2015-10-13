@@ -1,8 +1,8 @@
 import React from 'react/addons';
 
-export default class extends React.Component {
+export default React.createClass({
 
-  render(){
+  render: function(){
 
     var item = this.props.item;
 
@@ -25,4 +25,4 @@ export default class extends React.Component {
 
   }
 
-}
+});
