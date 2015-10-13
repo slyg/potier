@@ -1,8 +1,7 @@
 import CartItem from './CartItem';
-import React from 'react/addons';
+import React from 'react';
 import { values, map, pipe } from 'ramda';
-
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+import ReactCSSTransitionGroup from 'react-addons-transition-group';
 
 let Cart = ({ cart, onRemoveFromCart }) => {
 
