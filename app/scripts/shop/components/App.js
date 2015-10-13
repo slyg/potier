@@ -16,24 +16,24 @@ let app = React.createClass({
 
   render: function(){
 
-    let { dispatch } = this.props;
+    let { dispatch, cart, discount, books } = this.props;
 
     /* jshint ignore:start */
-    let cart = (
+    let cartDom = (
       <div></div>
     );
 
     // Display cart content only when it is filled-in
-    if (this.props.cart.totalPrice > 0){
-      cart = (
+    if (cart.totalPrice > 0){
+      cartDom = (
         <div>
 
           <div className="cart pbl">
-            <Cart cart={this.props.cart} onRemoveFromCart={(item) => dispatch(removeFromCart(item))} />
+            <Cart cart={cart} onRemoveFromCart={(item) => dispatch(removeFromCart(item))} />
           </div>
 
           <div className="offer pbl">
-            <PayBox discount={this.props.discount} cart={this.props.cart} />
+            <PayBox discount={discount} />
           </div>
 
         </div>
@@ -44,11 +44,11 @@ let app = React.createClass({
       <div className="grid-2-1">
 
         <div className="book-list">
-          <BookList items={this.props.books} onAddToCart={(item) => dispatch(addBookToCart(item))} />
+          <BookList items={books} onAddToCart={(item) => dispatch(addBookToCart(item))} />
         </div>
 
         <div className="cart-box">
-          <div className="">{cart}</div>
+          <div className="">{cartDom}</div>
         </div>
 
       </div>
@@ -60,8 +60,6 @@ let app = React.createClass({
 });
 
 // Select root properties of state used by app
-function select({books, cart, discount}) {
-  return {books, cart, discount};
-}
+let select = ({books, cart, discount}) => { return {books, cart, discount}; }
 
 export default connect(select)(app);

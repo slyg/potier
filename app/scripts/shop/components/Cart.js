@@ -6,6 +6,14 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 export default React.createClass({
 
+  propTypes: {
+    cart: React.PropTypes.shape({
+      totalPrice: React.PropTypes.number.isRequired,
+      books: React.PropTypes.object.isRequired
+    }).isRequired,
+    onRemoveFromCart: React.PropTypes.func.isRequired
+  },
+
   render: function(){
 
     let cartItems = pipe(

@@ -2,6 +2,13 @@ import React from 'react/addons';
 
 export default React.createClass({
 
+  propTypes: {
+    discount: React.PropTypes.shape({
+      finalPrice: React.PropTypes.number.isRequired,
+      totalPrice: React.PropTypes.string.isRequired
+    })
+  },
+
   render: function(){
 
     /* jshint ignore:start */

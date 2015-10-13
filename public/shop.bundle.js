@@ -24170,27 +24170,31 @@
 	  },
 	
 	  render: function render() {
-	    var dispatch = this.props.dispatch;
+	    var _props = this.props;
+	    var dispatch = _props.dispatch;
+	    var cart = _props.cart;
+	    var discount = _props.discount;
+	    var books = _props.books;
 	
 	    /* jshint ignore:start */
-	    var cart = _reactAddons2['default'].createElement('div', null);
+	    var cartDom = _reactAddons2['default'].createElement('div', null);
 	
 	    // Display cart content only when it is filled-in
-	    if (this.props.cart.totalPrice > 0) {
-	      cart = _reactAddons2['default'].createElement(
+	    if (cart.totalPrice > 0) {
+	      cartDom = _reactAddons2['default'].createElement(
 	        'div',
 	        null,
 	        _reactAddons2['default'].createElement(
 	          'div',
 	          { className: 'cart pbl' },
-	          _reactAddons2['default'].createElement(_Cart2['default'], { cart: this.props.cart, onRemoveFromCart: function (item) {
+	          _reactAddons2['default'].createElement(_Cart2['default'], { cart: cart, onRemoveFromCart: function (item) {
 	              return dispatch((0, _actionCreators.removeFromCart)(item));
 	            } })
 	        ),
 	        _reactAddons2['default'].createElement(
 	          'div',
 	          { className: 'offer pbl' },
-	          _reactAddons2['default'].createElement(_PayBox2['default'], { discount: this.props.discount, cart: this.props.cart })
+	          _reactAddons2['default'].createElement(_PayBox2['default'], { discount: discount })
 	        )
 	      );
 	    }
@@ -24201,7 +24205,7 @@
 	      _reactAddons2['default'].createElement(
 	        'div',
 	        { className: 'book-list' },
-	        _reactAddons2['default'].createElement(_BookList2['default'], { items: this.props.books, onAddToCart: function (item) {
+	        _reactAddons2['default'].createElement(_BookList2['default'], { items: books, onAddToCart: function (item) {
 	            return dispatch((0, _actionCreators.addBookToCart)(item));
 	          } })
 	      ),
@@ -24211,7 +24215,7 @@
 	        _reactAddons2['default'].createElement(
 	          'div',
 	          { className: '' },
-	          cart
+	          cartDom
 	        )
 	      )
 	    );
@@ -24221,13 +24225,12 @@
 	});
 	
 	// Select root properties of state used by app
-	function select(_ref) {
+	var select = function select(_ref) {
 	  var books = _ref.books;
 	  var cart = _ref.cart;
 	  var discount = _ref.discount;
-	
 	  return { books: books, cart: cart, discount: discount };
-	}
+	};
 	
 	exports['default'] = (0, _reactRedux.connect)(select)(app);
 	module.exports = exports['default'];
@@ -31776,6 +31779,11 @@
 	exports['default'] = _reactAddons2['default'].createClass({
 	  displayName: 'BookList',
 	
+	  propTypes: {
+	    items: _reactAddons2['default'].PropTypes.object.isRequired,
+	    onAddToCart: _reactAddons2['default'].PropTypes.func.isRequired
+	  },
+	
 	  render: function render() {
 	    var _this = this;
 	
@@ -31843,6 +31851,14 @@
 	
 	exports['default'] = _reactAddons2['default'].createClass({
 	  displayName: 'BookItem',
+	
+	  propTypes: {
+	    item: _reactAddons2['default'].PropTypes.shape({
+	      cover: _reactAddons2['default'].PropTypes.string.isRequired,
+	      price: _reactAddons2['default'].PropTypes.number.isRequired
+	    }),
+	    onAddToCart: _reactAddons2['default'].PropTypes.func.isRequired
+	  },
 	
 	  render: function render() {
 	    var _this = this;
@@ -31918,6 +31934,14 @@
 	exports['default'] = _reactAddons2['default'].createClass({
 	  displayName: 'Cart',
 	
+	  propTypes: {
+	    cart: _reactAddons2['default'].PropTypes.shape({
+	      totalPrice: _reactAddons2['default'].PropTypes.number.isRequired,
+	      books: _reactAddons2['default'].PropTypes.object.isRequired
+	    }).isRequired,
+	    onRemoveFromCart: _reactAddons2['default'].PropTypes.func.isRequired
+	  },
+	
 	  render: function render() {
 	    var _this = this;
 	
@@ -31985,6 +32009,15 @@
 	exports['default'] = _reactAddons2['default'].createClass({
 	  displayName: 'CartItem',
 	
+	  propTypes: {
+	    item: _reactAddons2['default'].PropTypes.shape({
+	      title: _reactAddons2['default'].PropTypes.string.isRequired,
+	      amount: _reactAddons2['default'].PropTypes.number.isRequired,
+	      price: _reactAddons2['default'].PropTypes.number.isRequired
+	    }).isRequired,
+	    onRemoveFromCart: _reactAddons2['default'].PropTypes.func.isRequired
+	  },
+	
 	  render: function render() {
 	    var _this = this;
 	
@@ -32034,6 +32067,13 @@
 	
 	exports['default'] = _reactAddons2['default'].createClass({
 	  displayName: 'PayBox',
+	
+	  propTypes: {
+	    discount: _reactAddons2['default'].PropTypes.shape({
+	      finalPrice: _reactAddons2['default'].PropTypes.number.isRequired,
+	      totalPrice: _reactAddons2['default'].PropTypes.string.isRequired
+	    })
+	  },
 	
 	  render: function render() {
 	

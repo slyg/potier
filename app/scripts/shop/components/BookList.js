@@ -6,6 +6,11 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 export default React.createClass({
 
+  propTypes: {
+    items: React.PropTypes.object.isRequired,
+    onAddToCart: React.PropTypes.func.isRequired
+  },
+
   render: function(){
 
     // If no results

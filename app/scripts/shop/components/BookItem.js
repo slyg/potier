@@ -2,6 +2,14 @@ import React from 'react/addons';
 
 export default React.createClass({
 
+  propTypes: {
+    item: React.PropTypes.shape({
+      cover: React.PropTypes.string.isRequired,
+      price: React.PropTypes.number.isRequired
+    }),
+    onAddToCart: React.PropTypes.func.isRequired
+  },
+
   render: function(){
 
     var item = this.props.item;
