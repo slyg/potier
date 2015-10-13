@@ -28,11 +28,11 @@ let app = React.createClass({
       cartDom = (
         <div>
 
-          <div className="cart pbl">
+          <div className='cart pbl'>
             <Cart cart={cart} onRemoveFromCart={(item) => dispatch(removeFromCart(item))} />
           </div>
 
-          <div className="offer pbl">
+          <div className='offer pbl'>
             <PayBox discount={discount} />
           </div>
 
@@ -41,14 +41,14 @@ let app = React.createClass({
     }
 
     return (
-      <div className="grid-2-1">
+      <div className='grid-2-1'>
 
-        <div className="book-list">
+        <div className='book-list'>
           <BookList items={books} onAddToCart={(item) => dispatch(addBookToCart(item))} />
         </div>
 
-        <div className="cart-box">
-          <div className="">{cartDom}</div>
+        <div className='cart-box'>
+          <div className=''>{cartDom}</div>
         </div>
 
       </div>

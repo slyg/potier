@@ -40,7 +40,7 @@ export default React.createClass({
     return (
       /* jshint ignore:start */
       <ReactCSSTransitionGroup transitionName='default_transition' transitionAppear={true}>
-        <ul className="ul grid-2">{bookItems}</ul>
+        <ul className='ul grid-2'>{bookItems}</ul>
       </ReactCSSTransitionGroup>
       /* jshint ignore:end */
     );

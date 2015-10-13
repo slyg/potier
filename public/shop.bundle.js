@@ -31747,7 +31747,7 @@
 	        _reactAddons2['default'].createElement(
 	          'h2',
 	          null,
-	          'Vous bénéficiez d\'une offre spéciale !'
+	          'Offre spéciale !'
 	        ),
 	        _reactAddons2['default'].createElement(
 	          'p',

@@ -24,7 +24,7 @@ export default React.createClass({
       /* jshint ignore:start */
       discountOffer = (
         <div className='mbm'>
-          <h2>Vous bénéficiez d'une offre spéciale !</h2>
+          <h2>Offre spéciale !</h2>
           <p className='tac'>
             {finalPrice}€ <small>au lieu de <strike>{this.props.discount.totalPrice}€</strike> !</small>
           </p>
