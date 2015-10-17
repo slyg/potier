@@ -16,16 +16,12 @@ let BookList = ({ items, onAddToCart }) => {
 
   let bookItems = pipe(
     values,
-    map(
-      (item) => {
-        return (
-          /* jshint ignore:start */
-          <li key={item.isbn}>
-            <BookItem item={item} onAddToCart={onAddToCart} />
-          </li>
-          /* jshint ignore:end */
-        );
-      }
+    map( item =>
+      /* jshint ignore:start */
+      <li key={item.isbn}>
+        <BookItem item={item} onAddToCart={onAddToCart} />
+      </li>
+      /* jshint ignore:end */
     )
   )(items);
 

@@ -62,9 +62,9 @@
 	
 	var _reactRedux = __webpack_require__(164);
 	
-	var _componentsApp = __webpack_require__(182);
+	var _containersApp = __webpack_require__(202);
 	
-	var _componentsApp2 = _interopRequireDefault(_componentsApp);
+	var _containersApp2 = _interopRequireDefault(_containersApp);
 	
 	var _store = __webpack_require__(196);
 	
@@ -75,7 +75,7 @@
 	_react2['default'].createElement(
 	  _reactRedux.Provider,
 	  { store: _store2['default'] },
-	  _react2['default'].createElement(_componentsApp2['default'], null)
+	  _react2['default'].createElement(_containersApp2['default'], null)
 	),
 	/* jshint ignore:end */
 	document.getElementById('shop'));
@@ -20832,117 +20832,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
 
 /***/ },
-/* 182 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _react = __webpack_require__(7);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(164);
-	
-	var _ramda = __webpack_require__(183);
-	
-	var _ramda2 = _interopRequireDefault(_ramda);
-	
-	var _BookList = __webpack_require__(184);
-	
-	var _BookList2 = _interopRequireDefault(_BookList);
-	
-	var _Cart = __webpack_require__(189);
-	
-	var _Cart2 = _interopRequireDefault(_Cart);
-	
-	var _PayBox = __webpack_require__(191);
-	
-	var _PayBox2 = _interopRequireDefault(_PayBox);
-	
-	var _actionCreators = __webpack_require__(192);
-	
-	var app = _react2['default'].createClass({
-	  displayName: 'app',
-	
-	  componentDidMount: function componentDidMount() {
-	    var dispatch = this.props.dispatch;
-	
-	    dispatch((0, _actionCreators.queryBooks)());
-	  },
-	
-	  render: function render() {
-	    var _props = this.props;
-	    var dispatch = _props.dispatch;
-	    var cart = _props.cart;
-	    var discount = _props.discount;
-	    var books = _props.books;
-	
-	    /* jshint ignore:start */
-	    var cartDom = _react2['default'].createElement('div', null);
-	
-	    // Display cart content only when it is filled-in
-	    if (cart.totalPrice > 0) {
-	      cartDom = _react2['default'].createElement(
-	        'div',
-	        null,
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'cart pbl' },
-	          _react2['default'].createElement(_Cart2['default'], { cart: cart, onRemoveFromCart: function (item) {
-	              return dispatch((0, _actionCreators.removeFromCart)(item));
-	            } })
-	        ),
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'offer pbl' },
-	          _react2['default'].createElement(_PayBox2['default'], { discount: discount })
-	        )
-	      );
-	    }
-	
-	    return _react2['default'].createElement(
-	      'div',
-	      { className: 'grid-2-1' },
-	      _react2['default'].createElement(
-	        'div',
-	        { className: 'book-list' },
-	        _react2['default'].createElement(_BookList2['default'], { items: books, onAddToCart: function (item) {
-	            return dispatch((0, _actionCreators.addBookToCart)(item));
-	          } })
-	      ),
-	      _react2['default'].createElement(
-	        'div',
-	        { className: 'cart-box' },
-	        _react2['default'].createElement(
-	          'div',
-	          { className: '' },
-	          cartDom
-	        )
-	      )
-	    );
-	    /* jshint ignore:end */
-	  }
-	
-	});
-	
-	// Select root properties of state used by app
-	var select = function select(_ref) {
-	  var books = _ref.books;
-	  var cart = _ref.cart;
-	  var discount = _ref.discount;
-	  return { books: books, cart: cart, discount: discount };
-	};
-	
-	exports['default'] = (0, _reactRedux.connect)(select)(app);
-	module.exports = exports['default'];
-
-/***/ },
+/* 182 */,
 /* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -28511,10 +28401,10 @@
 	        { key: item.isbn },
 	        _react2['default'].createElement(_BookItem2['default'], { item: item, onAddToCart: onAddToCart })
 	      )
-	      /* jshint ignore:end */
-	
 	    );
-	  }))(items);
+	  }
+	  /* jshint ignore:end */
+	  ))(items);
 	
 	  return(
 	    /* jshint ignore:start */
@@ -38733,6 +38623,119 @@
 	  return state;
 	}
 	
+	module.exports = exports['default'];
+
+/***/ },
+/* 202 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _react = __webpack_require__(7);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(164);
+	
+	var _ramda = __webpack_require__(183);
+	
+	var _ramda2 = _interopRequireDefault(_ramda);
+	
+	var _componentsBookList = __webpack_require__(184);
+	
+	var _componentsBookList2 = _interopRequireDefault(_componentsBookList);
+	
+	var _componentsCart = __webpack_require__(189);
+	
+	var _componentsCart2 = _interopRequireDefault(_componentsCart);
+	
+	var _componentsPayBox = __webpack_require__(191);
+	
+	var _componentsPayBox2 = _interopRequireDefault(_componentsPayBox);
+	
+	var _actionCreators = __webpack_require__(192);
+	
+	var app = _react2['default'].createClass({
+	  displayName: 'app',
+	
+	  componentDidMount: function componentDidMount() {
+	    var dispatch = this.props.dispatch;
+	
+	    dispatch((0, _actionCreators.queryBooks)());
+	  },
+	
+	  render: function render() {
+	    var _props = this.props;
+	    var dispatch = _props.dispatch;
+	    var cart = _props.cart;
+	    var discount = _props.discount;
+	    var books = _props.books;
+	
+	    /* jshint ignore:start */
+	    var cartDom = _react2['default'].createElement('div', null);
+	
+	    // Display cart content only when it is filled-in
+	    if (cart.totalPrice > 0) {
+	      cartDom = _react2['default'].createElement(
+	        'div',
+	        null,
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'cart pbl' },
+	          _react2['default'].createElement(_componentsCart2['default'], {
+	            cart: cart,
+	            onRemoveFromCart: function (item) {
+	              return dispatch((0, _actionCreators.removeFromCart)(item));
+	            }
+	          })
+	        ),
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'offer pbl' },
+	          _react2['default'].createElement(_componentsPayBox2['default'], { discount: discount })
+	        )
+	      );
+	    }
+	
+	    return _react2['default'].createElement(
+	      'div',
+	      { className: 'grid-2-1' },
+	      _react2['default'].createElement(
+	        'div',
+	        { className: 'book-list' },
+	        _react2['default'].createElement(_componentsBookList2['default'], {
+	          items: books,
+	          onAddToCart: function (item) {
+	            return dispatch((0, _actionCreators.addBookToCart)(item));
+	          }
+	        })
+	      ),
+	      _react2['default'].createElement(
+	        'div',
+	        { className: 'cart-box' },
+	        cartDom
+	      )
+	    );
+	    /* jshint ignore:end */
+	  }
+	
+	});
+	
+	// Select root properties of state used by app
+	var select = function select(_ref) {
+	  var books = _ref.books;
+	  var cart = _ref.cart;
+	  var discount = _ref.discount;
+	  return { books: books, cart: cart, discount: discount };
+	};
+	
+	exports['default'] = (0, _reactRedux.connect)(select)(app);
 	module.exports = exports['default'];
 
 /***/ }

@@ -2,16 +2,16 @@ import React       from 'react';
 import { connect } from 'react-redux';
 import R           from 'ramda';
 
-import BookList    from './BookList';
-import Cart        from './Cart';
-import PayBox      from './PayBox';
+import BookList    from '../components/BookList';
+import Cart        from '../components/Cart';
+import PayBox      from '../components/PayBox';
 import { queryBooks, addBookToCart, removeFromCart } from '../actionCreators';
 
 let app = React.createClass({
 
   componentDidMount: function(){
     let { dispatch } = this.props;
-    dispatch(queryBooks())
+    dispatch(queryBooks());
   },
 
   render: function(){
@@ -27,30 +27,28 @@ let app = React.createClass({
     if (cart.totalPrice > 0){
       cartDom = (
         <div>
-
           <div className='cart pbl'>
-            <Cart cart={cart} onRemoveFromCart={(item) => dispatch(removeFromCart(item))} />
+            <Cart
+              cart={cart}
+              onRemoveFromCart={ item => dispatch(removeFromCart(item)) }
+            />
           </div>
-
           <div className='offer pbl'>
             <PayBox discount={discount} />
           </div>
-
         </div>
       );
     }
 
     return (
       <div className='grid-2-1'>
-
         <div className='book-list'>
-          <BookList items={books} onAddToCart={(item) => dispatch(addBookToCart(item))} />
+          <BookList
+            items={books}
+            onAddToCart={ item => dispatch(addBookToCart(item)) }
+          />
         </div>
-
-        <div className='cart-box'>
-          <div className=''>{cartDom}</div>
-        </div>
-
+        <div className='cart-box'>{cartDom}</div>
       </div>
     );
     /* jshint ignore:end */
