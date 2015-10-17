@@ -16,7 +16,6 @@
     "koa-static": "^1.4.9",
     "ramda": "^0.14.0",
     "react": "^0.14.0",
-    "react-addons-transition-group": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-redux": "^2.1.2",
     "redux": "^3.0.0",

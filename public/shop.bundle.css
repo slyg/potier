@@ -1847,9 +1847,11 @@ header {
     padding: 0.2em 1em;
     margin: 0; }
 
-.book-list ul {
-  padding-left: 1em;
-  padding-right: 1em; }
+.book-list {
+  transition: width 0.5s; }
+  .book-list ul {
+    padding-left: 1em;
+    padding-right: 1em; }
 
 .book-item {
   padding: 2em; }
@@ -1863,12 +1865,11 @@ header {
   border-radius: 0.4em; }
 
 .cart-box {
-  position: fixed;
-  min-height: 800px;
-  background-color: #edeff1;
-  box-shadow: 0px 0px 3px #b4bcc4; }
+  position: fixed; }
   .cart-box > div {
-    padding: 2em; }
+    padding: 2em;
+    background-color: #fbf8fc;
+    box-shadow: 0px 0px 3px #d0b2dd; }
   .cart-box h2 {
     font-size: 1.4em;
     margin-bottom: 0.3em;
@@ -1884,7 +1885,7 @@ header {
   .cart-box .total {
     margin-top: 1em;
     padding-top: 1em;
-    border-top: 1px solid #b4bcc4; }
+    border-top: 1px solid #d0b2dd; }
   .cart-box .discount {
     border-radius: 0.4em;
     padding: 2em;
@@ -1920,12 +1921,5 @@ header {
 
 .btn-large {
   padding: 1em 1.5em; }
-
-.default_transition-appear {
-  opacity: 0.01;
-  transition: opacity 0.2s ease-in; }
-
-.default_transition-appear.default_transition-appear-active {
-  opacity: 1; }
 
 /*# sourceMappingURL=shop.bundle.css.map*/

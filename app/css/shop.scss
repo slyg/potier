@@ -2,7 +2,7 @@
 
 $primary-color: #3498DB;
 $secondary-color: #9B59B6;
-$side-color: #edeff1;
+$side-color: lighten($secondary-color, 45%);
 $transition-delay: .25s;
 $base-padding: 1em;
 $large-padding: 2em;
@@ -28,6 +28,7 @@ header {
 }
 
 .book-list {
+  transition: width 0.5s;
   ul {
     padding-left: $base-padding;
     padding-right: $base-padding;
@@ -51,12 +52,11 @@ header {
 
 .cart-box {
   position: fixed;
-  min-height: 800px;
-  background-color: $side-color;
-  box-shadow: 0px 0px 3px darken($side-color, 20%);
 
   > div {
     padding: $large-padding;
+    background-color: $side-color;
+    box-shadow: 0px 0px 3px darken($side-color, 20%);
   }
 
   h2 {
@@ -130,15 +130,4 @@ header {
 
 .btn-large {
   padding: 1em 1.5em;
-}
-
-// Animations
-
-.default_transition-appear {
-  opacity: 0.01;
-  transition: opacity .2s ease-in;
-}
-
-.default_transition-appear.default_transition-appear-active {
-  opacity: 1;
 }

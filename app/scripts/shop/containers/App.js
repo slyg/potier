@@ -16,9 +16,10 @@ let app = React.createClass({
   render: function(){
 
     let cartDom, { dispatch, cart, discount, books } = this.props;
+    let hasCart = (cart.totalPrice > 0);
 
     // Display cart content only when it is filled-in
-    if (cart.totalPrice > 0){
+    if (hasCart){
       cartDom = (
         /* jshint ignore:start */
         <div>
@@ -38,7 +39,7 @@ let app = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <div className='grid-2-1'>
+      <div className={hasCart ? 'grid-2-1' : 'grid-4-1'}>
         <div className='book-list'>
           <BookList
             items={books}

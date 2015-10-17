@@ -2,7 +2,6 @@ import BookItem from './BookItem';
 import React from 'react';
 import { PropTypes } from 'react';
 import { values, map, compose } from 'ramda';
-import ReactCSSTransitionGroup from 'react-addons-transition-group';
 
 let BookList = ({ items, onAddToCart }) => {
 
@@ -27,9 +26,7 @@ let BookList = ({ items, onAddToCart }) => {
 
   return (
     /* jshint ignore:start */
-    <ReactCSSTransitionGroup transitionName='default_transition' transitionAppear={true}>
-      <ul className='ul grid-2-small-1'>{bookItems}</ul>
-    </ReactCSSTransitionGroup>
+    <ul className='ul grid-2-small-1'>{bookItems}</ul>
     /* jshint ignore:end */
   );
 

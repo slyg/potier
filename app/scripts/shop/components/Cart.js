@@ -2,7 +2,6 @@ import CartItem from './CartItem';
 import React from 'react';
 import { PropTypes } from 'react';
 import { values, map, pipe } from 'ramda';
-import ReactCSSTransitionGroup from 'react-addons-transition-group';
 
 let Cart = ({ cart, onRemoveBookFromCart }) => {
 
@@ -19,15 +18,11 @@ let Cart = ({ cart, onRemoveBookFromCart }) => {
 
   return (
     /* jshint ignore:start */
-    <ReactCSSTransitionGroup transitionName='default_transition' transitionAppear={true}>
     <div>
       <h2>Your cart</h2>
-      <ul>
-        {cartItems}
-      </ul>
+      <ul>{cartItems}</ul>
       <div className='txtright total'>Total: {cart.totalPrice}€</div>
     </div>
-    </ReactCSSTransitionGroup>
     /* jshint ignore:end */
   );
 

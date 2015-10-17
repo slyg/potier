@@ -3,7 +3,7 @@ import { PropTypes } from 'react';
 
 let BookItem = ({ item, onAddToCart }) =>
   /* jshint ignore:start */
-  <article className='book-item mbs grid-2'>
+  <article className='book-item mbs grid-2-3'>
     <div>
       <img className='book-cover' src={item.cover} />
     </div>
