@@ -21,7 +21,7 @@ let Cart = ({ cart, onRemoveFromCart }) => {
     /* jshint ignore:start */
     <ReactCSSTransitionGroup transitionName='default_transition' transitionAppear={true}>
     <div>
-      <h2>Votre panier</h2>
+      <h2>Your cart</h2>
       <ul>
         {cartItems}
       </ul>

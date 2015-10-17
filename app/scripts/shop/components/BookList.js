@@ -9,7 +9,7 @@ let BookList = ({ items, onAddToCart }) => {
   if (items.length < 1) {
     return (
       /* jshint ignore:start */
-      <p className='tac ptl'>Chargement...</p>
+      <p className='tac ptl'>Loading...</p>
       /* jshint ignore:end */
     );
   }

@@ -11,7 +11,7 @@ let BookItem = ({ item, onAddToCart }) =>
       <h3>{item.title}</h3>
       <p className='pbs price'>{item.price}€</p>
       <p>
-        <button onClick={() => onAddToCart(item)} type='submit' className='btn btn-secondary'>Ajouter au panier</button>
+        <button onClick={() => onAddToCart(item)} type='submit' className='btn btn-secondary'>Add to cart</button>
       </p>
     </div>
   </article>

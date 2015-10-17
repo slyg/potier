@@ -28385,7 +28385,7 @@
 	      _react2['default'].createElement(
 	        'p',
 	        { className: 'tac ptl' },
-	        'Chargement...'
+	        'Loading...'
 	      )
 	      /* jshint ignore:end */
 	
@@ -28480,7 +28480,7 @@
 	            { onClick: function () {
 	                return onAddToCart(item);
 	              }, type: 'submit', className: 'btn btn-secondary' },
-	            'Ajouter au panier'
+	            'Add to cart'
 	          )
 	        )
 	      )
@@ -28874,7 +28874,7 @@
 	        _react2['default'].createElement(
 	          'h2',
 	          null,
-	          'Votre panier'
+	          'Your cart'
 	        ),
 	        _react2['default'].createElement(
 	          'ul',
@@ -28996,7 +28996,7 @@
 	      _react2['default'].createElement(
 	        'h2',
 	        null,
-	        'Offre spéciale !'
+	        'Special Offer !'
 	      ),
 	      _react2['default'].createElement(
 	        'p',
@@ -29006,14 +29006,14 @@
 	        _react2['default'].createElement(
 	          'small',
 	          null,
-	          'au lieu de ',
+	          'instead of ',
 	          _react2['default'].createElement(
 	            'strike',
 	            null,
 	            discount.totalPrice,
 	            '€'
 	          ),
-	          ' !'
+	          '!'
 	        )
 	      )
 	    )
@@ -29033,7 +29033,7 @@
 	        _react2['default'].createElement(
 	          'button',
 	          { className: 'btn btn-primary btn-large', type: 'submit' },
-	          'Passer ma commande'
+	          'Order'
 	        )
 	      )
 	    )
