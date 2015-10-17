@@ -9,7 +9,7 @@ let BookList = ({ items, onAddToCart }) => {
   if (items.length < 1) {
     return (
       /* jshint ignore:start */
-      <p className='tac ptl'>Loading...</p>
+      <p className='txtcenter ptl'>Loading...</p>
       /* jshint ignore:end */
     );
   }
@@ -28,7 +28,7 @@ let BookList = ({ items, onAddToCart }) => {
   return (
     /* jshint ignore:start */
     <ReactCSSTransitionGroup transitionName='default_transition' transitionAppear={true}>
-      <ul className='ul grid-2'>{bookItems}</ul>
+      <ul className='ul grid-2-small-1'>{bookItems}</ul>
     </ReactCSSTransitionGroup>
     /* jshint ignore:end */
   );

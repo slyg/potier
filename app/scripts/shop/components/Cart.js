@@ -25,7 +25,7 @@ let Cart = ({ cart, onRemoveBookFromCart }) => {
       <ul>
         {cartItems}
       </ul>
-      <div className='tar total'>Total: {cart.totalPrice}€</div>
+      <div className='txtright total'>Total: {cart.totalPrice}€</div>
     </div>
     </ReactCSSTransitionGroup>
     /* jshint ignore:end */

@@ -28384,7 +28384,7 @@
 	      /* jshint ignore:start */
 	      _react2['default'].createElement(
 	        'p',
-	        { className: 'tac ptl' },
+	        { className: 'txtcenter ptl' },
 	        'Loading...'
 	      )
 	      /* jshint ignore:end */
@@ -28412,7 +28412,7 @@
 	      { transitionName: 'default_transition', transitionAppear: true },
 	      _react2['default'].createElement(
 	        'ul',
-	        { className: 'ul grid-2' },
+	        { className: 'ul grid-2-small-1' },
 	        bookItems
 	      )
 	    )
@@ -28883,7 +28883,7 @@
 	        ),
 	        _react2['default'].createElement(
 	          'div',
-	          { className: 'tar total' },
+	          { className: 'txtright total' },
 	          'Total: ',
 	          cart.totalPrice,
 	          '€'
@@ -28939,7 +28939,7 @@
 	      ),
 	      _react2['default'].createElement(
 	        'div',
-	        { className: 'tar price' },
+	        { className: 'txtright price' },
 	        item.amount,
 	        ' × ',
 	        item.price,
@@ -29000,7 +29000,7 @@
 	      ),
 	      _react2['default'].createElement(
 	        'p',
-	        { className: 'tac' },
+	        { className: 'txtcenter' },
 	        finalPrice,
 	        '€ ',
 	        _react2['default'].createElement(
@@ -29029,11 +29029,11 @@
 	      discountOffer,
 	      _react2['default'].createElement(
 	        'div',
-	        { className: 'tac' },
+	        { className: 'txtcenter' },
 	        _react2['default'].createElement(
 	          'button',
 	          { className: 'btn btn-primary btn-large', type: 'submit' },
-	          'Order'
+	          'Order Now'
 	        )
 	      )
 	    )

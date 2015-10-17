@@ -13,7 +13,7 @@ let PayBox = ({discount}) => {
       /* jshint ignore:start */
       <div className='mbm'>
         <h2>Special Offer !</h2>
-        <p className='tac'>
+        <p className='txtcenter'>
           {finalPrice}€ <small>instead of <strike>{discount.totalPrice}€</strike>!</small>
         </p>
       </div>
@@ -26,8 +26,8 @@ let PayBox = ({discount}) => {
     /* jshint ignore:start */
     <div className={discount ? 'discount' : ''}>
       {discountOffer}
-      <div className='tac'>
-        <button className='btn btn-primary btn-large' type='submit'>Order</button>
+      <div className='txtcenter'>
+        <button className='btn btn-primary btn-large' type='submit'>Order Now</button>
       </div>
     </div>
     /* jshint ignore:end */
