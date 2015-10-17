@@ -28423,8 +28423,8 @@
 	};
 	
 	BookList.propTypes = {
-	  items: _react2['default'].PropTypes.object.isRequired,
-	  onAddToCart: _react2['default'].PropTypes.func.isRequired
+	  items: _react.PropTypes.object.isRequired,
+	  onAddToCart: _react.PropTypes.func.isRequired
 	};
 	
 	exports['default'] = BookList;
@@ -28490,11 +28490,11 @@
 	};
 	
 	BookItem.propTypes = {
-	  item: _react2['default'].PropTypes.shape({
-	    cover: _react2['default'].PropTypes.string.isRequired,
-	    price: _react2['default'].PropTypes.number.isRequired
+	  item: _react.PropTypes.shape({
+	    cover: _react.PropTypes.string.isRequired,
+	    price: _react.PropTypes.number.isRequired
 	  }),
-	  onAddToCart: _react2['default'].PropTypes.func.isRequired
+	  onAddToCart: _react.PropTypes.func.isRequired
 	};
 	
 	exports['default'] = BookItem;
@@ -28892,11 +28892,11 @@
 	};
 	
 	Cart.propTypes = {
-	  cart: _react2['default'].PropTypes.shape({
-	    totalPrice: _react2['default'].PropTypes.number.isRequired,
-	    books: _react2['default'].PropTypes.object.isRequired
+	  cart: _react.PropTypes.shape({
+	    totalPrice: _react.PropTypes.number.isRequired,
+	    books: _react.PropTypes.object.isRequired
 	  }).isRequired,
-	  onRemoveFromCart: _react2['default'].PropTypes.func.isRequired
+	  onRemoveFromCart: _react.PropTypes.func.isRequired
 	};
 	
 	exports['default'] = Cart;
@@ -28949,12 +28949,12 @@
 	};
 	
 	CartItem.propTypes = {
-	  item: _react2['default'].PropTypes.shape({
-	    title: _react2['default'].PropTypes.string.isRequired,
-	    amount: _react2['default'].PropTypes.number.isRequired,
-	    price: _react2['default'].PropTypes.number.isRequired
+	  item: _react.PropTypes.shape({
+	    title: _react.PropTypes.string.isRequired,
+	    amount: _react.PropTypes.number.isRequired,
+	    price: _react.PropTypes.number.isRequired
 	  }).isRequired,
-	  onRemoveFromCart: _react2['default'].PropTypes.func.isRequired
+	  onRemoveFromCart: _react.PropTypes.func.isRequired
 	};
 	
 	exports['default'] = CartItem;
@@ -28978,6 +28978,8 @@
 	
 	var PayBox = function PayBox(_ref) {
 	  var discount = _ref.discount;
+	
+	  console.log(discount);
 	
 	  /* jshint ignore:start */
 	  var discountOffer = _react2['default'].createElement('div', null);
@@ -29037,9 +29039,9 @@
 	};
 	
 	PayBox.propTypes = {
-	  discount: _react2['default'].PropTypes.shape({
-	    finalPrice: _react2['default'].PropTypes.number.isRequired,
-	    totalPrice: _react2['default'].PropTypes.string.isRequired
+	  discount: _react.PropTypes.shape({
+	    finalPrice: _react.PropTypes.number.isRequired,
+	    totalPrice: _react.PropTypes.string.isRequired
 	  })
 	};
 	

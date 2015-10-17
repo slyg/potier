@@ -1,6 +1,9 @@
 import React from 'react';
+import { PropTypes } from 'react';
 
 let PayBox = ({discount}) => {
+
+  console.log(discount);
 
   /* jshint ignore:start */
   let discountOffer = (
@@ -40,9 +43,9 @@ let PayBox = ({discount}) => {
 };
 
 PayBox.propTypes = {
-  discount: React.PropTypes.shape({
-    finalPrice: React.PropTypes.number.isRequired,
-    totalPrice: React.PropTypes.string.isRequired
+  discount: PropTypes.shape({
+    finalPrice: PropTypes.number.isRequired,
+    totalPrice: PropTypes.string.isRequired
   })
 };
 

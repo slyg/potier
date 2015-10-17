@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'react';
 
 let BookItem = ({ item, onAddToCart }) => {
 
@@ -22,11 +23,11 @@ let BookItem = ({ item, onAddToCart }) => {
 };
 
 BookItem.propTypes = {
-  item: React.PropTypes.shape({
-    cover: React.PropTypes.string.isRequired,
-    price: React.PropTypes.number.isRequired
+  item: PropTypes.shape({
+    cover: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired
   }),
-  onAddToCart: React.PropTypes.func.isRequired
+  onAddToCart: PropTypes.func.isRequired
 }
 
 export default BookItem;

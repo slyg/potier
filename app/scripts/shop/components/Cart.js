@@ -1,5 +1,6 @@
 import CartItem from './CartItem';
 import React from 'react';
+import { PropTypes } from 'react';
 import { values, map, pipe } from 'ramda';
 import ReactCSSTransitionGroup from 'react-addons-transition-group';
 
@@ -37,11 +38,11 @@ let Cart = ({ cart, onRemoveFromCart }) => {
 };
 
 Cart.propTypes = {
-  cart: React.PropTypes.shape({
-    totalPrice: React.PropTypes.number.isRequired,
-    books: React.PropTypes.object.isRequired
+  cart: PropTypes.shape({
+    totalPrice: PropTypes.number.isRequired,
+    books: PropTypes.object.isRequired
   }).isRequired,
-  onRemoveFromCart: React.PropTypes.func.isRequired
+  onRemoveFromCart: PropTypes.func.isRequired
 };
 
 export default Cart;

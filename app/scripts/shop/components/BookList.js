@@ -1,5 +1,6 @@
 import BookItem from './BookItem';
 import React from 'react';
+import { PropTypes } from 'react';
 import { values, map, pipe } from 'ramda';
 import ReactCSSTransitionGroup from 'react-addons-transition-group';
 
@@ -36,8 +37,8 @@ let BookList = ({ items, onAddToCart }) => {
 };
 
 BookList.propTypes = {
-  items: React.PropTypes.object.isRequired,
-  onAddToCart: React.PropTypes.func.isRequired
+  items: PropTypes.object.isRequired,
+  onAddToCart: PropTypes.func.isRequired
 };
 
 export default BookList;

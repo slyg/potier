@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'react';
 
 let CartItem = ({ item, onRemoveFromCart }) => {
   return (
@@ -12,12 +13,12 @@ let CartItem = ({ item, onRemoveFromCart }) => {
 };
 
 CartItem.propTypes = {
-  item: React.PropTypes.shape({
-    title: React.PropTypes.string.isRequired,
-    amount: React.PropTypes.number.isRequired,
-    price: React.PropTypes.number.isRequired
+  item: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    amount: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired
   }).isRequired,
-  onRemoveFromCart: React.PropTypes.func.isRequired
+  onRemoveFromCart: PropTypes.func.isRequired
 };
 
 export default CartItem;
