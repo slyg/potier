@@ -1,6 +1,5 @@
 import React       from 'react';
 import { connect } from 'react-redux';
-import R           from 'ramda';
 
 import BookList    from '../components/BookList';
 import Cart        from '../components/Cart';
@@ -16,12 +15,9 @@ let app = React.createClass({
 
   render: function(){
 
-    let { dispatch, cart, discount, books } = this.props;
+    let cartDom, { dispatch, cart, discount, books } = this.props;
 
     /* jshint ignore:start */
-    let cartDom = (
-      <div></div>
-    );
 
     // Display cart content only when it is filled-in
     if (cart.totalPrice > 0){

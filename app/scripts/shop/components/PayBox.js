@@ -3,13 +3,7 @@ import { PropTypes } from 'react';
 
 let PayBox = ({discount}) => {
 
-  console.log(discount);
-
-  /* jshint ignore:start */
-  let discountOffer = (
-    <div></div>
-  );
-  /* jshint ignore:end */
+  let discountOffer;
 
   if (discount !==  null){
 

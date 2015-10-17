@@ -28979,11 +28979,7 @@
 	var PayBox = function PayBox(_ref) {
 	  var discount = _ref.discount;
 	
-	  console.log(discount);
-	
-	  /* jshint ignore:start */
-	  var discountOffer = _react2['default'].createElement('div', null);
-	  /* jshint ignore:end */
+	  var discountOffer = undefined;
 	
 	  if (discount !== null) {
 	
@@ -38488,13 +38484,9 @@
 	});
 	exports['default'] = books;
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
 	var _constants = __webpack_require__(193);
 	
 	var _ramda = __webpack_require__(183);
-	
-	var _ramda2 = _interopRequireDefault(_ramda);
 	
 	function books(state, action) {
 	  if (state === undefined) state = {};
@@ -38502,10 +38494,10 @@
 	  switch (action.type) {
 	
 	    case _constants.RECEIVE_BOOKS:
-	      return Object.assign({}, state, _ramda2['default'].reduce(function (acc, value) {
+	      return Object.assign({}, state, (0, _ramda.reduce)(function (acc, value) {
 	        var obj = {};
 	        obj[value.isbn] = value;
-	        return _ramda2['default'].merge(acc, obj);
+	        return (0, _ramda.merge)(acc, obj);
 	      }, {})(action.books));
 	
 	      break;
@@ -38528,20 +38520,16 @@
 	});
 	exports['default'] = cart;
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
 	var _constants = __webpack_require__(193);
 	
 	var _ramda = __webpack_require__(183);
-	
-	var _ramda2 = _interopRequireDefault(_ramda);
 	
 	var initialState = {
 	  books: {},
 	  totalPrice: 0
 	};
 	
-	var countPrice = _ramda2['default'].pipe(_ramda2['default'].values, _ramda2['default'].reduce(function (acc, item) {
+	var countPrice = (0, _ramda.pipe)(_ramda.values, (0, _ramda.reduce)(function (acc, item) {
 	  return acc + item.price * item.amount;
 	}, 0));
 	
@@ -38549,7 +38537,7 @@
 	  if (state === undefined) state = initialState;
 	
 	  var item = action.book;
-	  var nextState = _ramda2['default'].clone(state);
+	  var nextState = (0, _ramda.clone)(state);
 	
 	  switch (action.type) {
 	
@@ -38572,7 +38560,7 @@
 	
 	    case _constants.REMOVE_BOOK_FROM_CART:
 	      {
-	        var books = _ramda2['default'].omit([item.isbn], nextState.books);
+	        var books = (0, _ramda.omit)([item.isbn], nextState.books);
 	        return Object.assign({}, {
 	          books: books,
 	          totalPrice: countPrice(books)
@@ -38636,10 +38624,6 @@
 	
 	var _reactRedux = __webpack_require__(164);
 	
-	var _ramda = __webpack_require__(183);
-	
-	var _ramda2 = _interopRequireDefault(_ramda);
-	
 	var _componentsBookList = __webpack_require__(184);
 	
 	var _componentsBookList2 = _interopRequireDefault(_componentsBookList);
@@ -38664,14 +38648,13 @@
 	  },
 	
 	  render: function render() {
-	    var _props = this.props;
+	    var cartDom = undefined;var _props = this.props;
 	    var dispatch = _props.dispatch;
 	    var cart = _props.cart;
 	    var discount = _props.discount;
 	    var books = _props.books;
 	
 	    /* jshint ignore:start */
-	    var cartDom = _react2['default'].createElement('div', null);
 	
 	    // Display cart content only when it is filled-in
 	    if (cart.totalPrice > 0) {

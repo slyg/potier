@@ -1,15 +1,15 @@
 import { RECEIVE_BOOKS } from '../constants';
-import R from 'ramda';
+import { reduce, merge } from 'ramda';
 
 export default function books(state = {}, action){
 
   switch (action.type) {
 
     case RECEIVE_BOOKS:
-      return Object.assign({}, state, R.reduce((acc, value) => {
+      return Object.assign({}, state, reduce((acc, value) => {
         var obj = {};
         obj[value.isbn] = value;
-        return R.merge(acc, obj);
+        return merge(acc, obj);
       }, {})(action.books));
 
       break;
