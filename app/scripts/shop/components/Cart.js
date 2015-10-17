@@ -4,14 +4,14 @@ import { PropTypes } from 'react';
 import { values, map, pipe } from 'ramda';
 import ReactCSSTransitionGroup from 'react-addons-transition-group';
 
-let Cart = ({ cart, onremoveBookFromCart }) => {
+let Cart = ({ cart, onRemoveBookFromCart }) => {
 
   let cartItems = pipe(
     values,
     map( item =>
       /* jshint ignore:start */
       <li key={item.isbn}>
-        <CartItem item={item} onremoveBookFromCart={onremoveBookFromCart} />
+        <CartItem item={item} onRemoveBookFromCart={onRemoveBookFromCart} />
       </li>
       /* jshint ignore:end */
     )
@@ -38,7 +38,7 @@ Cart.propTypes = {
     totalPrice: PropTypes.number.isRequired,
     books: PropTypes.object.isRequired
   }).isRequired,
-  onremoveBookFromCart: PropTypes.func.isRequired
+  onRemoveBookFromCart: PropTypes.func.isRequired
 };
 
 export default Cart;

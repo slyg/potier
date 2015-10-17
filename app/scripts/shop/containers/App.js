@@ -25,7 +25,7 @@ let app = React.createClass({
           <div className='cart pbl'>
             <Cart
               cart={cart}
-              onremoveBookFromCart={ item => dispatch(removeBookFromCart(item)) }
+              onRemoveBookFromCart={ item => dispatch(removeBookFromCart(item)) }
             />
           </div>
           <div className='offer pbl'>
