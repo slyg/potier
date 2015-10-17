@@ -29061,7 +29061,7 @@
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
-	exports.queryBooks = queryBooks;
+	exports.fetchBooks = fetchBooks;
 	exports.addBookToCart = addBookToCart;
 	exports.removeFromCart = removeFromCart;
 	
@@ -29081,7 +29081,7 @@
 	  return { type: _constants.RECEIVE_BEST_OFFER, bestOffer: bestOffer };
 	};
 	
-	function queryBooks() {
+	function fetchBooks() {
 	
 	  return function (dispatch) {
 	
@@ -38661,7 +38661,7 @@
 	  componentDidMount: function componentDidMount() {
 	    var dispatch = this.props.dispatch;
 	
-	    dispatch((0, _actionCreators.queryBooks)());
+	    dispatch((0, _actionCreators.fetchBooks)());
 	  },
 	
 	  render: function render() {

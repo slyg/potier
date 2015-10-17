@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import BookList    from '../components/BookList';
 import Cart        from '../components/Cart';
 import PayBox      from '../components/PayBox';
-import { queryBooks, addBookToCart, removeFromCart } from '../actionCreators';
+import { fetchBooks, addBookToCart, removeFromCart } from '../actionCreators';
 
 let app = React.createClass({
 
   componentDidMount: function(){
     let { dispatch } = this.props;
-    dispatch(queryBooks());
+    dispatch(fetchBooks());
   },
 
   render: function(){

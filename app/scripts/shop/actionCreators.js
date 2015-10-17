@@ -13,7 +13,7 @@ let handleServerError = error     => ({ type: RECEIVE_SERVER_ERROR, error });
 let reveiveBooks      = books     => ({ type: RECEIVE_BOOKS, books });
 let receiveBestOffer  = bestOffer => ({ type: RECEIVE_BEST_OFFER, bestOffer });
 
-export function queryBooks() {
+export function fetchBooks() {
 
   return dispatch => {
 
