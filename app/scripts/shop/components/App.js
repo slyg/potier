@@ -60,6 +60,6 @@ let app = React.createClass({
 });
 
 // Select root properties of state used by app
-let select = ({books, cart, discount}) => { return {books, cart, discount}; }
+let select = ({books, cart, discount}) => ({books, cart, discount});
 
 export default connect(select)(app);

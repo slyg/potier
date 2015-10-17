@@ -66,7 +66,7 @@
 	
 	var _componentsApp2 = _interopRequireDefault(_componentsApp);
 	
-	var _store = __webpack_require__(213);
+	var _store = __webpack_require__(196);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -20861,11 +20861,11 @@
 	
 	var _Cart2 = _interopRequireDefault(_Cart);
 	
-	var _PayBox = __webpack_require__(208);
+	var _PayBox = __webpack_require__(191);
 	
 	var _PayBox2 = _interopRequireDefault(_PayBox);
 	
-	var _actionCreators = __webpack_require__(209);
+	var _actionCreators = __webpack_require__(192);
 	
 	var app = _react2['default'].createClass({
 	  displayName: 'app',
@@ -29071,24 +29071,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */,
-/* 197 */,
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29174,7 +29157,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 209 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29188,33 +29171,22 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _constants = __webpack_require__(210);
+	var _constants = __webpack_require__(193);
 	
 	var _ramda = __webpack_require__(183);
 	
 	var _ramda2 = _interopRequireDefault(_ramda);
 	
-	var _webApi = __webpack_require__(211);
+	var _webApi = __webpack_require__(194);
 	
 	var handleServerError = function handleServerError(error) {
-	  return {
-	    type: _constants.RECEIVE_SERVER_ERROR,
-	    error: error
-	  };
+	  return { type: _constants.RECEIVE_SERVER_ERROR, error: error };
 	};
-	
-	var receiveBestOffer = function receiveBestOffer(bestOffer) {
-	  return {
-	    type: _constants.RECEIVE_BEST_OFFER,
-	    bestOffer: bestOffer
-	  };
-	};
-	
 	var reveiveBooks = function reveiveBooks(books) {
-	  return {
-	    type: _constants.RECEIVE_BOOKS,
-	    books: books
-	  };
+	  return { type: _constants.RECEIVE_BOOKS, books: books };
+	};
+	var receiveBestOffer = function receiveBestOffer(bestOffer) {
+	  return { type: _constants.RECEIVE_BEST_OFFER, bestOffer: bestOffer };
 	};
 	
 	function queryBooks() {
@@ -29262,10 +29234,7 @@
 	
 	  return function (dispatch, getState) {
 	
-	    dispatch({
-	      type: _constants.REMOVE_BOOK_FROM_CART,
-	      book: book
-	    });
+	    dispatch({ type: _constants.REMOVE_BOOK_FROM_CART, book: book });
 	
 	    var state = getState();
 	    var totalPrice = state.cart.totalPrice;
@@ -29282,7 +29251,7 @@
 	;
 
 /***/ },
-/* 210 */
+/* 193 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29302,7 +29271,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 211 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29315,7 +29284,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _jquery = __webpack_require__(212);
+	var _jquery = __webpack_require__(195);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
@@ -29332,7 +29301,7 @@
 	;
 
 /***/ },
-/* 212 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -38548,7 +38517,7 @@
 
 
 /***/ },
-/* 213 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38561,11 +38530,11 @@
 	
 	var _redux = __webpack_require__(172);
 	
-	var _reduxThunk = __webpack_require__(214);
+	var _reduxThunk = __webpack_require__(197);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _reducers = __webpack_require__(215);
+	var _reducers = __webpack_require__(198);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
@@ -38575,7 +38544,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 214 */
+/* 197 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -38597,7 +38566,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 215 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38610,15 +38579,15 @@
 	
 	var _redux = __webpack_require__(172);
 	
-	var _books = __webpack_require__(216);
+	var _books = __webpack_require__(199);
 	
 	var _books2 = _interopRequireDefault(_books);
 	
-	var _cart = __webpack_require__(217);
+	var _cart = __webpack_require__(200);
 	
 	var _cart2 = _interopRequireDefault(_cart);
 	
-	var _discount = __webpack_require__(218);
+	var _discount = __webpack_require__(201);
 	
 	var _discount2 = _interopRequireDefault(_discount);
 	
@@ -38626,7 +38595,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 216 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38638,7 +38607,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _constants = __webpack_require__(210);
+	var _constants = __webpack_require__(193);
 	
 	var _ramda = __webpack_require__(183);
 	
@@ -38666,7 +38635,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 217 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38678,7 +38647,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _constants = __webpack_require__(210);
+	var _constants = __webpack_require__(193);
 	
 	var _ramda = __webpack_require__(183);
 	
@@ -38736,7 +38705,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 218 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38746,7 +38715,7 @@
 	});
 	exports['default'] = discount;
 	
-	var _constants = __webpack_require__(210);
+	var _constants = __webpack_require__(193);
 	
 	function discount(state, action) {
 	  if (state === undefined) state = null;

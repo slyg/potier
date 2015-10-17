@@ -9,26 +9,9 @@ import {
 import R from 'ramda';
 import { getBooks, getBestOffer } from './webApi';
 
-let handleServerError = (error) => {
-  return {
-    type: RECEIVE_SERVER_ERROR,
-    error
-  };
-};
-
-let receiveBestOffer = (bestOffer) => {
-  return {
-    type: RECEIVE_BEST_OFFER,
-    bestOffer
-  };
-};
-
-let reveiveBooks = (books) => {
-  return {
-    type: RECEIVE_BOOKS,
-    books
-  };
-}
+let handleServerError = error => ({ type: RECEIVE_SERVER_ERROR, error });
+let reveiveBooks      = books => ({ type: RECEIVE_BOOKS, books });
+let receiveBestOffer  = bestOffer => ({ type: RECEIVE_BEST_OFFER, bestOffer });
 
 export function queryBooks() {
 
@@ -75,10 +58,7 @@ export function removeFromCart (book) {
 
   return (dispatch, getState) => {
 
-    dispatch({
-      type: REMOVE_BOOK_FROM_CART,
-      book
-    });
+    dispatch({ type: REMOVE_BOOK_FROM_CART, book });
 
     let state = getState();
     let totalPrice = state.cart.totalPrice;
