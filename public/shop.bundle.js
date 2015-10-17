@@ -28848,7 +28848,7 @@
 	
 	var Cart = function Cart(_ref) {
 	  var cart = _ref.cart;
-	  var onRemoveFromCart = _ref.onRemoveFromCart;
+	  var onremoveBookFromCart = _ref.onremoveBookFromCart;
 	
 	  var cartItems = (0, _ramda.pipe)(_ramda.values, (0, _ramda.map)(function (item) {
 	    return(
@@ -28856,7 +28856,7 @@
 	      _react2['default'].createElement(
 	        'li',
 	        { key: item.isbn },
-	        _react2['default'].createElement(_CartItem2['default'], { item: item, onRemoveFromCart: onRemoveFromCart })
+	        _react2['default'].createElement(_CartItem2['default'], { item: item, onremoveBookFromCart: onremoveBookFromCart })
 	      )
 	    );
 	  }
@@ -28900,7 +28900,7 @@
 	    totalPrice: _react.PropTypes.number.isRequired,
 	    books: _react.PropTypes.object.isRequired
 	  }).isRequired,
-	  onRemoveFromCart: _react.PropTypes.func.isRequired
+	  onremoveBookFromCart: _react.PropTypes.func.isRequired
 	};
 	
 	exports['default'] = Cart;
@@ -28924,7 +28924,7 @@
 	
 	var CartItem = function CartItem(_ref) {
 	  var item = _ref.item;
-	  var onRemoveFromCart = _ref.onRemoveFromCart;
+	  var onremoveBookFromCart = _ref.onremoveBookFromCart;
 	  return(
 	    /* jshint ignore:start */
 	    _react2['default'].createElement(
@@ -28933,7 +28933,7 @@
 	      _react2['default'].createElement(
 	        'div',
 	        { className: 'title', onClick: function () {
-	            return onRemoveFromCart(item);
+	            return onremoveBookFromCart(item);
 	          } },
 	        item.title
 	      ),
@@ -28957,7 +28957,7 @@
 	    amount: _react.PropTypes.number.isRequired,
 	    price: _react.PropTypes.number.isRequired
 	  }).isRequired,
-	  onRemoveFromCart: _react.PropTypes.func.isRequired
+	  onremoveBookFromCart: _react.PropTypes.func.isRequired
 	};
 	
 	exports['default'] = CartItem;
@@ -29063,7 +29063,7 @@
 	});
 	exports.fetchBooks = fetchBooks;
 	exports.addBookToCart = addBookToCart;
-	exports.removeFromCart = removeFromCart;
+	exports.removeBookFromCart = removeBookFromCart;
 	
 	var _ramda = __webpack_require__(183);
 	
@@ -29117,7 +29117,7 @@
 	
 	;
 	
-	function removeFromCart(book) {
+	function removeBookFromCart(book) {
 	
 	  return function (dispatch, getState) {
 	
@@ -38683,8 +38683,8 @@
 	          { className: 'cart pbl' },
 	          _react2['default'].createElement(_componentsCart2['default'], {
 	            cart: cart,
-	            onRemoveFromCart: function (item) {
-	              return dispatch((0, _actionCreators.removeFromCart)(item));
+	            onremoveBookFromCart: function (item) {
+	              return dispatch((0, _actionCreators.removeBookFromCart)(item));
 	            }
 	          })
 	        ),

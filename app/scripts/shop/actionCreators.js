@@ -46,7 +46,7 @@ export function addBookToCart (book) {
 
 };
 
-export function removeFromCart (book) {
+export function removeBookFromCart (book) {
 
   return (dispatch, getState) => {
 

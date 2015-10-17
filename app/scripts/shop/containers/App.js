@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import BookList    from '../components/BookList';
 import Cart        from '../components/Cart';
 import PayBox      from '../components/PayBox';
-import { fetchBooks, addBookToCart, removeFromCart } from '../actionCreators';
+import { fetchBooks, addBookToCart, removeBookFromCart } from '../actionCreators';
 
 let app = React.createClass({
 
@@ -25,7 +25,7 @@ let app = React.createClass({
           <div className='cart pbl'>
             <Cart
               cart={cart}
-              onRemoveFromCart={ item => dispatch(removeFromCart(item)) }
+              onremoveBookFromCart={ item => dispatch(removeBookFromCart(item)) }
             />
           </div>
           <div className='offer pbl'>
