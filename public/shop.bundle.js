@@ -29061,15 +29061,11 @@
 	exports.addBookToCart = addBookToCart;
 	exports.removeFromCart = removeFromCart;
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _constants = __webpack_require__(193);
-	
 	var _ramda = __webpack_require__(183);
 	
-	var _ramda2 = _interopRequireDefault(_ramda);
-	
 	var _webApi = __webpack_require__(194);
+	
+	var _constants = __webpack_require__(193);
 	
 	var handleServerError = function handleServerError(error) {
 	  return { type: _constants.RECEIVE_SERVER_ERROR, error: error };
@@ -29085,14 +29081,12 @@
 	
 	  return function (dispatch) {
 	
-	    dispatch({
-	      type: _constants.SEARCH_BOOK_START
-	    });
+	    dispatch({ type: _constants.SEARCH_BOOK_START });
 	
 	    return (0, _webApi.getBooks)().then(function (books) {
-	      return dispatch(reveiveBooks(books));
+	      return (0, _ramda.compose)(dispatch, reveiveBooks)(books);
 	    }, function (error) {
-	      return dispatch(handleServerError(error));
+	      return (0, _ramda.compose)(dispatch, handleServerError)(error);
 	    });
 	  };
 	}
@@ -29103,19 +29097,16 @@
 	
 	  return function (dispatch, getState) {
 	
-	    dispatch({
-	      type: _constants.ADD_BOOK_TO_CART,
-	      book: book
-	    });
+	    dispatch({ type: _constants.ADD_BOOK_TO_CART, book: book });
 	
 	    var state = getState();
 	    var totalPrice = state.cart.totalPrice;
-	    var isbns = _ramda2['default'].keys(state.cart.books);
+	    var isbns = (0, _ramda.keys)(state.cart.books);
 	
 	    return (0, _webApi.getBestOffer)(totalPrice, isbns).then(function (bestOffer) {
-	      return dispatch(receiveBestOffer(bestOffer));
+	      return (0, _ramda.compose)(dispatch, receiveBestOffer)(bestOffer);
 	    }, function (error) {
-	      return dispatch(handleServerError(error));
+	      return (0, _ramda.compose)(dispatch, handleServerError)(error);
 	    });
 	  };
 	}
@@ -29130,12 +29121,12 @@
 	
 	    var state = getState();
 	    var totalPrice = state.cart.totalPrice;
-	    var isbns = _ramda2['default'].keys(state.cart.books);
+	    var isbns = (0, _ramda.keys)(state.cart.books);
 	
 	    return (0, _webApi.getBestOffer)(totalPrice, isbns).then(function (bestOffer) {
-	      return dispatch(receiveBestOffer(bestOffer));
+	      return (0, _ramda.compose)(dispatch, receiveBestOffer)(bestOffer);
 	    }, function (error) {
-	      dispatch(error.status === 404 ? receiveBestOffer(null) : handleServerError(error));
+	      return dispatch(error.status === 404 ? receiveBestOffer(null) : handleServerError(error));
 	    });
 	  };
 	}
