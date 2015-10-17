@@ -17,11 +17,10 @@ let app = React.createClass({
 
     let cartDom, { dispatch, cart, discount, books } = this.props;
 
-    /* jshint ignore:start */
-
     // Display cart content only when it is filled-in
     if (cart.totalPrice > 0){
       cartDom = (
+        /* jshint ignore:start */
         <div>
           <div className='cart pbl'>
             <Cart
@@ -33,10 +32,12 @@ let app = React.createClass({
             <PayBox discount={discount} />
           </div>
         </div>
+        /* jshint ignore:end */
       );
     }
 
     return (
+      /* jshint ignore:start */
       <div className='grid-2-1'>
         <div className='book-list'>
           <BookList
@@ -46,8 +47,8 @@ let app = React.createClass({
         </div>
         <div className='cart-box'>{cartDom}</div>
       </div>
+      /* jshint ignore:end */
     );
-    /* jshint ignore:end */
 
   }
 

@@ -1,12 +1,11 @@
 import BookItem from './BookItem';
 import React from 'react';
 import { PropTypes } from 'react';
-import { values, map, pipe } from 'ramda';
+import { values, map, compose } from 'ramda';
 import ReactCSSTransitionGroup from 'react-addons-transition-group';
 
 let BookList = ({ items, onAddToCart }) => {
 
-  // If no results
   if (items.length < 1) {
     return (
       /* jshint ignore:start */
@@ -15,15 +14,15 @@ let BookList = ({ items, onAddToCart }) => {
     );
   }
 
-  let bookItems = pipe(
-    values,
+  let bookItems = compose(
     map( item =>
       /* jshint ignore:start */
       <li key={item.isbn}>
         <BookItem item={item} onAddToCart={onAddToCart} />
       </li>
       /* jshint ignore:end */
-    )
+    ),
+    values
   )(items);
 
   return (

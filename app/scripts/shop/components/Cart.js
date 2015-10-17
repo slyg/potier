@@ -8,21 +8,17 @@ let Cart = ({ cart, onRemoveFromCart }) => {
 
   let cartItems = pipe(
     values,
-    map(
-      (item) => {
-        return (
-          /* jshint ignore:start */
-          <li key={item.isbn}>
-            <CartItem item={item} onRemoveFromCart={onRemoveFromCart} />
-          </li>
-          /* jshint ignore:end */
-        );
-      }
+    map( item =>
+      /* jshint ignore:start */
+      <li key={item.isbn}>
+        <CartItem item={item} onRemoveFromCart={onRemoveFromCart} />
+      </li>
+      /* jshint ignore:end */
     )
   )(cart.books);
 
-  /* jshint ignore:start */
   return (
+    /* jshint ignore:start */
     <ReactCSSTransitionGroup transitionName='default_transition' transitionAppear={true}>
     <div>
       <h2>Votre panier</h2>
@@ -32,8 +28,8 @@ let Cart = ({ cart, onRemoveFromCart }) => {
       <div className='tar total'>Total: {cart.totalPrice}€</div>
     </div>
     </ReactCSSTransitionGroup>
+    /* jshint ignore:end */
   );
-  /* jshint ignore:end */
 
 };
 

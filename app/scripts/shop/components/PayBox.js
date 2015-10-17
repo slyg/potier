@@ -9,20 +9,21 @@ let PayBox = ({discount}) => {
 
     let finalPrice = (Math.round((discount.finalPrice + 0.00001) * 100) / 100).toFixed(2);
 
-    /* jshint ignore:start */
     discountOffer = (
+      /* jshint ignore:start */
       <div className='mbm'>
         <h2>Offre spéciale !</h2>
         <p className='tac'>
           {finalPrice}€ <small>au lieu de <strike>{discount.totalPrice}€</strike> !</small>
         </p>
       </div>
+      /* jshint ignore:end */
     );
-    /* jshint ignore:end */
+
   }
 
-  /* jshint ignore:start */
   return (
+    /* jshint ignore:start */
     <div className={discount ? 'discount' : ''}>
       {discountOffer}
       <div className='tac'>
@@ -31,8 +32,8 @@ let PayBox = ({discount}) => {
         </button>
       </div>
     </div>
+    /* jshint ignore:end */
   );
-  /* jshint ignore:end */
 
 };
 
