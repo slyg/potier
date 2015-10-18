@@ -1,25 +1,25 @@
 import {
-  RECEIVE_BEST_OFFER,
-  RESET_BEST_OFFER,
+  RECEIVE_DISCOUNT,
+  RESET_DISCOUNT,
   ADD_BOOK_TO_CART,
   REMOVE_BOOK_FROM_CART
 } from '../constants';
 
 let initialState = null;
 
-export default function discount(state = initialState, {type, bestOffer}){
+export default function discount(state = initialState, {type, discount}){
 
   switch (type) {
 
-    case RECEIVE_BEST_OFFER:
+    case RECEIVE_DISCOUNT:
     {
-      return bestOffer;
+      return discount;
       break;
     }
 
     case ADD_BOOK_TO_CART:
     case REMOVE_BOOK_FROM_CART:
-    case RESET_BEST_OFFER:
+    case RESET_DISCOUNT:
     {
       return initialState;
       break;

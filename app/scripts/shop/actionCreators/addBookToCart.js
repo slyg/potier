@@ -2,7 +2,7 @@ import { keys } from 'ramda';
 import { getBestOffer } from '../webApi';
 import {
   RECEIVE_SERVER_ERROR,
-  RECEIVE_BEST_OFFER,
+  RECEIVE_DISCOUNT,
   ADD_BOOK_TO_CART
 } from '../constants';
 
@@ -17,7 +17,7 @@ export default function (book) {
     let isbns       = keys(state.cart.books);
 
     return getBestOffer(totalPrice, isbns).then(
-      bestOffer => dispatch({ type: RECEIVE_BEST_OFFER, bestOffer }),
+      discount => dispatch({ type: RECEIVE_DISCOUNT, discount }),
       error     => dispatch({ type: RECEIVE_SERVER_ERROR, error })
     );
 

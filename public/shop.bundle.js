@@ -38130,14 +38130,14 @@
 	});
 	var SEARCH_BOOK_START = Symbol('SEARCH_BOOK_START');
 	exports.SEARCH_BOOK_START = SEARCH_BOOK_START;
-	var SEARCH_BEST_OFFER_START = Symbol('SEARCH_BEST_OFFER_START');
-	exports.SEARCH_BEST_OFFER_START = SEARCH_BEST_OFFER_START;
+	var SEARCH_DISCOUNT_START = Symbol('SEARCH_DISCOUNT_START');
+	exports.SEARCH_DISCOUNT_START = SEARCH_DISCOUNT_START;
 	var RECEIVE_BOOKS = Symbol('RECEIVE_BOOKS');
 	exports.RECEIVE_BOOKS = RECEIVE_BOOKS;
-	var RECEIVE_BEST_OFFER = Symbol('RECEIVE_BEST_OFFER');
-	exports.RECEIVE_BEST_OFFER = RECEIVE_BEST_OFFER;
-	var RESET_BEST_OFFER = Symbol('RESET_BEST_OFFER');
-	exports.RESET_BEST_OFFER = RESET_BEST_OFFER;
+	var RECEIVE_DISCOUNT = Symbol('RECEIVE_DISCOUNT');
+	exports.RECEIVE_DISCOUNT = RECEIVE_DISCOUNT;
+	var RESET_DISCOUNT = Symbol('RESET_DISCOUNT');
+	exports.RESET_DISCOUNT = RESET_DISCOUNT;
 	var RECEIVE_SERVER_ERROR = Symbol('RECEIVE_SERVER_ERROR');
 	exports.RECEIVE_SERVER_ERROR = RECEIVE_SERVER_ERROR;
 	var ADD_BOOK_TO_CART = Symbol('ADD_BOOK_TO_CART');
@@ -38171,8 +38171,8 @@
 	    var totalPrice = state.cart.totalPrice;
 	    var isbns = (0, _ramda.keys)(state.cart.books);
 	
-	    return (0, _webApi.getBestOffer)(totalPrice, isbns).then(function (bestOffer) {
-	      return dispatch({ type: _constants.RECEIVE_BEST_OFFER, bestOffer: bestOffer });
+	    return (0, _webApi.getBestOffer)(totalPrice, isbns).then(function (discount) {
+	      return dispatch({ type: _constants.RECEIVE_DISCOUNT, discount: discount });
 	    }, function (error) {
 	      return dispatch({ type: _constants.RECEIVE_SERVER_ERROR, error: error });
 	    });
@@ -38209,14 +38209,14 @@
 	    var isbns = (0, _ramda.keys)(state.cart.books);
 	
 	    if (!isbns.length) {
-	      return dispatch({ type: _constants.RESET_BEST_OFFER });
+	      return dispatch({ type: _constants.RESET_DISCOUNT });
 	    }
 	
-	    return (0, _webApi.getBestOffer)(totalPrice, isbns).then(function (bestOffer) {
-	      return dispatch({ type: _constants.RECEIVE_BEST_OFFER, bestOffer: bestOffer });
+	    return (0, _webApi.getBestOffer)(totalPrice, isbns).then(function (discount) {
+	      return dispatch({ type: _constants.RECEIVE_DISCOUNT, discount: discount });
 	    }, function (error) {
 	      if (error.status === 404) {
-	        return dispatch({ type: _constants.RECEIVE_BEST_OFFER, bestOffer: null });
+	        return dispatch({ type: _constants.RECEIVE_DISCOUNT, discount: null });
 	      }
 	      dispatch({ type: _constants.RECEIVE_SERVER_ERROR, error: error });
 	    });
@@ -38427,19 +38427,19 @@
 	function discount(state, _ref) {
 	  if (state === undefined) state = initialState;
 	  var type = _ref.type;
-	  var bestOffer = _ref.bestOffer;
+	  var discount = _ref.discount;
 	
 	  switch (type) {
 	
-	    case _constants.RECEIVE_BEST_OFFER:
+	    case _constants.RECEIVE_DISCOUNT:
 	      {
-	        return bestOffer;
+	        return discount;
 	        break;
 	      }
 	
 	    case _constants.ADD_BOOK_TO_CART:
 	    case _constants.REMOVE_BOOK_FROM_CART:
-	    case _constants.RESET_BEST_OFFER:
+	    case _constants.RESET_DISCOUNT:
 	      {
 	        return initialState;
 	        break;
