@@ -26,13 +26,13 @@ let app = React.createClass({
       cartDom = (
         /* jshint ignore:start */
         <div>
-          <div className='cart pbl'>
+          <div className='cart pbm'>
             <Cart
               cart={cart}
               onRemoveBookFromCart={ item => dispatch(removeBookFromCart(item)) }
             />
           </div>
-          <div className='offer pbl'>
+          <div className='offer pbm'>
             <PayBox discount={discount} />
           </div>
         </div>

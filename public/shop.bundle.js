@@ -20900,7 +20900,7 @@
 	        null,
 	        _react2['default'].createElement(
 	          'div',
-	          { className: 'cart pbl' },
+	          { className: 'cart pbm' },
 	          _react2['default'].createElement(_componentsCart2['default'], {
 	            cart: cart,
 	            onRemoveBookFromCart: function (item) {
@@ -20910,7 +20910,7 @@
 	        ),
 	        _react2['default'].createElement(
 	          'div',
-	          { className: 'offer pbl' },
+	          { className: 'offer pbm' },
 	          _react2['default'].createElement(_componentsPayBox2['default'], { discount: discount })
 	        )
 	      )
@@ -28772,39 +28772,32 @@
 	var PayBox = function PayBox(_ref) {
 	  var discount = _ref.discount;
 	
-	  var discountOffer = undefined;
+	  var hasDiscount = discount !== null;
+	  var discountDom = undefined;
 	
-	  if (discount !== null) {
+	  if (hasDiscount) {
 	
 	    var finalPrice = (Math.round((discount.finalPrice + 0.00001) * 100) / 100).toFixed(2);
 	
-	    discountOffer =
+	    discountDom =
 	    /* jshint ignore:start */
 	    _react2['default'].createElement(
-	      'div',
-	      { className: 'mbm' },
+	      'p',
+	      { className: 'txtcenter mtm' },
+	      'Pay ',
+	      finalPrice,
+	      '€ ',
 	      _react2['default'].createElement(
-	        'h2',
+	        'small',
 	        null,
-	        'Special Offer !'
-	      ),
-	      _react2['default'].createElement(
-	        'p',
-	        { className: 'txtcenter' },
-	        finalPrice,
-	        '€ ',
+	        'instead of ',
 	        _react2['default'].createElement(
-	          'small',
+	          'strike',
 	          null,
-	          'instead of ',
-	          _react2['default'].createElement(
-	            'strike',
-	            null,
-	            discount.totalPrice,
-	            '€'
-	          ),
-	          '!'
-	        )
+	          discount.totalPrice,
+	          '€'
+	        ),
+	        '!'
 	      )
 	    )
 	    /* jshint ignore:end */
@@ -28815,8 +28808,7 @@
 	    /* jshint ignore:start */
 	    _react2['default'].createElement(
 	      'div',
-	      { className: discount ? 'discount' : '' },
-	      discountOffer,
+	      { className: hasDiscount ? 'discount' : '' },
 	      _react2['default'].createElement(
 	        'div',
 	        { className: 'txtcenter' },
@@ -28825,7 +28817,8 @@
 	          { className: 'btn btn-primary btn-large', type: 'submit' },
 	          'Order Now'
 	        )
-	      )
+	      ),
+	      discountDom
 	    )
 	    /* jshint ignore:end */
 	

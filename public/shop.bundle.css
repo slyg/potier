@@ -1886,12 +1886,14 @@ header {
     margin-top: 1em;
     padding-top: 1em;
     border-top: 1px solid #d0b2dd; }
-  .cart-box .discount {
-    border-radius: 0.4em;
+  .cart-box .offer > div {
     padding: 2em;
+    border: 3px solid transparent; }
+  .cart-box .offer .discount {
+    border-radius: 0.4em;
     background-color: #FFFBF3;
-    border: 3px solid #ffd98d; }
-    .cart-box .discount p {
+    border-color: #ffd98d; }
+    .cart-box .offer .discount p {
       font-size: 1.4em; }
 
 @media (max-width: 768px) {

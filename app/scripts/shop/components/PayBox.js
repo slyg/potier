@@ -3,20 +3,18 @@ import { PropTypes } from 'react';
 
 let PayBox = ({discount}) => {
 
-  let discountOffer;
+  let hasDiscount = (discount !==  null);
+  let discountDom;
 
-  if (discount !==  null){
+  if (hasDiscount){
 
     let finalPrice = (Math.round((discount.finalPrice + 0.00001) * 100) / 100).toFixed(2);
 
-    discountOffer = (
+    discountDom = (
       /* jshint ignore:start */
-      <div className='mbm'>
-        <h2>Special Offer !</h2>
-        <p className='txtcenter'>
-          {finalPrice}€ <small>instead of <strike>{discount.totalPrice}€</strike>!</small>
-        </p>
-      </div>
+      <p className='txtcenter mtm'>
+        Pay {finalPrice}€ <small>instead of <strike>{discount.totalPrice}€</strike>!</small>
+      </p>
       /* jshint ignore:end */
     );
 
@@ -24,11 +22,11 @@ let PayBox = ({discount}) => {
 
   return (
     /* jshint ignore:start */
-    <div className={discount ? 'discount' : ''}>
-      {discountOffer}
+    <div className={hasDiscount ? 'discount' : ''}>
       <div className='txtcenter'>
         <button className='btn btn-primary btn-large' type='submit'>Order Now</button>
       </div>
+      {discountDom}
     </div>
     /* jshint ignore:end */
   );

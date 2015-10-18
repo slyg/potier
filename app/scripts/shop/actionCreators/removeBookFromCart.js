@@ -23,7 +23,7 @@ export default function (book) {
 
     return getBestOffer(totalPrice, isbns).then(
       discount => dispatch({ type: RECEIVE_DISCOUNT, discount }),
-      error     => {
+      error    => {
         if (error.status === 404) {
           return dispatch({ type: RECEIVE_DISCOUNT, discount: null });
         }

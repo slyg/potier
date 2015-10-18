@@ -80,14 +80,22 @@ header {
     padding-top: $base-padding;
     border-top: 1px solid darken($side-color, 20%);
   }
-  .discount {
-    border-radius: $default-border-radius;
-    padding: $large-padding;
-    background-color: #FFFBF3;
-    border: 3px solid darken(#FFFBF3, 20%);
-    p {
-      font-size: $title-size;
+  .offer {
+
+    > div {
+      padding: $large-padding;
+      border: 3px solid transparent;
     }
+
+    .discount {
+      border-radius: $default-border-radius;
+      background-color: #FFFBF3;
+      border-color: darken(#FFFBF3, 20%);
+      p {
+        font-size: $title-size;
+      }
+    }
+
   }
 }
 
