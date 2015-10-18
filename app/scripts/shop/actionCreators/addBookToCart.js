@@ -8,7 +8,7 @@ import {
 
 export default function (book) {
 
-  return (dispatch, getState) => {
+  return async function (dispatch, getState) {
 
     dispatch({ type: ADD_BOOK_TO_CART, book });
 
@@ -16,10 +16,16 @@ export default function (book) {
     let totalPrice  = state.cart.totalPrice;
     let isbns       = keys(state.cart.books);
 
-    return getBestOffer(totalPrice, isbns).then(
-      discount => dispatch({ type: RECEIVE_DISCOUNT, discount }),
-      error    => dispatch({ type: RECEIVE_SERVER_ERROR, error })
-    );
+    try {
+
+      let discount = await getBestOffer(totalPrice, isbns);
+      dispatch({ type: RECEIVE_DISCOUNT, discount });
+
+    } catch(error) {
+
+      dispatch({ type: RECEIVE_SERVER_ERROR, error });
+
+    }
 
   };
 

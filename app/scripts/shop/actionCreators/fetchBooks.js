@@ -7,15 +7,21 @@ import {
 
 export default function () {
 
-  return dispatch => {
+  return async function (dispatch) {
 
     dispatch({ type: SEARCH_BOOK_START });
 
-    return getBooks().then(
-      books => dispatch({ type: RECEIVE_BOOKS, books }),
-      error => dispatch({ type: RECEIVE_SERVER_ERROR, error })
-    );
-    
+    try {
+
+      let books = await getBooks();
+      dispatch({ type: RECEIVE_BOOKS, books });
+
+    } catch(error) {
+
+      dispatch({ type: RECEIVE_SERVER_ERROR, error });
+
+    }
+
   };
 
 };

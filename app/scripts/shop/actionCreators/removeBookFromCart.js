@@ -9,7 +9,7 @@ import {
 
 export default function (book) {
 
-  return (dispatch, getState) => {
+  return async function (dispatch, getState) {
 
     dispatch({ type: REMOVE_BOOK_FROM_CART, book });
 
@@ -21,15 +21,19 @@ export default function (book) {
       return dispatch({ type: RESET_DISCOUNT });
     }
 
-    return getBestOffer(totalPrice, isbns).then(
-      discount => dispatch({ type: RECEIVE_DISCOUNT, discount }),
-      error    => {
-        if (error.status === 404) {
-          return dispatch({ type: RECEIVE_DISCOUNT, discount: null });
-        }
-        dispatch({ type: RECEIVE_SERVER_ERROR, error });
+    try {
+
+      let discount = await getBestOffer(totalPrice, isbns);
+      dispatch({ type: RECEIVE_DISCOUNT, discount });
+
+    } catch(error) {
+
+      if (error.status === 404) {
+        return dispatch({ type: RECEIVE_DISCOUNT, discount: null });
       }
-    );
+      dispatch({ type: RECEIVE_SERVER_ERROR, error });
+
+    }
 
   };
 
