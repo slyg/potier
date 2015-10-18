@@ -1,10 +1,13 @@
-import React       from 'react';
-import { connect } from 'react-redux';
+import React              from 'react';
+import { connect }        from 'react-redux';
 
-import BookList    from '../components/BookList';
-import Cart        from '../components/Cart';
-import PayBox      from '../components/PayBox';
-import { fetchBooks, addBookToCart, removeBookFromCart } from '../actionCreators';
+import BookList           from '../components/BookList';
+import Cart               from '../components/Cart';
+import PayBox             from '../components/PayBox';
+
+import fetchBooks         from '../actionCreators/fetchBooks';
+import addBookToCart      from '../actionCreators/addBookToCart';
+import removeBookFromCart from '../actionCreators/removeBookFromCart';
 
 let app = React.createClass({
 

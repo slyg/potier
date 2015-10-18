@@ -62,11 +62,11 @@
 	
 	var _reactRedux = __webpack_require__(164);
 	
-	var _containersApp = __webpack_require__(202);
+	var _containersApp = __webpack_require__(182);
 	
 	var _containersApp2 = _interopRequireDefault(_containersApp);
 	
-	var _store = __webpack_require__(196);
+	var _store = __webpack_require__(192);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -20832,8 +20832,277 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
 
 /***/ },
-/* 182 */,
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _react = __webpack_require__(7);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(164);
+	
+	var _componentsBookList = __webpack_require__(183);
+	
+	var _componentsBookList2 = _interopRequireDefault(_componentsBookList);
+	
+	var _componentsCart = __webpack_require__(186);
+	
+	var _componentsCart2 = _interopRequireDefault(_componentsCart);
+	
+	var _componentsPayBox = __webpack_require__(188);
+	
+	var _componentsPayBox2 = _interopRequireDefault(_componentsPayBox);
+	
+	var _actionCreatorsFetchBooks = __webpack_require__(189);
+	
+	var _actionCreatorsFetchBooks2 = _interopRequireDefault(_actionCreatorsFetchBooks);
+	
+	var _actionCreatorsAddBookToCart = __webpack_require__(190);
+	
+	var _actionCreatorsAddBookToCart2 = _interopRequireDefault(_actionCreatorsAddBookToCart);
+	
+	var _actionCreatorsRemoveBookFromCart = __webpack_require__(191);
+	
+	var _actionCreatorsRemoveBookFromCart2 = _interopRequireDefault(_actionCreatorsRemoveBookFromCart);
+	
+	var app = _react2['default'].createClass({
+	  displayName: 'app',
+	
+	  componentDidMount: function componentDidMount() {
+	    var dispatch = this.props.dispatch;
+	
+	    dispatch((0, _actionCreatorsFetchBooks2['default'])());
+	  },
+	
+	  render: function render() {
+	    var cartDom = undefined;var _props = this.props;
+	    var dispatch = _props.dispatch;
+	    var cart = _props.cart;
+	    var discount = _props.discount;
+	    var books = _props.books;
+	
+	    var hasCart = cart.totalPrice > 0;
+	
+	    // Display cart content only when it is filled-in
+	    if (hasCart) {
+	      cartDom =
+	      /* jshint ignore:start */
+	      _react2['default'].createElement(
+	        'div',
+	        null,
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'cart pbl' },
+	          _react2['default'].createElement(_componentsCart2['default'], {
+	            cart: cart,
+	            onRemoveBookFromCart: function (item) {
+	              return dispatch((0, _actionCreatorsRemoveBookFromCart2['default'])(item));
+	            }
+	          })
+	        ),
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'offer pbl' },
+	          _react2['default'].createElement(_componentsPayBox2['default'], { discount: discount })
+	        )
+	      )
+	      /* jshint ignore:end */
+	      ;
+	    }
+	
+	    return(
+	      /* jshint ignore:start */
+	      _react2['default'].createElement(
+	        'div',
+	        { className: hasCart ? 'grid-2-1' : 'grid-4-1' },
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'book-list' },
+	          _react2['default'].createElement(_componentsBookList2['default'], {
+	            items: books,
+	            onAddToCart: function (item) {
+	              return dispatch((0, _actionCreatorsAddBookToCart2['default'])(item));
+	            }
+	          })
+	        ),
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'cart-box' },
+	          cartDom
+	        )
+	      )
+	      /* jshint ignore:end */
+	
+	    );
+	  }
+	
+	});
+	
+	// Select root properties of state used by app
+	var select = function select(_ref) {
+	  var books = _ref.books;
+	  var cart = _ref.cart;
+	  var discount = _ref.discount;
+	  return { books: books, cart: cart, discount: discount };
+	};
+	
+	exports['default'] = (0, _reactRedux.connect)(select)(app);
+	module.exports = exports['default'];
+
+/***/ },
 /* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _BookItem = __webpack_require__(184);
+	
+	var _BookItem2 = _interopRequireDefault(_BookItem);
+	
+	var _react = __webpack_require__(7);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _ramda = __webpack_require__(185);
+	
+	var BookList = function BookList(_ref) {
+	  var items = _ref.items;
+	  var onAddToCart = _ref.onAddToCart;
+	
+	  if (items.length < 1) {
+	    return(
+	      /* jshint ignore:start */
+	      _react2['default'].createElement(
+	        'p',
+	        { className: 'txtcenter ptl' },
+	        'Loading...'
+	      )
+	      /* jshint ignore:end */
+	
+	    );
+	  }
+	
+	  var bookItems = (0, _ramda.compose)((0, _ramda.map)(function (item) {
+	    return(
+	      /* jshint ignore:start */
+	      _react2['default'].createElement(
+	        'li',
+	        { key: item.isbn },
+	        _react2['default'].createElement(_BookItem2['default'], { item: item, onAddToCart: onAddToCart })
+	      )
+	    );
+	  }
+	  /* jshint ignore:end */
+	  ), _ramda.values)(items);
+	
+	  return(
+	    /* jshint ignore:start */
+	    _react2['default'].createElement(
+	      'ul',
+	      { className: 'ul grid-2-small-1' },
+	      bookItems
+	    )
+	    /* jshint ignore:end */
+	
+	  );
+	};
+	
+	BookList.propTypes = {
+	  items: _react.PropTypes.object.isRequired,
+	  onAddToCart: _react.PropTypes.func.isRequired
+	};
+	
+	exports['default'] = BookList;
+	module.exports = exports['default'];
+
+/***/ },
+/* 184 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _react = __webpack_require__(7);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var BookItem = function BookItem(_ref) {
+	  var item = _ref.item;
+	  var onAddToCart = _ref.onAddToCart;
+	  return(
+	    /* jshint ignore:start */
+	    _react2['default'].createElement(
+	      'article',
+	      { className: 'book-item mbs grid-2-3' },
+	      _react2['default'].createElement(
+	        'div',
+	        null,
+	        _react2['default'].createElement('img', { className: 'book-cover', src: item.cover })
+	      ),
+	      _react2['default'].createElement(
+	        'div',
+	        null,
+	        _react2['default'].createElement(
+	          'h3',
+	          null,
+	          item.title
+	        ),
+	        _react2['default'].createElement(
+	          'p',
+	          { className: 'pbs price' },
+	          item.price,
+	          '€'
+	        ),
+	        _react2['default'].createElement(
+	          'p',
+	          null,
+	          _react2['default'].createElement(
+	            'button',
+	            { onClick: function () {
+	                return onAddToCart(item);
+	              }, type: 'submit', className: 'btn btn-secondary' },
+	            'Add to cart'
+	          )
+	        )
+	      )
+	    )
+	  );
+	}
+	/* jshint ignore:end */
+	;
+	
+	BookItem.propTypes = {
+	  item: _react.PropTypes.shape({
+	    cover: _react.PropTypes.string.isRequired,
+	    price: _react.PropTypes.number.isRequired
+	  }),
+	  onAddToCart: _react.PropTypes.func.isRequired
+	};
+	
+	exports['default'] = BookItem;
+	module.exports = exports['default'];
+
+/***/ },
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//  Ramda v0.14.0
@@ -28350,7 +28619,7 @@
 
 
 /***/ },
-/* 184 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28361,154 +28630,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _BookItem = __webpack_require__(185);
-	
-	var _BookItem2 = _interopRequireDefault(_BookItem);
-	
-	var _react = __webpack_require__(7);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _ramda = __webpack_require__(183);
-	
-	var BookList = function BookList(_ref) {
-	  var items = _ref.items;
-	  var onAddToCart = _ref.onAddToCart;
-	
-	  if (items.length < 1) {
-	    return(
-	      /* jshint ignore:start */
-	      _react2['default'].createElement(
-	        'p',
-	        { className: 'txtcenter ptl' },
-	        'Loading...'
-	      )
-	      /* jshint ignore:end */
-	
-	    );
-	  }
-	
-	  var bookItems = (0, _ramda.compose)((0, _ramda.map)(function (item) {
-	    return(
-	      /* jshint ignore:start */
-	      _react2['default'].createElement(
-	        'li',
-	        { key: item.isbn },
-	        _react2['default'].createElement(_BookItem2['default'], { item: item, onAddToCart: onAddToCart })
-	      )
-	    );
-	  }
-	  /* jshint ignore:end */
-	  ), _ramda.values)(items);
-	
-	  return(
-	    /* jshint ignore:start */
-	    _react2['default'].createElement(
-	      'ul',
-	      { className: 'ul grid-2-small-1' },
-	      bookItems
-	    )
-	    /* jshint ignore:end */
-	
-	  );
-	};
-	
-	BookList.propTypes = {
-	  items: _react.PropTypes.object.isRequired,
-	  onAddToCart: _react.PropTypes.func.isRequired
-	};
-	
-	exports['default'] = BookList;
-	module.exports = exports['default'];
-
-/***/ },
-/* 185 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _react = __webpack_require__(7);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var BookItem = function BookItem(_ref) {
-	  var item = _ref.item;
-	  var onAddToCart = _ref.onAddToCart;
-	  return(
-	    /* jshint ignore:start */
-	    _react2['default'].createElement(
-	      'article',
-	      { className: 'book-item mbs grid-2-3' },
-	      _react2['default'].createElement(
-	        'div',
-	        null,
-	        _react2['default'].createElement('img', { className: 'book-cover', src: item.cover })
-	      ),
-	      _react2['default'].createElement(
-	        'div',
-	        null,
-	        _react2['default'].createElement(
-	          'h3',
-	          null,
-	          item.title
-	        ),
-	        _react2['default'].createElement(
-	          'p',
-	          { className: 'pbs price' },
-	          item.price,
-	          '€'
-	        ),
-	        _react2['default'].createElement(
-	          'p',
-	          null,
-	          _react2['default'].createElement(
-	            'button',
-	            { onClick: function () {
-	                return onAddToCart(item);
-	              }, type: 'submit', className: 'btn btn-secondary' },
-	            'Add to cart'
-	          )
-	        )
-	      )
-	    )
-	  );
-	}
-	/* jshint ignore:end */
-	;
-	
-	BookItem.propTypes = {
-	  item: _react.PropTypes.shape({
-	    cover: _react.PropTypes.string.isRequired,
-	    price: _react.PropTypes.number.isRequired
-	  }),
-	  onAddToCart: _react.PropTypes.func.isRequired
-	};
-	
-	exports['default'] = BookItem;
-	module.exports = exports['default'];
-
-/***/ },
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _CartItem = __webpack_require__(190);
+	var _CartItem = __webpack_require__(187);
 	
 	var _CartItem2 = _interopRequireDefault(_CartItem);
 	
@@ -28516,7 +28638,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ramda = __webpack_require__(183);
+	var _ramda = __webpack_require__(185);
 	
 	var Cart = function Cart(_ref) {
 	  var cart = _ref.cart;
@@ -28575,7 +28697,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 190 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28632,7 +28754,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 191 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28721,7 +28843,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 192 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28729,43 +28851,45 @@
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
-	exports.fetchBooks = fetchBooks;
-	exports.addBookToCart = addBookToCart;
-	exports.removeBookFromCart = removeBookFromCart;
 	
-	var _ramda = __webpack_require__(183);
+	var _webApi = __webpack_require__(199);
 	
-	var _webApi = __webpack_require__(194);
+	var _constants = __webpack_require__(196);
 	
-	var _constants = __webpack_require__(193);
-	
-	var handleServerError = function handleServerError(error) {
-	  return { type: _constants.RECEIVE_SERVER_ERROR, error: error };
-	};
-	var reveiveBooks = function reveiveBooks(books) {
-	  return { type: _constants.RECEIVE_BOOKS, books: books };
-	};
-	var receiveBestOffer = function receiveBestOffer(bestOffer) {
-	  return { type: _constants.RECEIVE_BEST_OFFER, bestOffer: bestOffer };
-	};
-	
-	function fetchBooks() {
+	exports['default'] = function () {
 	
 	  return function (dispatch) {
 	
 	    dispatch({ type: _constants.SEARCH_BOOK_START });
 	
 	    return (0, _webApi.getBooks)().then(function (books) {
-	      return (0, _ramda.compose)(dispatch, reveiveBooks)(books);
+	      return dispatch({ type: _constants.RECEIVE_BOOKS, books: books });
 	    }, function (error) {
-	      return (0, _ramda.compose)(dispatch, handleServerError)(error);
+	      return dispatch({ type: _constants.RECEIVE_SERVER_ERROR, error: error });
 	    });
 	  };
-	}
+	};
 	
 	;
+	module.exports = exports['default'];
+
+/***/ },
+/* 190 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 	
-	function addBookToCart(book) {
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _ramda = __webpack_require__(185);
+	
+	var _webApi = __webpack_require__(199);
+	
+	var _constants = __webpack_require__(196);
+	
+	exports['default'] = function (book) {
 	
 	  return function (dispatch, getState) {
 	
@@ -28776,16 +28900,33 @@
 	    var isbns = (0, _ramda.keys)(state.cart.books);
 	
 	    return (0, _webApi.getBestOffer)(totalPrice, isbns).then(function (bestOffer) {
-	      return (0, _ramda.compose)(dispatch, receiveBestOffer)(bestOffer);
+	      return dispatch({ type: _constants.RECEIVE_BEST_OFFER, bestOffer: bestOffer });
 	    }, function (error) {
-	      return (0, _ramda.compose)(dispatch, handleServerError)(error);
+	      return dispatch({ type: _constants.RECEIVE_SERVER_ERROR, error: error });
 	    });
 	  };
-	}
+	};
 	
 	;
+	module.exports = exports['default'];
+
+/***/ },
+/* 191 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 	
-	function removeBookFromCart(book) {
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _ramda = __webpack_require__(185);
+	
+	var _webApi = __webpack_require__(199);
+	
+	var _constants = __webpack_require__(196);
+	
+	exports['default'] = function (book) {
 	
 	  return function (dispatch, getState) {
 	
@@ -28796,17 +28937,138 @@
 	    var isbns = (0, _ramda.keys)(state.cart.books);
 	
 	    return (0, _webApi.getBestOffer)(totalPrice, isbns).then(function (bestOffer) {
-	      return (0, _ramda.compose)(dispatch, receiveBestOffer)(bestOffer);
+	      return dispatch({ type: _constants.RECEIVE_BEST_OFFER, bestOffer: bestOffer });
 	    }, function (error) {
-	      return dispatch(error.status === 404 ? receiveBestOffer(null) : handleServerError(error));
+	      if (error.status === 404) {
+	        return dispatch({ type: _constants.RECEIVE_BEST_OFFER, bestOffer: null });
+	      }
+	      dispatch({ type: _constants.RECEIVE_SERVER_ERROR, error: error });
 	    });
 	  };
-	}
+	};
 	
 	;
+	module.exports = exports['default'];
+
+/***/ },
+/* 192 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _redux = __webpack_require__(172);
+	
+	var _reduxThunk = __webpack_require__(193);
+	
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+	
+	var _reducers = __webpack_require__(194);
+	
+	var _reducers2 = _interopRequireDefault(_reducers);
+	
+	var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2['default'])(_redux.createStore);
+	
+	exports['default'] = createStoreWithMiddleware(_reducers2['default']);
+	module.exports = exports['default'];
 
 /***/ },
 /* 193 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports['default'] = thunkMiddleware;
+	
+	function thunkMiddleware(_ref) {
+	  var dispatch = _ref.dispatch;
+	  var getState = _ref.getState;
+	
+	  return function (next) {
+	    return function (action) {
+	      return typeof action === 'function' ? action(dispatch, getState) : next(action);
+	    };
+	  };
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _redux = __webpack_require__(172);
+	
+	var _books = __webpack_require__(195);
+	
+	var _books2 = _interopRequireDefault(_books);
+	
+	var _cart = __webpack_require__(197);
+	
+	var _cart2 = _interopRequireDefault(_cart);
+	
+	var _discount = __webpack_require__(198);
+	
+	var _discount2 = _interopRequireDefault(_discount);
+	
+	exports['default'] = (0, _redux.combineReducers)({ books: _books2['default'], cart: _cart2['default'], discount: _discount2['default'] });
+	module.exports = exports['default'];
+
+/***/ },
+/* 195 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = books;
+	
+	var _constants = __webpack_require__(196);
+	
+	var _ramda = __webpack_require__(185);
+	
+	function books(state, _ref) {
+	  if (state === undefined) state = {};
+	  var type = _ref.type;
+	  var books = _ref.books;
+	
+	  switch (type) {
+	
+	    case _constants.RECEIVE_BOOKS:
+	      {
+	        return Object.assign({}, state, (0, _ramda.reduce)(function (acc, value) {
+	          var obj = {};
+	          obj[value.isbn] = value;
+	          return (0, _ramda.merge)(acc, obj);
+	        }, {})(books));
+	        break;
+	      }
+	
+	  }
+	
+	  return state;
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 196 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28830,7 +29092,106 @@
 	exports.REMOVE_BOOK_FROM_CART = REMOVE_BOOK_FROM_CART;
 
 /***/ },
-/* 194 */
+/* 197 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = cart;
+	
+	var _constants = __webpack_require__(196);
+	
+	var _ramda = __webpack_require__(185);
+	
+	var initialState = {
+	  books: {},
+	  totalPrice: 0
+	};
+	
+	var countPrice = (0, _ramda.compose)((0, _ramda.reduce)(function (acc, item) {
+	  return acc + item.price * item.amount;
+	}, 0), _ramda.values);
+	
+	function cart(state, action) {
+	  if (state === undefined) state = initialState;
+	  var item = action.book;
+	
+	  var nextState = (0, _ramda.clone)(state);
+	
+	  switch (action.type) {
+	
+	    case _constants.ADD_BOOK_TO_CART:
+	      {
+	        var exists = state.books[item.isbn] ? true : false;
+	        var books = nextState.books;
+	        if (exists) {
+	          books[item.isbn].amount++;
+	        } else {
+	          books[item.isbn] = item;
+	          books[item.isbn].amount = 1;
+	        }
+	        return Object.assign({}, {
+	          books: books,
+	          totalPrice: countPrice(books)
+	        });
+	        break;
+	      }
+	
+	    case _constants.REMOVE_BOOK_FROM_CART:
+	      {
+	        var books = (0, _ramda.omit)([item.isbn], nextState.books);
+	        return Object.assign({}, {
+	          books: books,
+	          totalPrice: countPrice(books)
+	        });
+	        break;
+	      }
+	
+	  }
+	
+	  return state;
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 198 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = discount;
+	
+	var _constants = __webpack_require__(196);
+	
+	function discount(state, _ref) {
+	  if (state === undefined) state = null;
+	  var type = _ref.type;
+	  var bestOffer = _ref.bestOffer;
+	
+	  switch (type) {
+	
+	    case _constants.RECEIVE_BEST_OFFER:
+	      {
+	        return bestOffer;
+	        break;
+	      }
+	
+	  }
+	
+	  return state;
+	}
+	
+	module.exports = exports['default'];
+
+/***/ },
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28843,7 +29204,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _jquery = __webpack_require__(195);
+	var _jquery = __webpack_require__(200);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
@@ -28860,7 +29221,7 @@
 	;
 
 /***/ },
-/* 195 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -38074,338 +38435,6 @@
 	
 	}));
 
-
-/***/ },
-/* 196 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _redux = __webpack_require__(172);
-	
-	var _reduxThunk = __webpack_require__(197);
-	
-	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-	
-	var _reducers = __webpack_require__(198);
-	
-	var _reducers2 = _interopRequireDefault(_reducers);
-	
-	var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2['default'])(_redux.createStore);
-	
-	exports['default'] = createStoreWithMiddleware(_reducers2['default']);
-	module.exports = exports['default'];
-
-/***/ },
-/* 197 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	exports['default'] = thunkMiddleware;
-	
-	function thunkMiddleware(_ref) {
-	  var dispatch = _ref.dispatch;
-	  var getState = _ref.getState;
-	
-	  return function (next) {
-	    return function (action) {
-	      return typeof action === 'function' ? action(dispatch, getState) : next(action);
-	    };
-	  };
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 198 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _redux = __webpack_require__(172);
-	
-	var _books = __webpack_require__(199);
-	
-	var _books2 = _interopRequireDefault(_books);
-	
-	var _cart = __webpack_require__(200);
-	
-	var _cart2 = _interopRequireDefault(_cart);
-	
-	var _discount = __webpack_require__(201);
-	
-	var _discount2 = _interopRequireDefault(_discount);
-	
-	exports['default'] = (0, _redux.combineReducers)({ books: _books2['default'], cart: _cart2['default'], discount: _discount2['default'] });
-	module.exports = exports['default'];
-
-/***/ },
-/* 199 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports['default'] = books;
-	
-	var _constants = __webpack_require__(193);
-	
-	var _ramda = __webpack_require__(183);
-	
-	function books(state, _ref) {
-	  if (state === undefined) state = {};
-	  var type = _ref.type;
-	  var books = _ref.books;
-	
-	  switch (type) {
-	
-	    case _constants.RECEIVE_BOOKS:
-	      {
-	        return Object.assign({}, state, (0, _ramda.reduce)(function (acc, value) {
-	          var obj = {};
-	          obj[value.isbn] = value;
-	          return (0, _ramda.merge)(acc, obj);
-	        }, {})(books));
-	        break;
-	      }
-	
-	  }
-	
-	  return state;
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 200 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports['default'] = cart;
-	
-	var _constants = __webpack_require__(193);
-	
-	var _ramda = __webpack_require__(183);
-	
-	var initialState = {
-	  books: {},
-	  totalPrice: 0
-	};
-	
-	var countPrice = (0, _ramda.compose)((0, _ramda.reduce)(function (acc, item) {
-	  return acc + item.price * item.amount;
-	}, 0), _ramda.values);
-	
-	function cart(state, action) {
-	  if (state === undefined) state = initialState;
-	  var item = action.book;
-	
-	  var nextState = (0, _ramda.clone)(state);
-	
-	  switch (action.type) {
-	
-	    case _constants.ADD_BOOK_TO_CART:
-	      {
-	        var exists = state.books[item.isbn] ? true : false;
-	        var books = nextState.books;
-	        if (exists) {
-	          books[item.isbn].amount++;
-	        } else {
-	          books[item.isbn] = item;
-	          books[item.isbn].amount = 1;
-	        }
-	        return Object.assign({}, {
-	          books: books,
-	          totalPrice: countPrice(books)
-	        });
-	        break;
-	      }
-	
-	    case _constants.REMOVE_BOOK_FROM_CART:
-	      {
-	        var books = (0, _ramda.omit)([item.isbn], nextState.books);
-	        return Object.assign({}, {
-	          books: books,
-	          totalPrice: countPrice(books)
-	        });
-	        break;
-	      }
-	
-	  }
-	
-	  return state;
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 201 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports['default'] = discount;
-	
-	var _constants = __webpack_require__(193);
-	
-	function discount(state, _ref) {
-	  if (state === undefined) state = null;
-	  var type = _ref.type;
-	  var bestOffer = _ref.bestOffer;
-	
-	  switch (type) {
-	
-	    case _constants.RECEIVE_BEST_OFFER:
-	      {
-	        return bestOffer;
-	        break;
-	      }
-	
-	  }
-	
-	  return state;
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 202 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _react = __webpack_require__(7);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(164);
-	
-	var _componentsBookList = __webpack_require__(184);
-	
-	var _componentsBookList2 = _interopRequireDefault(_componentsBookList);
-	
-	var _componentsCart = __webpack_require__(189);
-	
-	var _componentsCart2 = _interopRequireDefault(_componentsCart);
-	
-	var _componentsPayBox = __webpack_require__(191);
-	
-	var _componentsPayBox2 = _interopRequireDefault(_componentsPayBox);
-	
-	var _actionCreators = __webpack_require__(192);
-	
-	var app = _react2['default'].createClass({
-	  displayName: 'app',
-	
-	  componentDidMount: function componentDidMount() {
-	    var dispatch = this.props.dispatch;
-	
-	    dispatch((0, _actionCreators.fetchBooks)());
-	  },
-	
-	  render: function render() {
-	    var cartDom = undefined;var _props = this.props;
-	    var dispatch = _props.dispatch;
-	    var cart = _props.cart;
-	    var discount = _props.discount;
-	    var books = _props.books;
-	
-	    var hasCart = cart.totalPrice > 0;
-	
-	    // Display cart content only when it is filled-in
-	    if (hasCart) {
-	      cartDom =
-	      /* jshint ignore:start */
-	      _react2['default'].createElement(
-	        'div',
-	        null,
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'cart pbl' },
-	          _react2['default'].createElement(_componentsCart2['default'], {
-	            cart: cart,
-	            onRemoveBookFromCart: function (item) {
-	              return dispatch((0, _actionCreators.removeBookFromCart)(item));
-	            }
-	          })
-	        ),
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'offer pbl' },
-	          _react2['default'].createElement(_componentsPayBox2['default'], { discount: discount })
-	        )
-	      )
-	      /* jshint ignore:end */
-	      ;
-	    }
-	
-	    return(
-	      /* jshint ignore:start */
-	      _react2['default'].createElement(
-	        'div',
-	        { className: hasCart ? 'grid-2-1' : 'grid-4-1' },
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'book-list' },
-	          _react2['default'].createElement(_componentsBookList2['default'], {
-	            items: books,
-	            onAddToCart: function (item) {
-	              return dispatch((0, _actionCreators.addBookToCart)(item));
-	            }
-	          })
-	        ),
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'cart-box' },
-	          cartDom
-	        )
-	      )
-	      /* jshint ignore:end */
-	
-	    );
-	  }
-	
-	});
-	
-	// Select root properties of state used by app
-	var select = function select(_ref) {
-	  var books = _ref.books;
-	  var cart = _ref.cart;
-	  var discount = _ref.discount;
-	  return { books: books, cart: cart, discount: discount };
-	};
-	
-	exports['default'] = (0, _reactRedux.connect)(select)(app);
-	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);
