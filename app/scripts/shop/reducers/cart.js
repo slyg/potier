@@ -1,5 +1,8 @@
-import { ADD_BOOK_TO_CART, REMOVE_BOOK_FROM_CART } from '../constants';
 import { compose, values, reduce, clone, omit } from 'ramda';
+import {
+  ADD_BOOK_TO_CART,
+  REMOVE_BOOK_FROM_CART
+} from '../constants';
 
 const initialState = {
   books: {},

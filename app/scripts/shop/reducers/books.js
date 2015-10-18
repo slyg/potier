@@ -1,5 +1,7 @@
-import { RECEIVE_BOOKS } from '../constants';
 import { reduce, merge } from 'ramda';
+import {
+  RECEIVE_BOOKS
+} from '../constants';
 
 export default function books(state = {}, {type, books}){
 

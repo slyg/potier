@@ -28936,6 +28936,10 @@
 	    var totalPrice = state.cart.totalPrice;
 	    var isbns = (0, _ramda.keys)(state.cart.books);
 	
+	    if (!isbns.length) {
+	      return dispatch({ type: _constants.RESET_BEST_OFFER });
+	    }
+	
 	    return (0, _webApi.getBestOffer)(totalPrice, isbns).then(function (bestOffer) {
 	      return dispatch({ type: _constants.RECEIVE_BEST_OFFER, bestOffer: bestOffer });
 	    }, function (error) {
@@ -29039,9 +29043,9 @@
 	});
 	exports['default'] = books;
 	
-	var _constants = __webpack_require__(196);
-	
 	var _ramda = __webpack_require__(185);
+	
+	var _constants = __webpack_require__(196);
 	
 	function books(state, _ref) {
 	  if (state === undefined) state = {};
@@ -29084,6 +29088,8 @@
 	exports.RECEIVE_BOOKS = RECEIVE_BOOKS;
 	var RECEIVE_BEST_OFFER = Symbol('RECEIVE_BEST_OFFER');
 	exports.RECEIVE_BEST_OFFER = RECEIVE_BEST_OFFER;
+	var RESET_BEST_OFFER = Symbol('RESET_BEST_OFFER');
+	exports.RESET_BEST_OFFER = RESET_BEST_OFFER;
 	var RECEIVE_SERVER_ERROR = Symbol('RECEIVE_SERVER_ERROR');
 	exports.RECEIVE_SERVER_ERROR = RECEIVE_SERVER_ERROR;
 	var ADD_BOOK_TO_CART = Symbol('ADD_BOOK_TO_CART');
@@ -29102,9 +29108,9 @@
 	});
 	exports['default'] = cart;
 	
-	var _constants = __webpack_require__(196);
-	
 	var _ramda = __webpack_require__(185);
+	
+	var _constants = __webpack_require__(196);
 	
 	var initialState = {
 	  books: {},
@@ -29170,8 +29176,10 @@
 	
 	var _constants = __webpack_require__(196);
 	
+	var initialState = null;
+	
 	function discount(state, _ref) {
-	  if (state === undefined) state = null;
+	  if (state === undefined) state = initialState;
 	  var type = _ref.type;
 	  var bestOffer = _ref.bestOffer;
 	
@@ -29180,6 +29188,12 @@
 	    case _constants.RECEIVE_BEST_OFFER:
 	      {
 	        return bestOffer;
+	        break;
+	      }
+	
+	    case _constants.RESET_BEST_OFFER:
+	      {
+	        return initialState;
 	        break;
 	      }
 	
