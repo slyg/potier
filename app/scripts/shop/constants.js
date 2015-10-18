@@ -1,4 +1,3 @@
-export const SEARCH_BOOK_START       = Symbol('SEARCH_BOOK_START');
 export const SEARCH_DISCOUNT_START   = Symbol('SEARCH_DISCOUNT_START');
 export const RECEIVE_BOOKS           = Symbol('RECEIVE_BOOKS');
 export const RECEIVE_DISCOUNT        = Symbol('RECEIVE_DISCOUNT');

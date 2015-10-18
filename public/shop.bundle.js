@@ -31036,32 +31036,29 @@
 	    return _regeneratorRuntime.async(function callee$1$0$(context$2$0) {
 	      while (1) switch (context$2$0.prev = context$2$0.next) {
 	        case 0:
-	
-	          dispatch({ type: _constants.SEARCH_BOOK_START });
-	
-	          context$2$0.prev = 1;
-	          context$2$0.next = 4;
+	          context$2$0.prev = 0;
+	          context$2$0.next = 3;
 	          return _regeneratorRuntime.awrap((0, _webApi.getBooks)());
 	
-	        case 4:
+	        case 3:
 	          books = context$2$0.sent;
 	
 	          dispatch({ type: _constants.RECEIVE_BOOKS, books: books });
 	
-	          context$2$0.next = 11;
+	          context$2$0.next = 10;
 	          break;
 	
-	        case 8:
-	          context$2$0.prev = 8;
-	          context$2$0.t0 = context$2$0['catch'](1);
+	        case 7:
+	          context$2$0.prev = 7;
+	          context$2$0.t0 = context$2$0['catch'](0);
 	
 	          dispatch({ type: _constants.RECEIVE_SERVER_ERROR, error: context$2$0.t0 });
 	
-	        case 11:
+	        case 10:
 	        case 'end':
 	          return context$2$0.stop();
 	      }
-	    }, null, this, [[1, 8]]);
+	    }, null, this, [[0, 7]]);
 	  };
 	};
 	
@@ -40325,8 +40322,6 @@
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
-	var SEARCH_BOOK_START = _Symbol('SEARCH_BOOK_START');
-	exports.SEARCH_BOOK_START = SEARCH_BOOK_START;
 	var SEARCH_DISCOUNT_START = _Symbol('SEARCH_DISCOUNT_START');
 	exports.SEARCH_DISCOUNT_START = SEARCH_DISCOUNT_START;
 	var RECEIVE_BOOKS = _Symbol('RECEIVE_BOOKS');
