@@ -26,17 +26,20 @@
   "main": "app.js",
   "scripts": {
     "start": "node --harmony_rest_parameters app",
-    "test": "mocha --harmony_rest_parameters app/**/__tests__",
+    "test": "npm run lint && mocha --harmony_rest_parameters app/**/__tests__",
+    "lint": "eslint 'app/**/*.js' 'config/**/*.js'",
     "build": "webpack",
     "dev": "webpack --watch & nodemon --harmony_rest_parameters"
   },
   "devDependencies": {
     "babel-core": "^5.8.23",
+    "babel-eslint": "^4.1.3",
     "babel-loader": "^5.3.2",
     "babel-runtime": "^5.8.25",
     "chai": "^2.3.0",
     "co": "^4.5.4",
     "css-loader": "^0.16.0",
+    "eslint": "^1.7.3",
     "mocha": "slyg/mocha",
     "node-sass": "^3.3.2",
     "nodemon": "^1.3.7",

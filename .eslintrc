@@ -1,0 +1,11 @@
+{
+    "ecmaFeatures": {
+      "arrowFunctions": true,
+      "blockBindings": true,
+      "generators": true,
+      "restParams": true
+    },
+    "rules": {
+        "semi": 2
+    }
+}
