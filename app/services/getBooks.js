@@ -13,6 +13,6 @@ var router = require('../../config/router');
  *
  */
 module.exports = function *getBooks() {
-  var response = yield request(router.getExternalRoute('BOOKS'));
+  const response = yield request(router.getExternalRoute('BOOKS'));
   return JSON.parse(response.body);
 };

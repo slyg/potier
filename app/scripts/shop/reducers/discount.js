@@ -5,7 +5,7 @@ import {
   REMOVE_BOOK_FROM_CART
 } from '../constants';
 
-let initialState = null;
+const initialState = null;
 
 export default function discount(state = initialState, {type, discount}){
 

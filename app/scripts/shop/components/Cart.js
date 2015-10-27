@@ -3,9 +3,9 @@ import React from 'react';
 import { PropTypes } from 'react';
 import { values, map, pipe } from 'ramda';
 
-let Cart = ({ cart, onRemoveBookFromCart }) => {
+const Cart = ({ cart, onRemoveBookFromCart }) => {
 
-  let cartItems = pipe(
+  const cartItems = pipe(
     values,
     map( item =>
       /* jshint ignore:start */

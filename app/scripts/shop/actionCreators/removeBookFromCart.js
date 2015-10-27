@@ -13,9 +13,9 @@ export default function (book) {
 
     dispatch({ type: REMOVE_BOOK_FROM_CART, book });
 
-    let state       = getState();
-    let totalPrice  = state.cart.totalPrice;
-    let isbns       = keys(state.cart.books);
+    const state       = getState();
+    const totalPrice  = state.cart.totalPrice;
+    const isbns       = keys(state.cart.books);
 
     if (!isbns.length){
       return dispatch({ type: RESET_DISCOUNT });
@@ -23,7 +23,7 @@ export default function (book) {
 
     try {
 
-      let discount = await getBestOffer(totalPrice, isbns);
+      const discount = await getBestOffer(totalPrice, isbns);
       dispatch({ type: RECEIVE_DISCOUNT, discount });
 
     } catch(error) {

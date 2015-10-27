@@ -1,14 +1,14 @@
 import React from 'react';
 import { PropTypes } from 'react';
 
-let PayBox = ({discount}) => {
+const PayBox = ({discount}) => {
 
-  let hasDiscount = (discount !==  null);
+  const hasDiscount = (discount !==  null);
   let discountDom;
 
   if (hasDiscount){
 
-    let finalPrice = (Math.round((discount.finalPrice + 0.00001) * 100) / 100).toFixed(2);
+    const finalPrice = (Math.round((discount.finalPrice + 0.00001) * 100) / 100).toFixed(2);
 
     discountDom = (
       /* jshint ignore:start */

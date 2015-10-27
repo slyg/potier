@@ -10,7 +10,7 @@ export default function books(state = {}, {type, books}){
     case RECEIVE_BOOKS:
     {
       return Object.assign({}, state, reduce((acc, value) => {
-        var obj = {};
+        let obj = {};
         obj[value.isbn] = value;
         return merge(acc, obj);
       }, {})(books));

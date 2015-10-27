@@ -10,7 +10,7 @@ export default function () {
 
     try {
 
-      let books = await getBooks();
+      const books = await getBooks();
       dispatch({ type: RECEIVE_BOOKS, books });
 
     } catch(error) {

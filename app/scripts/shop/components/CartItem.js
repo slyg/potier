@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'react';
 
-let CartItem = ({ item, onRemoveBookFromCart }) =>
+const CartItem = ({ item, onRemoveBookFromCart }) =>
   /* jshint ignore:start */
   <div className='grid-4-1'>
     <div className='title' onClick={() => onRemoveBookFromCart(item)}>{item.title}</div>

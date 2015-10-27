@@ -1,4 +1,3 @@
-
 var
   co = require('co'),
   expect = require('chai').expect,

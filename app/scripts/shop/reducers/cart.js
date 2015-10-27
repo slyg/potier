@@ -9,21 +9,21 @@ const initialState = {
   totalPrice: 0
 };
 
-let countPrice = compose(
+const countPrice = compose(
   reduce((acc, item) => acc+item.price*item.amount, 0),
   values
 );
 
 export default function cart(state = initialState, action){
 
-  let { book: item } = action;
-  let nextState = clone(state);
+  const { book: item } = action;
+  const nextState = clone(state);
 
   switch (action.type) {
 
     case ADD_BOOK_TO_CART:
     {
-      let exists = state.books[item.isbn] ? true : false;
+      const exists = state.books[item.isbn] ? true : false;
       let books = nextState.books;
       if (exists) {
         books[item.isbn].amount++;
@@ -40,7 +40,7 @@ export default function cart(state = initialState, action){
 
     case REMOVE_BOOK_FROM_CART:
     {
-      let books = omit([item.isbn], nextState.books);
+      const books = omit([item.isbn], nextState.books);
       return Object.assign({}, {
         books,
         totalPrice: countPrice(books)

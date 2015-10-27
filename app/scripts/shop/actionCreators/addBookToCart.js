@@ -12,13 +12,13 @@ export default function (book) {
 
     dispatch({ type: ADD_BOOK_TO_CART, book });
 
-    let state       = getState();
-    let totalPrice  = state.cart.totalPrice;
-    let isbns       = keys(state.cart.books);
+    const state       = getState();
+    const totalPrice  = state.cart.totalPrice;
+    const isbns       = keys(state.cart.books);
 
     try {
 
-      let discount = await getBestOffer(totalPrice, isbns);
+      const discount = await getBestOffer(totalPrice, isbns);
       dispatch({ type: RECEIVE_DISCOUNT, discount });
 
     } catch(error) {

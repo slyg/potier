@@ -3,7 +3,7 @@ import React from 'react';
 import { PropTypes } from 'react';
 import { values, map, compose } from 'ramda';
 
-let BookList = ({ items, onAddToCart }) => {
+const BookList = ({ items, onAddToCart }) => {
 
   if (items.length < 1) {
     return (
@@ -13,7 +13,7 @@ let BookList = ({ items, onAddToCart }) => {
     );
   }
 
-  let bookItems = compose(
+  const bookItems = compose(
     map( item =>
       /* jshint ignore:start */
       <li key={item.isbn}>

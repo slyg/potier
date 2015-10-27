@@ -9,17 +9,18 @@ import fetchBooks         from '../actionCreators/fetchBooks';
 import addBookToCart      from '../actionCreators/addBookToCart';
 import removeBookFromCart from '../actionCreators/removeBookFromCart';
 
-let app = React.createClass({
+const app = React.createClass({
 
   componentDidMount: function(){
-    let { dispatch } = this.props;
+    const { dispatch } = this.props;
     dispatch(fetchBooks());
   },
 
   render: function(){
 
-    let cartDom, { dispatch, cart, discount, books } = this.props;
-    let hasCart = (cart.totalPrice > 0);
+    const { dispatch, cart, discount, books } = this.props;
+    const hasCart = (cart.totalPrice > 0);
+    let cartDom;
 
     // Display cart content only when it is filled-in
     if (hasCart){
@@ -59,6 +60,6 @@ let app = React.createClass({
 });
 
 // Select root properties of state used by app
-let select = ({books, cart, discount}) => ({books, cart, discount});
+const select = ({books, cart, discount}) => ({books, cart, discount});
 
 export default connect(select)(app);

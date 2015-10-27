@@ -6,7 +6,7 @@ var R = require('ramda');
 
 var chooseBestOffer = (offers, totalPrice) => {
 
-  let setPriceWithDiscount = (offer) => {
+  const setPriceWithDiscount = (offer) => {
     switch (offer.type) {
       case 'percentage' : offer.finalPrice = (totalPrice * (1 - offer.value/100)); break;
       case 'minus'      : offer.finalPrice = Math.max(0, (totalPrice - offer.value)); break;
@@ -15,7 +15,7 @@ var chooseBestOffer = (offers, totalPrice) => {
     return offer;
   };
 
-  let extractBestDiscountedOfferFrom = R.compose(
+  const extractBestDiscountedOfferFrom = R.compose(
     R.minBy(R.prop('finalPrice')),
     R.map(setPriceWithDiscount)
   );
@@ -41,9 +41,9 @@ var chooseBestOffer = (offers, totalPrice) => {
  */
 module.exports = function *getBestOffer(totalPrice, ...isbns) {
 
-  let response = yield request(router.getExternalRoute('BOOKS_OFFERS', isbns));
+  const response = yield request(router.getExternalRoute('BOOKS_OFFERS', isbns));
 
-  let offers = JSON.parse(response.body).offers;
+  const offers = JSON.parse(response.body).offers;
 
   let bestOffer = chooseBestOffer(offers, totalPrice);
 
