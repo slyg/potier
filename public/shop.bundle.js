@@ -40542,11 +40542,11 @@
 	
 	var _books2 = _interopRequireDefault(_books);
 	
-	var _cart = __webpack_require__(272);
+	var _cart = __webpack_require__(275);
 	
 	var _cart2 = _interopRequireDefault(_cart);
 	
-	var _discount = __webpack_require__(273);
+	var _discount = __webpack_require__(276);
 	
 	var _discount2 = _interopRequireDefault(_discount);
 	
@@ -40559,7 +40559,9 @@
 
 	'use strict';
 	
-	var _Object$assign = __webpack_require__(267)['default'];
+	var _defineProperty = __webpack_require__(267)['default'];
+	
+	var _Object$assign = __webpack_require__(270)['default'];
 	
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
@@ -40580,9 +40582,7 @@
 	    case _constants.RECEIVE_BOOKS:
 	      {
 	        return _Object$assign({}, state, (0, _ramda.reduce)(function (acc, value) {
-	          var obj = {};
-	          obj[value.isbn] = value;
-	          return (0, _ramda.merge)(acc, obj);
+	          return (0, _ramda.merge)(acc, _defineProperty({}, value.isbn, value));
 	        }, {})(books));
 	        break;
 	      }
@@ -40598,30 +40598,70 @@
 /* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(268), __esModule: true };
+	"use strict";
+	
+	var _Object$defineProperty = __webpack_require__(268)["default"];
+	
+	exports["default"] = function (obj, key, value) {
+	  if (key in obj) {
+	    _Object$defineProperty(obj, key, {
+	      value: value,
+	      enumerable: true,
+	      configurable: true,
+	      writable: true
+	    });
+	  } else {
+	    obj[key] = value;
+	  }
+	
+	  return obj;
+	};
+	
+	exports.__esModule = true;
 
 /***/ },
 /* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(269);
-	module.exports = __webpack_require__(202).Object.assign;
+	module.exports = { "default": __webpack_require__(269), __esModule: true };
 
 /***/ },
 /* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// 19.1.3.1 Object.assign(target, source)
-	var $def = __webpack_require__(201);
-	
-	$def($def.S + $def.F, 'Object', {assign: __webpack_require__(270)});
+	var $ = __webpack_require__(196);
+	module.exports = function defineProperty(it, key, desc){
+	  return $.setDesc(it, key, desc);
+	};
 
 /***/ },
 /* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
+	module.exports = { "default": __webpack_require__(271), __esModule: true };
+
+/***/ },
+/* 271 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(272);
+	module.exports = __webpack_require__(202).Object.assign;
+
+/***/ },
+/* 272 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 19.1.3.1 Object.assign(target, source)
+	var $def = __webpack_require__(201);
+	
+	$def($def.S + $def.F, 'Object', {assign: __webpack_require__(273)});
+
+/***/ },
+/* 273 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// 19.1.2.1 Object.assign(target, source, ...)
-	var toObject = __webpack_require__(271)
+	var toObject = __webpack_require__(274)
 	  , IObject  = __webpack_require__(212)
 	  , enumKeys = __webpack_require__(216)
 	  , has      = __webpack_require__(198);
@@ -40652,7 +40692,7 @@
 	} : Object.assign;
 
 /***/ },
-/* 271 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
@@ -40662,12 +40702,12 @@
 	};
 
 /***/ },
-/* 272 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _Object$assign = __webpack_require__(267)['default'];
+	var _Object$assign = __webpack_require__(270)['default'];
 	
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
@@ -40730,7 +40770,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 273 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
