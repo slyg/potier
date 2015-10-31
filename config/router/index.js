@@ -1,7 +1,7 @@
 'use strict';
 
-var router = require('koa-router')(),
-    controllers = require('../../app/controllers'),
+var koaRouterFactory = require('koa-router'),
+    appControllers = require('../../app/controllers'),
     R = require('ramda'),
     yaml = require('yamljs'),
     util = require('util');
@@ -9,18 +9,31 @@ var router = require('koa-router')(),
 const ROUTES = yaml.load(__dirname + '/routes.yml');
 const EXTERNAL_ROUTES = yaml.load(__dirname + '/external.yml');
 
-var routes = R.mapObj((value) => {
-  let controllerSpec = value.controller.split('#');
-  let controllerName = controllerSpec[0];
-  let controllerAction = controllerSpec[1];
-  router[value.method](value.url, controllers[controllerName][controllerAction]);
-  return value;
-}, ROUTES);
-
-exports.getRoute = (alias) => routes[alias].url;
+/**
+ * Exposes routes utility helpers
+ */
+exports.getRoute = (alias) => ROUTES[alias].url;
 exports.getExternalRoute = (alias, ...parameters) => {
   parameters.unshift(EXTERNAL_ROUTES[alias].url);
   return util.format.apply(this, parameters);
 };
 
-module.exports = router;
+/**
+ * Maps controllers and routes onto koa router
+ * @param {Function} routerFactory
+ * @param {Object} controllers
+ * @returns {Object} router
+ */
+function init(routerFactory, controllers) {
+
+  let router = routerFactory();
+
+  R.mapObj(({controller:ctrl, method, url}) => {
+    const [ctrlName, ctrlAction] = ctrl.split('#');
+    router[method](url, controllers[ctrlName][ctrlAction]);
+  }, ROUTES);
+
+  return router;
+}
+
+module.exports = init(koaRouterFactory, appControllers);

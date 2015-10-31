@@ -25,7 +25,7 @@
   },
   "main": "app.js",
   "scripts": {
-    "start": "node --harmony_rest_parameters app",
+    "start": "node --harmony_rest_parameters --harmony_destructuring app",
     "test": "npm run lint && mocha --harmony_rest_parameters app/**/__tests__",
     "lint": "eslint 'app/**/*.js' 'config/**/*.js'",
     "build": "webpack",

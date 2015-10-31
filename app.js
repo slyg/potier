@@ -1,6 +1,6 @@
 'use strict';
 
-const config = require('./config/all');
+const {STATIC_DIR, PORT} = require('./config');
 
 var app = require('koa')(),
     serve = require('koa-static'),
@@ -13,10 +13,10 @@ var app = require('koa')(),
  */
 app
   .use(middleware.serverError)
-  .use(serve(config.STATIC_DIR))
+  .use(serve(STATIC_DIR))
   .use(middleware.templating(app))
   .use(router.routes())
   .use(middleware.pageNotFound)
 ;
 
-app.listen(process.env.PORT || config.PORT);
+app.listen(process.env.PORT || PORT);

@@ -3,7 +3,8 @@
       "arrowFunctions": true,
       "blockBindings": true,
       "generators": true,
-      "restParams": true
+      "restParams": true,
+      "destructuring": true
     },
     "rules": {
         "semi": 2
