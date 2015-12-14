@@ -18,7 +18,6 @@ const app = React.createClass({
     // Display cart content only when it is filled-in
     if (hasCart){
       cartDom = (
-        /* jshint ignore:start */
         <div>
           <div className='cart pbm'>
             <Cart
@@ -30,19 +29,16 @@ const app = React.createClass({
             <PayBox discount={discount} />
           </div>
         </div>
-        /* jshint ignore:end */
       );
     }
 
     return (
-      /* jshint ignore:start */
       <div className={hasCart ? 'grid-2-1' : 'grid-4-1'}>
         <div className='book-list'>
           <BookList />
         </div>
         <div className='cart-box'>{cartDom}</div>
       </div>
-      /* jshint ignore:end */
     );
 
   }

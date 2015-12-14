@@ -70,15 +70,11 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	_reactDom2['default'].render(
-	/* jshint ignore:start */
-	_react2['default'].createElement(
+	_reactDom2['default'].render(_react2['default'].createElement(
 	  _reactRedux.Provider,
 	  { store: _store2['default'] },
 	  _react2['default'].createElement(_containersApp2['default'], null)
-	),
-	/* jshint ignore:end */
-	document.getElementById('shop'));
+	), document.getElementById('shop'));
 
 /***/ },
 /* 1 */
@@ -20956,9 +20952,7 @@
 	
 	    // Display cart content only when it is filled-in
 	    if (hasCart) {
-	      cartDom =
-	      /* jshint ignore:start */
-	      _react2['default'].createElement(
+	      cartDom = _react2['default'].createElement(
 	        'div',
 	        null,
 	        _react2['default'].createElement(
@@ -20976,29 +20970,22 @@
 	          { className: 'offer pbm' },
 	          _react2['default'].createElement(_componentsPayBox2['default'], { discount: discount })
 	        )
-	      )
-	      /* jshint ignore:end */
-	      ;
+	      );
 	    }
 	
-	    return(
-	      /* jshint ignore:start */
+	    return _react2['default'].createElement(
+	      'div',
+	      { className: hasCart ? 'grid-2-1' : 'grid-4-1' },
 	      _react2['default'].createElement(
 	        'div',
-	        { className: hasCart ? 'grid-2-1' : 'grid-4-1' },
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'book-list' },
-	          _react2['default'].createElement(_containersBookList2['default'], null)
-	        ),
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'cart-box' },
-	          cartDom
-	        )
+	        { className: 'book-list' },
+	        _react2['default'].createElement(_containersBookList2['default'], null)
+	      ),
+	      _react2['default'].createElement(
+	        'div',
+	        { className: 'cart-box' },
+	        cartDom
 	      )
-	      /* jshint ignore:end */
-	
 	    );
 	  }
 	
@@ -21061,42 +21048,27 @@
 	    var dispatch = _props.dispatch;
 	
 	    if (booksArray.length < 1) {
-	      return(
-	        /* jshint ignore:start */
-	        _react2['default'].createElement(
-	          'p',
-	          { className: 'txtcenter ptl' },
-	          'Loading...'
-	        )
-	        /* jshint ignore:end */
-	
+	      return _react2['default'].createElement(
+	        'p',
+	        { className: 'txtcenter ptl' },
+	        'Loading...'
 	      );
 	    }
 	
 	    var bookItems = (0, _ramda.map)(function (item) {
-	      return(
-	        /* jshint ignore:start */
-	        _react2['default'].createElement(
-	          'li',
-	          { key: item.isbn },
-	          _react2['default'].createElement(_componentsBookItem2['default'], { item: item, onAddToCart: function () {
-	              return dispatch((0, _actionCreatorsAddBookToCart2['default'])(item));
-	            } })
-	        )
+	      return _react2['default'].createElement(
+	        'li',
+	        { key: item.isbn },
+	        _react2['default'].createElement(_componentsBookItem2['default'], { item: item, onAddToCart: function () {
+	            return dispatch((0, _actionCreatorsAddBookToCart2['default'])(item));
+	          } })
 	      );
-	    }
-	    /* jshint ignore:end */
-	    )(booksArray);
+	    })(booksArray);
 	
-	    return(
-	      /* jshint ignore:start */
-	      _react2['default'].createElement(
-	        'ul',
-	        { className: 'ul grid-2-small-1' },
-	        bookItems
-	      )
-	      /* jshint ignore:end */
-	
+	    return _react2['default'].createElement(
+	      'ul',
+	      { className: 'ul grid-2-small-1' },
+	      bookItems
 	    );
 	  }
 	
@@ -28648,47 +28620,42 @@
 	var BookItem = function BookItem(_ref) {
 	  var item = _ref.item;
 	  var onAddToCart = _ref.onAddToCart;
-	  return(
-	    /* jshint ignore:start */
+	  return _react2['default'].createElement(
+	    'article',
+	    { className: 'book-item mbs grid-2-3' },
 	    _react2['default'].createElement(
-	      'article',
-	      { className: 'book-item mbs grid-2-3' },
+	      'div',
+	      null,
+	      _react2['default'].createElement('img', { className: 'book-cover', src: item.cover })
+	    ),
+	    _react2['default'].createElement(
+	      'div',
+	      null,
 	      _react2['default'].createElement(
-	        'div',
+	        'h3',
 	        null,
-	        _react2['default'].createElement('img', { className: 'book-cover', src: item.cover })
+	        item.title
 	      ),
 	      _react2['default'].createElement(
-	        'div',
+	        'p',
+	        { className: 'pbs price' },
+	        item.price,
+	        '€'
+	      ),
+	      _react2['default'].createElement(
+	        'p',
 	        null,
 	        _react2['default'].createElement(
-	          'h3',
-	          null,
-	          item.title
-	        ),
-	        _react2['default'].createElement(
-	          'p',
-	          { className: 'pbs price' },
-	          item.price,
-	          '€'
-	        ),
-	        _react2['default'].createElement(
-	          'p',
-	          null,
-	          _react2['default'].createElement(
-	            'button',
-	            { onClick: function () {
-	                return onAddToCart(item);
-	              }, type: 'submit', className: 'btn btn-secondary' },
-	            'Add to cart'
-	          )
+	          'button',
+	          { onClick: function () {
+	              return onAddToCart(item);
+	            }, type: 'submit', className: 'btn btn-secondary' },
+	          'Add to cart'
 	        )
 	      )
 	    )
 	  );
-	}
-	/* jshint ignore:end */
-	;
+	};
 	
 	BookItem.propTypes = {
 	  item: _react.PropTypes.shape({
@@ -40302,43 +40269,33 @@
 	  var onRemoveBookFromCart = _ref.onRemoveBookFromCart;
 	
 	  var cartItems = (0, _ramda.pipe)(_ramda.values, (0, _ramda.map)(function (item) {
-	    return(
-	      /* jshint ignore:start */
-	      _react2['default'].createElement(
-	        'li',
-	        { key: item.isbn },
-	        _react2['default'].createElement(_CartItem2['default'], { item: item, onRemoveBookFromCart: onRemoveBookFromCart })
-	      )
+	    return _react2['default'].createElement(
+	      'li',
+	      { key: item.isbn },
+	      _react2['default'].createElement(_CartItem2['default'], { item: item, onRemoveBookFromCart: onRemoveBookFromCart })
 	    );
-	  }
-	  /* jshint ignore:end */
-	  ))(cart.books);
+	  }))(cart.books);
 	
-	  return(
-	    /* jshint ignore:start */
+	  return _react2['default'].createElement(
+	    'div',
+	    null,
+	    _react2['default'].createElement(
+	      'h2',
+	      null,
+	      'Your cart'
+	    ),
+	    _react2['default'].createElement(
+	      'ul',
+	      null,
+	      cartItems
+	    ),
 	    _react2['default'].createElement(
 	      'div',
-	      null,
-	      _react2['default'].createElement(
-	        'h2',
-	        null,
-	        'Your cart'
-	      ),
-	      _react2['default'].createElement(
-	        'ul',
-	        null,
-	        cartItems
-	      ),
-	      _react2['default'].createElement(
-	        'div',
-	        { className: 'txtright total' },
-	        'Total: ',
-	        cart.totalPrice,
-	        '€'
-	      )
+	      { className: 'txtright total' },
+	      'Total: ',
+	      cart.totalPrice,
+	      '€'
 	    )
-	    /* jshint ignore:end */
-	
 	  );
 	};
 	
@@ -40372,31 +40329,26 @@
 	var CartItem = function CartItem(_ref) {
 	  var item = _ref.item;
 	  var onRemoveBookFromCart = _ref.onRemoveBookFromCart;
-	  return(
-	    /* jshint ignore:start */
+	  return _react2['default'].createElement(
+	    'div',
+	    { className: 'grid-4-1' },
 	    _react2['default'].createElement(
 	      'div',
-	      { className: 'grid-4-1' },
-	      _react2['default'].createElement(
-	        'div',
-	        { className: 'title', onClick: function () {
-	            return onRemoveBookFromCart(item);
-	          } },
-	        item.title
-	      ),
-	      _react2['default'].createElement(
-	        'div',
-	        { className: 'txtright price' },
-	        item.amount,
-	        ' × ',
-	        item.price,
-	        '€'
-	      )
+	      { className: 'title', onClick: function () {
+	          return onRemoveBookFromCart(item);
+	        } },
+	      item.title
+	    ),
+	    _react2['default'].createElement(
+	      'div',
+	      { className: 'txtright price' },
+	      item.amount,
+	      ' × ',
+	      item.price,
+	      '€'
 	    )
 	  );
-	}
-	/* jshint ignore:end */
-	;
+	};
 	
 	CartItem.propTypes = {
 	  item: _react.PropTypes.shape({
@@ -40436,9 +40388,7 @@
 	
 	    var finalPrice = (Math.round((discount.finalPrice + 0.00001) * 100) / 100).toFixed(2);
 	
-	    discountDom =
-	    /* jshint ignore:start */
-	    _react2['default'].createElement(
+	    discountDom = _react2['default'].createElement(
 	      'p',
 	      { className: 'txtcenter mtm' },
 	      'Pay ',
@@ -40456,29 +40406,22 @@
 	        ),
 	        '!'
 	      )
-	    )
-	    /* jshint ignore:end */
-	    ;
+	    );
 	  }
 	
-	  return(
-	    /* jshint ignore:start */
+	  return _react2['default'].createElement(
+	    'div',
+	    { className: hasDiscount ? 'discount' : '' },
 	    _react2['default'].createElement(
 	      'div',
-	      { className: hasDiscount ? 'discount' : '' },
+	      { className: 'txtcenter' },
 	      _react2['default'].createElement(
-	        'div',
-	        { className: 'txtcenter' },
-	        _react2['default'].createElement(
-	          'button',
-	          { className: 'btn btn-primary btn-large', type: 'submit' },
-	          'Order Now'
-	        )
-	      ),
-	      discountDom
-	    )
-	    /* jshint ignore:end */
-	
+	        'button',
+	        { className: 'btn btn-primary btn-large', type: 'submit' },
+	        'Order Now'
+	      )
+	    ),
+	    discountDom
 	  );
 	};
 	

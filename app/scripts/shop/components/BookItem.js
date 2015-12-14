@@ -2,7 +2,6 @@ import React from 'react';
 import { PropTypes } from 'react';
 
 const BookItem = ({ item, onAddToCart }) =>
-  /* jshint ignore:start */
   <article className='book-item mbs grid-2-3'>
     <div>
       <img className='book-cover' src={item.cover} />
@@ -15,7 +14,6 @@ const BookItem = ({ item, onAddToCart }) =>
       </p>
     </div>
   </article>
-  /* jshint ignore:end */
 ;
 
 BookItem.propTypes = {

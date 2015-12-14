@@ -2,12 +2,10 @@ import React from 'react';
 import { PropTypes } from 'react';
 
 const CartItem = ({ item, onRemoveBookFromCart }) =>
-  /* jshint ignore:start */
   <div className='grid-4-1'>
     <div className='title' onClick={() => onRemoveBookFromCart(item)}>{item.title}</div>
     <div className='txtright price'>{item.amount} × {item.price}€</div>
   </div>
-  /* jshint ignore:end */
 ;
 
 CartItem.propTypes = {
