@@ -16,8 +16,7 @@ const Booklist = React.createClass({
 
   render : function(){
 
-    const { books, dispatch } = this.props;
-    const booksArray = values(books);
+    const { booksArray, dispatch } = this.props;
 
     if (booksArray.length < 1) {
       return (
@@ -45,6 +44,8 @@ const Booklist = React.createClass({
 
 });
 
-const select = ({books}) => ({books});
+const mapStateToProps = ({books}) => ({
+  booksArray: values(books)
+});
 
-export default connect(select)(Booklist);
+export default connect(mapStateToProps)(Booklist);
