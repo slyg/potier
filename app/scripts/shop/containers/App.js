@@ -1,24 +1,17 @@
 import React              from 'react';
 import { connect }        from 'react-redux';
 
-import BookList           from '../components/BookList';
+import BookList           from '../containers/BookList';
 import Cart               from '../components/Cart';
 import PayBox             from '../components/PayBox';
 
-import fetchBooks         from '../actionCreators/fetchBooks';
-import addBookToCart      from '../actionCreators/addBookToCart';
 import removeBookFromCart from '../actionCreators/removeBookFromCart';
 
 const app = React.createClass({
 
-  componentDidMount: function(){
-    const { dispatch } = this.props;
-    dispatch(fetchBooks());
-  },
-
   render: function(){
 
-    const { dispatch, cart, discount, books } = this.props;
+    const { dispatch, cart, discount } = this.props;
     const hasCart = (cart.totalPrice > 0);
     let cartDom;
 
@@ -45,10 +38,7 @@ const app = React.createClass({
       /* jshint ignore:start */
       <div className={hasCart ? 'grid-2-1' : 'grid-4-1'}>
         <div className='book-list'>
-          <BookList
-            items={books}
-            onAddToCart={ item => dispatch(addBookToCart(item)) }
-          />
+          <BookList />
         </div>
         <div className='cart-box'>{cartDom}</div>
       </div>
@@ -60,6 +50,6 @@ const app = React.createClass({
 });
 
 // Select root properties of state used by app
-const select = ({books, cart, discount}) => ({books, cart, discount});
+const select = ({cart, discount}) => ({cart, discount});
 
 export default connect(select)(app);
