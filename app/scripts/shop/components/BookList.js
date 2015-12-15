@@ -1,6 +1,7 @@
-import React    from 'react';
-import { map }  from 'ramda';
-import Book     from './Book';
+import React          from 'react';
+import { PropTypes }  from 'react';
+import { map }        from 'ramda';
+import Book           from './Book';
 
 const Booklist = ({ books, addBookToCart }) => {
 
@@ -20,6 +21,11 @@ const Booklist = ({ books, addBookToCart }) => {
     </ul>
   );
 
+};
+
+Booklist.propTypes = {
+	books: PropTypes.array.isRequired,
+	addBookToCart: PropTypes.func.isRequired
 };
 
 export default Booklist;

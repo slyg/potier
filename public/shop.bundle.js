@@ -41023,6 +41023,11 @@
 	  );
 	};
 	
+	Booklist.propTypes = {
+	  books: _react.PropTypes.array.isRequired,
+	  addBookToCart: _react.PropTypes.func.isRequired
+	};
+	
 	exports['default'] = Booklist;
 	module.exports = exports['default'];
 
