@@ -62,9 +62,9 @@
 	
 	var _reactRedux = __webpack_require__(166);
 	
-	var _containersApp = __webpack_require__(184);
+	var _containersRootContainer = __webpack_require__(298);
 	
-	var _containersApp2 = _interopRequireDefault(_containersApp);
+	var _containersRootContainer2 = _interopRequireDefault(_containersRootContainer);
 	
 	var _store = __webpack_require__(185);
 	
@@ -73,7 +73,7 @@
 	_reactDom2['default'].render(_react2['default'].createElement(
 	  _reactRedux.Provider,
 	  { store: _store2['default'] },
-	  _react2['default'].createElement(_containersApp2['default'], null)
+	  _react2['default'].createElement(_containersRootContainer2['default'], null)
 	), document.getElementById('shop'));
 
 /***/ },
@@ -20903,83 +20903,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ },
-/* 184 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _interopRequireDefault = __webpack_require__(1)['default'];
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(8);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(166);
-	
-	var _containersBookListContainer = __webpack_require__(296);
-	
-	var _containersBookListContainer2 = _interopRequireDefault(_containersBookListContainer);
-	
-	var _containersCartContainer = __webpack_require__(293);
-	
-	var _containersCartContainer2 = _interopRequireDefault(_containersCartContainer);
-	
-	var _containersPayBoxContainer = __webpack_require__(294);
-	
-	var _containersPayBoxContainer2 = _interopRequireDefault(_containersPayBoxContainer);
-	
-	var App = _react2['default'].createClass({
-	  displayName: 'App',
-	
-	  render: function render() {
-	    var hasCart = this.props.hasCart;
-	
-	    return _react2['default'].createElement(
-	      'div',
-	      { className: hasCart ? 'grid-2-1' : 'grid-4-1' },
-	      _react2['default'].createElement(
-	        'div',
-	        { className: 'book-list' },
-	        _react2['default'].createElement(_containersBookListContainer2['default'], null)
-	      ),
-	      _react2['default'].createElement(
-	        'div',
-	        { className: 'cart-box' },
-	        hasCart ? _react2['default'].createElement(
-	          'div',
-	          null,
-	          _react2['default'].createElement(
-	            'div',
-	            { className: 'cart pbm' },
-	            _react2['default'].createElement(_containersCartContainer2['default'], null)
-	          ),
-	          _react2['default'].createElement(
-	            'div',
-	            { className: 'offer pbm' },
-	            _react2['default'].createElement(_containersPayBoxContainer2['default'], null)
-	          )
-	        ) : null
-	      )
-	    );
-	  }
-	
-	});
-	
-	var mapStateToProps = function mapStateToProps(_ref) {
-	  var cart = _ref.cart;
-	  return {
-	    hasCart: cart.totalPrice > 0
-	  };
-	};
-	
-	exports['default'] = (0, _reactRedux.connect)(mapStateToProps)(App);
-	module.exports = exports['default'];
-
-/***/ },
+/* 184 */,
 /* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -41092,6 +41016,83 @@
 	};
 	
 	exports['default'] = BookItem;
+	module.exports = exports['default'];
+
+/***/ },
+/* 298 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _interopRequireDefault = __webpack_require__(1)['default'];
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(8);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(166);
+	
+	var _containersBookListContainer = __webpack_require__(296);
+	
+	var _containersBookListContainer2 = _interopRequireDefault(_containersBookListContainer);
+	
+	var _containersCartContainer = __webpack_require__(293);
+	
+	var _containersCartContainer2 = _interopRequireDefault(_containersCartContainer);
+	
+	var _containersPayBoxContainer = __webpack_require__(294);
+	
+	var _containersPayBoxContainer2 = _interopRequireDefault(_containersPayBoxContainer);
+	
+	var RootContainer = _react2['default'].createClass({
+	  displayName: 'RootContainer',
+	
+	  render: function render() {
+	    var hasCart = this.props.hasCart;
+	
+	    return _react2['default'].createElement(
+	      'div',
+	      { className: hasCart ? 'grid-2-1' : 'grid-4-1' },
+	      _react2['default'].createElement(
+	        'div',
+	        { className: 'book-list' },
+	        _react2['default'].createElement(_containersBookListContainer2['default'], null)
+	      ),
+	      _react2['default'].createElement(
+	        'div',
+	        { className: 'cart-box' },
+	        hasCart ? _react2['default'].createElement(
+	          'div',
+	          null,
+	          _react2['default'].createElement(
+	            'div',
+	            { className: 'cart pbm' },
+	            _react2['default'].createElement(_containersCartContainer2['default'], null)
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { className: 'offer pbm' },
+	            _react2['default'].createElement(_containersPayBoxContainer2['default'], null)
+	          )
+	        ) : null
+	      )
+	    );
+	  }
+	
+	});
+	
+	var mapStateToProps = function mapStateToProps(_ref) {
+	  var cart = _ref.cart;
+	  return {
+	    hasCart: cart.totalPrice > 0
+	  };
+	};
+	
+	exports['default'] = (0, _reactRedux.connect)(mapStateToProps)(RootContainer);
 	module.exports = exports['default'];
 
 /***/ }

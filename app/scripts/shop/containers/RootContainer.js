@@ -5,7 +5,7 @@ import BookListContainer  from '../containers/BookListContainer';
 import CartContainer      from '../containers/CartContainer';
 import PayBoxContainer    from '../containers/PayBoxContainer';
 
-const App = React.createClass({
+const RootContainer = React.createClass({
 
   render: function(){
 
@@ -39,4 +39,4 @@ const mapStateToProps = ({cart}) => ({
   hasCart: (cart.totalPrice > 0)
 });
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(RootContainer);
