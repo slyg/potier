@@ -18,9 +18,10 @@ export default function discount(state = initialState, {type, discount}){
 
     case RECEIVE_DISCOUNT:
     {
-      return Object.assign({}, discount, {
+      return {
+        ...discount,
         finalPrice : (Math.round((discount.finalPrice + 0.00001) * 100) / 100).toFixed(2)
-      });
+      };
       break;
     }
 
