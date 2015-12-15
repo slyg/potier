@@ -1,6 +1,5 @@
 import React                  from 'react';
 import { connect }            from 'react-redux';
-
 import PayBox                 from '../components/PayBox';
 
 const PayBoxContainer = React.createClass({
