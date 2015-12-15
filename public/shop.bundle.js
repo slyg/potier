@@ -29540,73 +29540,7 @@
 /* 252 */,
 /* 253 */,
 /* 254 */,
-/* 255 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _interopRequireDefault = __webpack_require__(1)['default'];
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(8);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var Book = function Book(_ref) {
-	  var item = _ref.item;
-	  var onAddToCart = _ref.onAddToCart;
-	  return _react2['default'].createElement(
-	    'article',
-	    { className: 'book-item mbs grid-2-3' },
-	    _react2['default'].createElement(
-	      'div',
-	      null,
-	      _react2['default'].createElement('img', { className: 'book-cover', src: item.cover })
-	    ),
-	    _react2['default'].createElement(
-	      'div',
-	      null,
-	      _react2['default'].createElement(
-	        'h3',
-	        null,
-	        item.title
-	      ),
-	      _react2['default'].createElement(
-	        'p',
-	        { className: 'pbs price' },
-	        item.price,
-	        '€'
-	      ),
-	      _react2['default'].createElement(
-	        'p',
-	        null,
-	        _react2['default'].createElement(
-	          'button',
-	          { onClick: function () {
-	              return onAddToCart(item);
-	            }, type: 'submit', className: 'btn btn-secondary' },
-	          'Add to cart'
-	        )
-	      )
-	    )
-	  );
-	};
-	
-	Book.propTypes = {
-	  item: _react.PropTypes.shape({
-	    cover: _react.PropTypes.string.isRequired,
-	    price: _react.PropTypes.number.isRequired
-	  }),
-	  onAddToCart: _react.PropTypes.func.isRequired
-	};
-	
-	exports['default'] = Book;
-	module.exports = exports['default'];
-
-/***/ },
+/* 255 */,
 /* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -40992,9 +40926,9 @@
 	
 	var _ramda = __webpack_require__(235);
 	
-	var _Book = __webpack_require__(255);
+	var _BookItem = __webpack_require__(297);
 	
-	var _Book2 = _interopRequireDefault(_Book);
+	var _BookItem2 = _interopRequireDefault(_BookItem);
 	
 	var Booklist = function Booklist(_ref) {
 	  var books = _ref.books;
@@ -41011,12 +40945,12 @@
 	  return _react2['default'].createElement(
 	    'ul',
 	    { className: 'ul grid-2-small-1' },
-	    (0, _ramda.map)(function (item) {
+	    (0, _ramda.map)(function (book) {
 	      return _react2['default'].createElement(
 	        'li',
-	        { key: item.isbn },
-	        _react2['default'].createElement(_Book2['default'], {
-	          item: item,
+	        { key: book.isbn },
+	        _react2['default'].createElement(_BookItem2['default'], {
+	          book: book,
 	          onAddToCart: addBookToCart })
 	      );
 	    })(books)
@@ -41091,6 +41025,73 @@
 	};
 	
 	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(BooklistContainer);
+	module.exports = exports['default'];
+
+/***/ },
+/* 297 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _interopRequireDefault = __webpack_require__(1)['default'];
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(8);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var BookItem = function BookItem(_ref) {
+	  var book = _ref.book;
+	  var onAddToCart = _ref.onAddToCart;
+	  return _react2['default'].createElement(
+	    'article',
+	    { className: 'book-item mbs grid-2-3' },
+	    _react2['default'].createElement(
+	      'div',
+	      null,
+	      _react2['default'].createElement('img', { className: 'book-cover', src: book.cover })
+	    ),
+	    _react2['default'].createElement(
+	      'div',
+	      null,
+	      _react2['default'].createElement(
+	        'h3',
+	        null,
+	        book.title
+	      ),
+	      _react2['default'].createElement(
+	        'p',
+	        { className: 'pbs price' },
+	        book.price,
+	        '€'
+	      ),
+	      _react2['default'].createElement(
+	        'p',
+	        null,
+	        _react2['default'].createElement(
+	          'button',
+	          { onClick: function () {
+	              return onAddToCart(book);
+	            }, type: 'submit', className: 'btn btn-secondary' },
+	          'Add to cart'
+	        )
+	      )
+	    )
+	  );
+	};
+	
+	BookItem.propTypes = {
+	  book: _react.PropTypes.shape({
+	    cover: _react.PropTypes.string.isRequired,
+	    price: _react.PropTypes.number.isRequired
+	  }),
+	  onAddToCart: _react.PropTypes.func.isRequired
+	};
+	
+	exports['default'] = BookItem;
 	module.exports = exports['default'];
 
 /***/ }

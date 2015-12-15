@@ -1,7 +1,7 @@
 import React          from 'react';
 import { PropTypes }  from 'react';
 import { map }        from 'ramda';
-import Book           from './Book';
+import BookItem       from './BookItem';
 
 const Booklist = ({ books, addBookToCart }) => {
 
@@ -11,10 +11,10 @@ const Booklist = ({ books, addBookToCart }) => {
 
   return (
     <ul className='ul grid-2-small-1'>
-      {map( item =>
-        <li key={item.isbn}>
-          <Book
-            item={item}
+      {map( book =>
+        <li key={book.isbn}>
+          <BookItem
+            book={book}
             onAddToCart={addBookToCart} />
         </li>
       )(books)}

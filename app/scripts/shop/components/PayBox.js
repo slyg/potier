@@ -11,13 +11,11 @@ const PayBox = ({finalPrice, totalPrice}) => {
       <div className='txtcenter'>
         <button className='btn btn-primary btn-large' type='submit'>Order Now</button>
       </div>
-      {
-        hasDiscount ?
+      {hasDiscount ? (
         <p className='txtcenter mtm'>
           Pay {discountPrice}€ <small>instead of <strike>{totalPrice}€</strike>!</small>
         </p>
-        : null
-      }
+			) : null}
     </div>
   );
 
