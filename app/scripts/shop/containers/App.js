@@ -2,9 +2,10 @@ import React              from 'react';
 import { connect }        from 'react-redux';
 
 import BookList           from '../containers/BookList';
-import Side               from '../containers/Side';
+import CartContainer      from '../containers/CartContainer';
+import PayBoxContainer    from '../containers/PayBoxContainer';
 
-const app = React.createClass({
+const App = React.createClass({
 
   render: function(){
 
@@ -16,7 +17,16 @@ const app = React.createClass({
           <BookList />
         </div>
         <div className='cart-box'>
-          <Side />
+          {hasCart ? (
+            <div>
+              <div className='cart pbm'>
+                <CartContainer />
+              </div>
+              <div className='offer pbm'>
+                <PayBoxContainer />
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     );
@@ -25,9 +35,8 @@ const app = React.createClass({
 
 });
 
-// Select root properties of state used by app
-const select = ({cart}) => ({
+const mapStateToProps = ({cart}) => ({
   hasCart: (cart.totalPrice > 0)
 });
 
-export default connect(select)(app);
+export default connect(mapStateToProps)(App);

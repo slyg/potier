@@ -1,18 +1,18 @@
 import React from 'react';
 import { PropTypes } from 'react';
 
-const PayBox = ({discount}) => {
+const PayBox = ({finalPrice, totalPrice}) => {
 
-  const hasDiscount = (discount !==  null);
+  const hasDiscount = (finalPrice > 0);
   let discountDom;
 
   if (hasDiscount){
 
-    const finalPrice = (Math.round((discount.finalPrice + 0.00001) * 100) / 100).toFixed(2);
+    const finalPrice = (Math.round((finalPrice + 0.00001) * 100) / 100).toFixed(2);
 
     discountDom = (
       <p className='txtcenter mtm'>
-        Pay {finalPrice}€ <small>instead of <strike>{discount.totalPrice}€</strike>!</small>
+        Pay {finalPrice}€ <small>instead of <strike>{totalPrice}€</strike>!</small>
       </p>
     );
 
