@@ -40679,8 +40679,7 @@
 	  var finalPrice = _ref.finalPrice;
 	  var totalPrice = _ref.totalPrice;
 	
-	  var discountPrice = (Math.round((finalPrice + 0.00001) * 100) / 100).toFixed(2);
-	  var hasDiscount = discountPrice > 0;
+	  var hasDiscount = finalPrice < totalPrice;
 	
 	  return _react2['default'].createElement(
 	    'div',
@@ -40698,7 +40697,7 @@
 	      'p',
 	      { className: 'txtcenter mtm' },
 	      'Pay ',
-	      discountPrice,
+	      finalPrice,
 	      '€ ',
 	      _react2['default'].createElement(
 	        'small',
@@ -40995,6 +40994,8 @@
 	
 	var _extends = __webpack_require__(264)['default'];
 	
+	var _Object$assign = __webpack_require__(265)['default'];
+	
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
@@ -41002,7 +41003,12 @@
 	
 	var _constants = __webpack_require__(261);
 	
-	var initialState = null;
+	var initialState = {
+	  type: null,
+	  value: null,
+	  finalPrice: null,
+	  totalPrice: null
+	};
 	
 	function discount(state, _ref) {
 	  if (state === undefined) state = initialState;
@@ -41013,7 +41019,9 @@
 	
 	    case _constants.RECEIVE_DISCOUNT:
 	      {
-	        return discount;
+	        return _Object$assign({}, discount, {
+	          finalPrice: (Math.round((discount.finalPrice + 0.00001) * 100) / 100).toFixed(2)
+	        });
 	        break;
 	      }
 	

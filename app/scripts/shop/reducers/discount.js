@@ -5,7 +5,12 @@ import {
   REMOVE_BOOK_FROM_CART
 } from '../constants';
 
-const initialState = null;
+const initialState = {
+  type: null,
+  value: null,
+  finalPrice: null,
+  totalPrice: null
+};
 
 export default function discount(state = initialState, {type, discount}){
 
@@ -13,7 +18,9 @@ export default function discount(state = initialState, {type, discount}){
 
     case RECEIVE_DISCOUNT:
     {
-      return discount;
+      return Object.assign({}, discount, {
+        finalPrice : (Math.round((discount.finalPrice + 0.00001) * 100) / 100).toFixed(2)
+      });
       break;
     }
 
