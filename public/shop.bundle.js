@@ -40758,14 +40758,22 @@
 	  var finalPrice = _ref.finalPrice;
 	  var totalPrice = _ref.totalPrice;
 	
-	  var hasDiscount = finalPrice > 0;
-	  var discountDom = undefined;
+	  var discountPrice = (Math.round((finalPrice + 0.00001) * 100) / 100).toFixed(2);
+	  var hasDiscount = discountPrice > 0;
 	
-	  if (hasDiscount) {
-	
-	    var discountPrice = (Math.round((finalPrice + 0.00001) * 100) / 100).toFixed(2);
-	
-	    discountDom = _react2['default'].createElement(
+	  return _react2['default'].createElement(
+	    'div',
+	    { className: hasDiscount ? 'discount' : '' },
+	    _react2['default'].createElement(
+	      'div',
+	      { className: 'txtcenter' },
+	      _react2['default'].createElement(
+	        'button',
+	        { className: 'btn btn-primary btn-large', type: 'submit' },
+	        'Order Now'
+	      )
+	    ),
+	    hasDiscount ? _react2['default'].createElement(
 	      'p',
 	      { className: 'txtcenter mtm' },
 	      'Pay ',
@@ -40783,22 +40791,7 @@
 	        ),
 	        '!'
 	      )
-	    );
-	  }
-	
-	  return _react2['default'].createElement(
-	    'div',
-	    { className: hasDiscount ? 'discount' : '' },
-	    _react2['default'].createElement(
-	      'div',
-	      { className: 'txtcenter' },
-	      _react2['default'].createElement(
-	        'button',
-	        { className: 'btn btn-primary btn-large', type: 'submit' },
-	        'Order Now'
-	      )
-	    ),
-	    discountDom
+	    ) : null
 	  );
 	};
 	
