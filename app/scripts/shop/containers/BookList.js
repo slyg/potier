@@ -1,41 +1,50 @@
-import React              from 'react';
-import { connect }        from 'react-redux';
-import { keys, values, map, compose } from 'ramda';
+import React                  from 'react';
+import { bindActionCreators } from 'redux';
+import { connect }            from 'react-redux';
+import { values, map }        from 'ramda';
 
-import BookItem from '../components/BookItem';
+import Book                   from '../components/Book';
 
-import addBookToCart      from '../actionCreators/addBookToCart';
-import fetchBooks         from '../actionCreators/fetchBooks';
+import addBookToCart          from '../actionCreators/addBookToCart';
+import fetchBooks             from '../actionCreators/fetchBooks';
 
 const Booklist = React.createClass({
 
   componentDidMount: function(){
-    const { dispatch } = this.props;
-    dispatch(fetchBooks());
+    this.props.fetchBooks();
   },
 
   render : function(){
 
-    const { booksArray, dispatch } = this.props;
+    const { books, addBookToCart } = this.props;
 
-    if (booksArray.length < 1) {
+    if (books.length < 1) {
       return <p className='txtcenter ptl'>Loading...</p>;
     }
 
-    const bookItems = map( item =>
-      <li key={item.isbn}>
-        <BookItem item={item} onAddToCart={() => dispatch(addBookToCart(item))} />
-      </li>
-    )(booksArray);
-
-    return <ul className='ul grid-2-small-1'>{bookItems}</ul>;
+    return (
+      <ul className='ul grid-2-small-1'>
+        {map( item =>
+          <li key={item.isbn}>
+            <Book
+              item={item}
+              onAddToCart={addBookToCart} />
+          </li>
+        )(books)}
+      </ul>
+    );
 
   }
 
 });
 
 const mapStateToProps = ({books}) => ({
-  booksArray: values(books)
+  books: values(books)
 });
 
-export default connect(mapStateToProps)(Booklist);
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  addBookToCart,
+  fetchBooks
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Booklist);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'react';
 
-const BookItem = ({ item, onAddToCart }) =>
+const Book = ({ item, onAddToCart }) =>
   <article className='book-item mbs grid-2-3'>
     <div>
       <img className='book-cover' src={item.cover} />
@@ -16,7 +16,7 @@ const BookItem = ({ item, onAddToCart }) =>
   </article>
 ;
 
-BookItem.propTypes = {
+Book.propTypes = {
   item: PropTypes.shape({
     cover: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired
@@ -24,4 +24,4 @@ BookItem.propTypes = {
   onAddToCart: PropTypes.func.isRequired
 };
 
-export default BookItem;
+export default Book;
