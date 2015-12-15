@@ -1,5 +1,5 @@
 'use strict';
 
-var jade = require('koa-jade');
+var Jade = require('koa-jade');
 
-module.exports = app => jade.middleware({ viewPath: 'app/views' });
+module.exports = app => new Jade({ viewPath: 'app/views' }).middleware;
