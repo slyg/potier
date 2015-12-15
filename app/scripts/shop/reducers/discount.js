@@ -27,6 +27,6 @@ export default function discount(state = initialState, {type, discount}){
 
   }
 
-  return state;
+  return {...state};
 
 }

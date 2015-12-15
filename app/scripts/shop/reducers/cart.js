@@ -1,4 +1,4 @@
-import { compose, values, reduce, clone, omit } from 'ramda';
+import { compose, values, reduce, omit } from 'ramda';
 import {
   ADD_BOOK_TO_CART,
   REMOVE_BOOK_FROM_CART
@@ -22,7 +22,7 @@ const books = (state, { type, book }) => {
     case ADD_BOOK_TO_CART: {
 
       const exists = state[book.isbn] ? true : false;
-      let newState = clone(state);
+      let newState = {...state};
 
       newState[book.isbn] = {
         ...book,
@@ -35,12 +35,11 @@ const books = (state, { type, book }) => {
 
     case REMOVE_BOOK_FROM_CART:
       return omit([book.isbn], state);
-      return state;
       break;
 
   }
 
-  return state;
+  return {...state};
 
 };
 
