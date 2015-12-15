@@ -1,7 +1,7 @@
 import React              from 'react';
 import { connect }        from 'react-redux';
 
-import BookList           from '../containers/BookList';
+import BookListContainer  from '../containers/BookListContainer';
 import CartContainer      from '../containers/CartContainer';
 import PayBoxContainer    from '../containers/PayBoxContainer';
 
@@ -14,7 +14,7 @@ const App = React.createClass({
     return (
       <div className={hasCart ? 'grid-2-1' : 'grid-4-1'}>
         <div className='book-list'>
-          <BookList />
+          <BookListContainer />
         </div>
         <div className='cart-box'>
           {hasCart ? (

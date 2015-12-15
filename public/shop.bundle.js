@@ -20920,9 +20920,9 @@
 	
 	var _reactRedux = __webpack_require__(166);
 	
-	var _containersBookList = __webpack_require__(254);
+	var _containersBookListContainer = __webpack_require__(296);
 	
-	var _containersBookList2 = _interopRequireDefault(_containersBookList);
+	var _containersBookListContainer2 = _interopRequireDefault(_containersBookListContainer);
 	
 	var _containersCartContainer = __webpack_require__(293);
 	
@@ -20944,7 +20944,7 @@
 	      _react2['default'].createElement(
 	        'div',
 	        { className: 'book-list' },
-	        _react2['default'].createElement(_containersBookList2['default'], null)
+	        _react2['default'].createElement(_containersBookListContainer2['default'], null)
 	      ),
 	      _react2['default'].createElement(
 	        'div',
@@ -29539,92 +29539,7 @@
 /* 251 */,
 /* 252 */,
 /* 253 */,
-/* 254 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _interopRequireDefault = __webpack_require__(1)['default'];
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(8);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _redux = __webpack_require__(174);
-	
-	var _reactRedux = __webpack_require__(166);
-	
-	var _ramda = __webpack_require__(235);
-	
-	var _componentsBook = __webpack_require__(255);
-	
-	var _componentsBook2 = _interopRequireDefault(_componentsBook);
-	
-	var _actionCreatorsAddBookToCart = __webpack_require__(256);
-	
-	var _actionCreatorsAddBookToCart2 = _interopRequireDefault(_actionCreatorsAddBookToCart);
-	
-	var _actionCreatorsFetchBooks = __webpack_require__(287);
-	
-	var _actionCreatorsFetchBooks2 = _interopRequireDefault(_actionCreatorsFetchBooks);
-	
-	var Booklist = _react2['default'].createClass({
-	  displayName: 'Booklist',
-	
-	  componentDidMount: function componentDidMount() {
-	    this.props.fetchBooks();
-	  },
-	
-	  render: function render() {
-	    var _props = this.props;
-	    var books = _props.books;
-	    var addBookToCart = _props.addBookToCart;
-	
-	    if (books.length < 1) {
-	      return _react2['default'].createElement(
-	        'p',
-	        { className: 'txtcenter ptl' },
-	        'Loading...'
-	      );
-	    }
-	
-	    return _react2['default'].createElement(
-	      'ul',
-	      { className: 'ul grid-2-small-1' },
-	      (0, _ramda.map)(function (item) {
-	        return _react2['default'].createElement(
-	          'li',
-	          { key: item.isbn },
-	          _react2['default'].createElement(_componentsBook2['default'], {
-	            item: item,
-	            onAddToCart: addBookToCart })
-	        );
-	      })(books)
-	    );
-	  }
-	
-	});
-	
-	var mapStateToProps = function mapStateToProps(_ref) {
-	  var books = _ref.books;
-	  return { books: books };
-	};
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)({
-	    addBookToCart: _actionCreatorsAddBookToCart2['default'],
-	    fetchBooks: _actionCreatorsFetchBooks2['default']
-	  }, dispatch);
-	};
-	
-	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Booklist);
-	module.exports = exports['default'];
-
-/***/ },
+/* 254 */,
 /* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -40848,13 +40763,13 @@
 	
 	  if (hasDiscount) {
 	
-	    var _finalPrice = (Math.round((_finalPrice + 0.00001) * 100) / 100).toFixed(2);
+	    var discountPrice = (Math.round((finalPrice + 0.00001) * 100) / 100).toFixed(2);
 	
 	    discountDom = _react2['default'].createElement(
 	      'p',
 	      { className: 'txtcenter mtm' },
 	      'Pay ',
-	      _finalPrice,
+	      discountPrice,
 	      '€ ',
 	      _react2['default'].createElement(
 	        'small',
@@ -41064,6 +40979,120 @@
 	};
 	
 	exports['default'] = (0, _reactRedux.connect)(mapStateToProps)(PayBoxContainer);
+	module.exports = exports['default'];
+
+/***/ },
+/* 295 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _interopRequireDefault = __webpack_require__(1)['default'];
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(8);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _ramda = __webpack_require__(235);
+	
+	var _Book = __webpack_require__(255);
+	
+	var _Book2 = _interopRequireDefault(_Book);
+	
+	var Booklist = function Booklist(_ref) {
+	  var books = _ref.books;
+	  var addBookToCart = _ref.addBookToCart;
+	
+	  if (books.length < 1) {
+	    return _react2['default'].createElement(
+	      'p',
+	      { className: 'txtcenter ptl' },
+	      'Loading...'
+	    );
+	  }
+	
+	  return _react2['default'].createElement(
+	    'ul',
+	    { className: 'ul grid-2-small-1' },
+	    (0, _ramda.map)(function (item) {
+	      return _react2['default'].createElement(
+	        'li',
+	        { key: item.isbn },
+	        _react2['default'].createElement(_Book2['default'], {
+	          item: item,
+	          onAddToCart: addBookToCart })
+	      );
+	    })(books)
+	  );
+	};
+	
+	exports['default'] = Booklist;
+	module.exports = exports['default'];
+
+/***/ },
+/* 296 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _interopRequireDefault = __webpack_require__(1)['default'];
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(8);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _redux = __webpack_require__(174);
+	
+	var _reactRedux = __webpack_require__(166);
+	
+	var _ramda = __webpack_require__(235);
+	
+	var _componentsBookList = __webpack_require__(295);
+	
+	var _componentsBookList2 = _interopRequireDefault(_componentsBookList);
+	
+	var _actionCreatorsAddBookToCart = __webpack_require__(256);
+	
+	var _actionCreatorsAddBookToCart2 = _interopRequireDefault(_actionCreatorsAddBookToCart);
+	
+	var _actionCreatorsFetchBooks = __webpack_require__(287);
+	
+	var _actionCreatorsFetchBooks2 = _interopRequireDefault(_actionCreatorsFetchBooks);
+	
+	var BooklistContainer = _react2['default'].createClass({
+	  displayName: 'BooklistContainer',
+	
+	  componentDidMount: function componentDidMount() {
+	    this.props.fetchBooks();
+	  },
+	
+	  render: function render() {
+	    return _react2['default'].createElement(_componentsBookList2['default'], this.props);
+	  }
+	
+	});
+	
+	var mapStateToProps = function mapStateToProps(_ref) {
+	  var books = _ref.books;
+	  return { books: books };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return (0, _redux.bindActionCreators)({
+	    addBookToCart: _actionCreatorsAddBookToCart2['default'],
+	    fetchBooks: _actionCreatorsFetchBooks2['default']
+	  }, dispatch);
+	};
+	
+	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(BooklistContainer);
 	module.exports = exports['default'];
 
 /***/ }

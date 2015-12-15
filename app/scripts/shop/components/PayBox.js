@@ -8,11 +8,11 @@ const PayBox = ({finalPrice, totalPrice}) => {
 
   if (hasDiscount){
 
-    const finalPrice = (Math.round((finalPrice + 0.00001) * 100) / 100).toFixed(2);
+    const discountPrice = (Math.round((finalPrice + 0.00001) * 100) / 100).toFixed(2);
 
     discountDom = (
       <p className='txtcenter mtm'>
-        Pay {finalPrice}€ <small>instead of <strike>{totalPrice}€</strike>!</small>
+        Pay {discountPrice}€ <small>instead of <strike>{totalPrice}€</strike>!</small>
       </p>
     );
 
