@@ -5,7 +5,8 @@ import {
 } from '../constants';
 
 const initialState = {
-  books: {},
+  booksPerId : {},
+  books: [],
   totalPrice: 0
 };
 
@@ -14,42 +15,43 @@ const countPrice = compose(
   values
 );
 
-export default function cart(state = initialState, action){
+const books = (state, { type, book }) => {
 
-  const { book: item } = action;
-  const previousStateBooks = state.books;
+  switch (type) {
 
-  switch (action.type) {
+    case ADD_BOOK_TO_CART: {
 
-    case ADD_BOOK_TO_CART:
-    {
-      const exists = state.books[item.isbn] ? true : false;
-      let books = clone(previousStateBooks);
-      if (exists) {
-        books[item.isbn].amount++;
-      } else {
-        books[item.isbn] = item;
-        books[item.isbn].amount = 1;
-      }
-      return Object.assign({}, {
-        books,
-        totalPrice: countPrice(books)
-      });
+      const exists = state[book.isbn] ? true : false;
+      let newState = clone(state);
+
+      newState[book.isbn] = {
+        ...book,
+        amount: exists ? newState[book.isbn].amount + 1 : 1
+      };
+
+      return newState;
       break;
     }
 
     case REMOVE_BOOK_FROM_CART:
-    {
-      const books = omit([item.isbn], previousStateBooks);
-      return Object.assign({}, {
-        books,
-        totalPrice: countPrice(books)
-      });
+      return omit([book.isbn], state);
+      return state;
       break;
-    }
 
   }
 
   return state;
+
+};
+
+export default function cart(state = initialState, action){
+
+  const updatedBooks = books(state.booksPerId, action);
+
+  return {
+    booksPerId  : updatedBooks,
+    books       : values(updatedBooks),
+    totalPrice  : countPrice(updatedBooks)
+  };
 
 }

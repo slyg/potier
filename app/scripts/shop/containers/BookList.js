@@ -1,7 +1,7 @@
 import React                  from 'react';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
-import { values, map }        from 'ramda';
+import { map }                from 'ramda';
 
 import Book                   from '../components/Book';
 
@@ -38,9 +38,7 @@ const Booklist = React.createClass({
 
 });
 
-const mapStateToProps = ({books}) => ({
-  books: values(books)
-});
+const mapStateToProps = ({books}) => ({ books });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   addBookToCart,

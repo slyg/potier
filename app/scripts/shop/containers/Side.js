@@ -1,6 +1,7 @@
 import React                  from 'react';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
+import { values }             from 'ramda';
 
 import Cart                   from '../components/Cart';
 import PayBox                 from '../components/PayBox';
@@ -11,20 +12,17 @@ const Side = React.createClass({
 
   render: function(){
 
-    const { cart, discount, removeBookFromCart } = this.props;
+    const { books } = this.props;
 
     // Display cart content only when it is filled-in
-    if (cart.totalPrice > 0){
+    if (books.length > 0){
       return (
         <div>
           <div className='cart pbm'>
-            <Cart
-              cart={cart}
-              onRemoveBookFromCart={ removeBookFromCart }
-            />
+            <Cart {...this.props} />
           </div>
           <div className='offer pbm'>
-            <PayBox discount={discount} />
+            <PayBox {...this.props} />
           </div>
         </div>
       );
@@ -37,7 +35,13 @@ const Side = React.createClass({
 });
 
 // Select root properties of state used by app
-const mapStateToProps = ({cart, discount}) => ({cart, discount});
-const mapDispatchToProps = (dispatch) => bindActionCreators({ removeBookFromCart }, dispatch);
+const mapStateToProps = ({cart, discount}) => ({
+  books : cart.books,
+  totalPrice : cart.totalPrice,
+  discount
+});
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  onRemoveBookFromCart: removeBookFromCart
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Side);
