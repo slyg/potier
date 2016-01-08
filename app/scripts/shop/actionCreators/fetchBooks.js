@@ -2,7 +2,7 @@ import { getBooks } from '../webApi';
 import {
   RECEIVE_SERVER_ERROR,
   RECEIVE_BOOKS
-} from '../constants';
+} from '../actionTypes';
 
 export default function () {
 

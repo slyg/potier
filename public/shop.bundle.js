@@ -28648,7 +28648,7 @@
 	
 	var _webApi = __webpack_require__(258);
 	
-	var _constants = __webpack_require__(260);
+	var _actionTypes = __webpack_require__(284);
 	
 	exports['default'] = function (book) {
 	
@@ -28658,7 +28658,7 @@
 	      while (1) switch (context$2$0.prev = context$2$0.next) {
 	        case 0:
 	
-	          dispatch({ type: _constants.ADD_BOOK_TO_CART, book: book });
+	          dispatch({ type: _actionTypes.ADD_BOOK_TO_CART, book: book });
 	
 	          state = getState();
 	          totalPrice = state.cart.totalPrice;
@@ -28670,7 +28670,7 @@
 	        case 7:
 	          discount = context$2$0.sent;
 	
-	          dispatch({ type: _constants.RECEIVE_DISCOUNT, discount: discount });
+	          dispatch({ type: _actionTypes.RECEIVE_DISCOUNT, discount: discount });
 	
 	          context$2$0.next = 14;
 	          break;
@@ -28679,7 +28679,7 @@
 	          context$2$0.prev = 11;
 	          context$2$0.t0 = context$2$0['catch'](4);
 	
-	          dispatch({ type: _constants.RECEIVE_SERVER_ERROR, error: context$2$0.t0 });
+	          dispatch({ type: _actionTypes.RECEIVE_SERVER_ERROR, error: context$2$0.t0 });
 	
 	        case 14:
 	        case 'end':
@@ -40131,30 +40131,7 @@
 
 
 /***/ },
-/* 260 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	var SEARCH_DISCOUNT_START = 'SEARCH_DISCOUNT_START';
-	exports.SEARCH_DISCOUNT_START = SEARCH_DISCOUNT_START;
-	var RECEIVE_BOOKS = 'RECEIVE_BOOKS';
-	exports.RECEIVE_BOOKS = RECEIVE_BOOKS;
-	var RECEIVE_DISCOUNT = 'RECEIVE_DISCOUNT';
-	exports.RECEIVE_DISCOUNT = RECEIVE_DISCOUNT;
-	var RESET_DISCOUNT = 'RESET_DISCOUNT';
-	exports.RESET_DISCOUNT = RESET_DISCOUNT;
-	var RECEIVE_SERVER_ERROR = 'RECEIVE_SERVER_ERROR';
-	exports.RECEIVE_SERVER_ERROR = RECEIVE_SERVER_ERROR;
-	var ADD_BOOK_TO_CART = 'ADD_BOOK_TO_CART';
-	exports.ADD_BOOK_TO_CART = ADD_BOOK_TO_CART;
-	var REMOVE_BOOK_FROM_CART = 'REMOVE_BOOK_FROM_CART';
-	exports.REMOVE_BOOK_FROM_CART = REMOVE_BOOK_FROM_CART;
-
-/***/ },
+/* 260 */,
 /* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -40168,7 +40145,7 @@
 	
 	var _webApi = __webpack_require__(258);
 	
-	var _constants = __webpack_require__(260);
+	var _actionTypes = __webpack_require__(284);
 	
 	exports['default'] = function () {
 	
@@ -40184,7 +40161,7 @@
 	        case 3:
 	          books = context$2$0.sent;
 	
-	          dispatch({ type: _constants.RECEIVE_BOOKS, books: books });
+	          dispatch({ type: _actionTypes.RECEIVE_BOOKS, books: books });
 	
 	          context$2$0.next = 10;
 	          break;
@@ -40193,7 +40170,7 @@
 	          context$2$0.prev = 7;
 	          context$2$0.t0 = context$2$0['catch'](0);
 	
-	          dispatch({ type: _constants.RECEIVE_SERVER_ERROR, error: context$2$0.t0 });
+	          dispatch({ type: _actionTypes.RECEIVE_SERVER_ERROR, error: context$2$0.t0 });
 	
 	        case 10:
 	        case 'end':
@@ -40482,7 +40459,7 @@
 	
 	var _webApi = __webpack_require__(258);
 	
-	var _constants = __webpack_require__(260);
+	var _actionTypes = __webpack_require__(284);
 	
 	exports['default'] = function (book) {
 	
@@ -40492,7 +40469,7 @@
 	      while (1) switch (context$2$0.prev = context$2$0.next) {
 	        case 0:
 	
-	          dispatch({ type: _constants.REMOVE_BOOK_FROM_CART, book: book });
+	          dispatch({ type: _actionTypes.REMOVE_BOOK_FROM_CART, book: book });
 	
 	          state = getState();
 	          totalPrice = state.cart.totalPrice;
@@ -40503,7 +40480,7 @@
 	            break;
 	          }
 	
-	          return context$2$0.abrupt('return', dispatch({ type: _constants.RESET_DISCOUNT }));
+	          return context$2$0.abrupt('return', dispatch({ type: _actionTypes.RESET_DISCOUNT }));
 	
 	        case 6:
 	          context$2$0.prev = 6;
@@ -40513,7 +40490,7 @@
 	        case 9:
 	          discount = context$2$0.sent;
 	
-	          dispatch({ type: _constants.RECEIVE_DISCOUNT, discount: discount });
+	          dispatch({ type: _actionTypes.RECEIVE_DISCOUNT, discount: discount });
 	
 	          context$2$0.next = 18;
 	          break;
@@ -40527,10 +40504,10 @@
 	            break;
 	          }
 	
-	          return context$2$0.abrupt('return', dispatch({ type: _constants.RECEIVE_DISCOUNT, discount: null }));
+	          return context$2$0.abrupt('return', dispatch({ type: _actionTypes.RECEIVE_DISCOUNT, discount: null }));
 	
 	        case 17:
-	          dispatch({ type: _constants.RECEIVE_SERVER_ERROR, error: context$2$0.t0 });
+	          dispatch({ type: _actionTypes.RECEIVE_SERVER_ERROR, error: context$2$0.t0 });
 	
 	        case 18:
 	        case 'end':
@@ -40742,7 +40719,7 @@
 	});
 	exports['default'] = books;
 	
-	var _constants = __webpack_require__(260);
+	var _actionTypes = __webpack_require__(284);
 	
 	function books(state, _ref) {
 	  if (state === undefined) state = [];
@@ -40751,7 +40728,7 @@
 	
 	  switch (type) {
 	
-	    case _constants.RECEIVE_BOOKS:
+	    case _actionTypes.RECEIVE_BOOKS:
 	      {
 	        return [].concat(_toConsumableArray(state), _toConsumableArray(books));
 	        break;
@@ -40853,7 +40830,7 @@
 	
 	var _ramda = __webpack_require__(186);
 	
-	var _constants = __webpack_require__(260);
+	var _actionTypes = __webpack_require__(284);
 	
 	var initialState = {
 	  booksPerId: {},
@@ -40871,7 +40848,7 @@
 	
 	  switch (type) {
 	
-	    case _constants.ADD_BOOK_TO_CART:
+	    case _actionTypes.ADD_BOOK_TO_CART:
 	      {
 	
 	        var exists = state[book.isbn] ? true : false;
@@ -40885,7 +40862,7 @@
 	        break;
 	      }
 	
-	    case _constants.REMOVE_BOOK_FROM_CART:
+	    case _actionTypes.REMOVE_BOOK_FROM_CART:
 	      return (0, _ramda.omit)([book.isbn], state);
 	      break;
 	
@@ -40921,7 +40898,7 @@
 	});
 	exports['default'] = discount;
 	
-	var _constants = __webpack_require__(260);
+	var _actionTypes = __webpack_require__(284);
 	
 	var initialState = {
 	  type: null,
@@ -40937,7 +40914,7 @@
 	
 	  switch (type) {
 	
-	    case _constants.RECEIVE_DISCOUNT:
+	    case _actionTypes.RECEIVE_DISCOUNT:
 	      {
 	        return _extends({}, discount, {
 	          finalPrice: (Math.round((discount.finalPrice + 0.00001) * 100) / 100).toFixed(2)
@@ -40945,9 +40922,9 @@
 	        break;
 	      }
 	
-	    case _constants.ADD_BOOK_TO_CART:
-	    case _constants.REMOVE_BOOK_FROM_CART:
-	    case _constants.RESET_DISCOUNT:
+	    case _actionTypes.ADD_BOOK_TO_CART:
+	    case _actionTypes.REMOVE_BOOK_FROM_CART:
+	    case _actionTypes.RESET_DISCOUNT:
 	      {
 	        return initialState;
 	        break;
@@ -40959,6 +40936,30 @@
 	}
 	
 	module.exports = exports['default'];
+
+/***/ },
+/* 284 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	var SEARCH_DISCOUNT_START = 'SEARCH_DISCOUNT_START';
+	exports.SEARCH_DISCOUNT_START = SEARCH_DISCOUNT_START;
+	var RECEIVE_BOOKS = 'RECEIVE_BOOKS';
+	exports.RECEIVE_BOOKS = RECEIVE_BOOKS;
+	var RECEIVE_DISCOUNT = 'RECEIVE_DISCOUNT';
+	exports.RECEIVE_DISCOUNT = RECEIVE_DISCOUNT;
+	var RESET_DISCOUNT = 'RESET_DISCOUNT';
+	exports.RESET_DISCOUNT = RESET_DISCOUNT;
+	var RECEIVE_SERVER_ERROR = 'RECEIVE_SERVER_ERROR';
+	exports.RECEIVE_SERVER_ERROR = RECEIVE_SERVER_ERROR;
+	var ADD_BOOK_TO_CART = 'ADD_BOOK_TO_CART';
+	exports.ADD_BOOK_TO_CART = ADD_BOOK_TO_CART;
+	var REMOVE_BOOK_FROM_CART = 'REMOVE_BOOK_FROM_CART';
+	exports.REMOVE_BOOK_FROM_CART = REMOVE_BOOK_FROM_CART;
 
 /***/ }
 /******/ ]);

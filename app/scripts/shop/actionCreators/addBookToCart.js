@@ -4,7 +4,7 @@ import {
   RECEIVE_SERVER_ERROR,
   RECEIVE_DISCOUNT,
   ADD_BOOK_TO_CART
-} from '../constants';
+} from '../actionTypes';
 
 export default function (book) {
 

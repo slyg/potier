@@ -5,7 +5,7 @@ import {
   RECEIVE_DISCOUNT,
   RESET_DISCOUNT,
   REMOVE_BOOK_FROM_CART
-} from '../constants';
+} from '../actionTypes';
 
 export default function (book) {
 

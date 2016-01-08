@@ -1,6 +1,6 @@
 import {
   RECEIVE_BOOKS
-} from '../constants';
+} from '../actionTypes';
 
 export default function books(state = [], {type, books}){
 
