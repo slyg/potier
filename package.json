@@ -10,7 +10,6 @@
     "babel-polyfill": "^6.3.14",
     "babel-runtime": "^6.3.19",
     "co-request": "^1.0.0",
-    "jquery": "^2.2.0",
     "knacss": "^4.4.2",
     "koa": "^1.1.2",
     "koa-jade": "^2.0.2",
