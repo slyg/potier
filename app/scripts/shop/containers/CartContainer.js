@@ -2,7 +2,7 @@ import React                  from 'react';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import Cart                   from '../components/Cart';
-import removeBookFromCart     from '../actionCreators/removeBookFromCart';
+import { removeBookFromCart } from '../actionCreators';
 
 const CartContainer = React.createClass({
   render: function(){

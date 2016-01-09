@@ -1,3 +1,4 @@
+export const FETCH_BOOKS             = 'FETCH_BOOKS';
 export const SEARCH_DISCOUNT_START   = 'SEARCH_DISCOUNT_START';
 export const RECEIVE_BOOKS           = 'RECEIVE_BOOKS';
 export const RECEIVE_DISCOUNT        = 'RECEIVE_DISCOUNT';

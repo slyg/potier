@@ -3,8 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import { map }                from 'ramda';
 import BookList               from '../components/BookList';
-import addBookToCart          from '../actionCreators/addBookToCart';
-import fetchBooks             from '../actionCreators/fetchBooks';
+import { fetchBooks, addBookToCart } from '../actionCreators';
 
 const BooklistContainer = React.createClass({
 
