@@ -12,9 +12,9 @@ export default function (book) {
 
     dispatch({ type: ADD_BOOK_TO_CART, book });
 
-    const state       = getState();
-    const totalPrice  = state.cart.totalPrice;
-    const isbns       = keys(state.cart.books);
+    let state       = getState();
+    let totalPrice  = state.cart.totalPrice;
+    let isbns       = keys(state.cart.books);
 
     try {
 

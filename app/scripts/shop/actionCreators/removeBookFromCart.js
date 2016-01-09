@@ -13,9 +13,9 @@ export default function (book) {
 
     dispatch({ type: REMOVE_BOOK_FROM_CART, book });
 
-    const state       = getState();
-    const totalPrice  = state.cart.totalPrice;
-    const isbns       = keys(state.cart.books);
+    let state       = getState();
+    let totalPrice  = state.cart.totalPrice;
+    let isbns       = keys(state.cart.books);
 
     if (!isbns.length){
       return dispatch({ type: RESET_DISCOUNT });

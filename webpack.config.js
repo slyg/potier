@@ -3,7 +3,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
-    shop: './app/scripts/shop/main.js'
+    shop: ['babel-polyfill', './app/scripts/shop/main.js']
   },
   output: {
     path: path.resolve(__dirname, 'public/'),
@@ -20,8 +20,8 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel',
         query: {
-          stage: 0,
-          optional: ['runtime']
+          plugins: ['transform-runtime'],
+          presets: ['es2015', 'stage-0', 'react'],
         }
       }
     ]
