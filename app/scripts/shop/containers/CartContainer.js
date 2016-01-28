@@ -4,11 +4,7 @@ import { connect }            from 'react-redux';
 import Cart                   from '../components/Cart';
 import { removeBookFromCart } from '../actionCreators';
 
-const CartContainer = React.createClass({
-  render: function(){
-    return <Cart {...this.props} />;
-  }
-});
+const CartContainer = (props) => <Cart {...props} />;
 
 const mapStateToProps = ({cart}) => ({...cart});
 

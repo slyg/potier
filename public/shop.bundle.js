@@ -26032,42 +26032,37 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var RootContainer = _react2.default.createClass({
-	  displayName: 'RootContainer',
+	var RootContainer = function RootContainer(props) {
+	  var hasCart = props.hasCart;
 	
-	  render: function render() {
-	    var hasCart = this.props.hasCart;
-	
-	    return _react2.default.createElement(
+	  return _react2.default.createElement(
+	    'div',
+	    { className: hasCart ? 'grid-2-1' : 'grid-4-1' },
+	    _react2.default.createElement(
 	      'div',
-	      { className: hasCart ? 'grid-2-1' : 'grid-4-1' },
-	      _react2.default.createElement(
+	      { className: 'book-list' },
+	      _react2.default.createElement(_BookListContainer2.default, null)
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'cart-box' },
+	      hasCart ? _react2.default.createElement(
 	        'div',
-	        { className: 'book-list' },
-	        _react2.default.createElement(_BookListContainer2.default, null)
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'cart-box' },
-	        hasCart ? _react2.default.createElement(
+	        null,
+	        _react2.default.createElement(
 	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'cart pbm' },
-	            _react2.default.createElement(_CartContainer2.default, null)
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'offer pbm' },
-	            _react2.default.createElement(_PayBoxContainer2.default, null)
-	          )
-	        ) : null
-	      )
-	    );
-	  }
-	
-	});
+	          { className: 'cart pbm' },
+	          _react2.default.createElement(_CartContainer2.default, null)
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'offer pbm' },
+	          _react2.default.createElement(_PayBoxContainer2.default, null)
+	        )
+	      ) : null
+	    )
+	  );
+	};
 	
 	var mapStateToProps = function mapStateToProps(_ref) {
 	  var cart = _ref.cart;
@@ -33837,13 +33832,13 @@
 
 	'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
 	var _extends2 = __webpack_require__(381);
 	
 	var _extends3 = _interopRequireDefault(_extends2);
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	
 	var _react = __webpack_require__(198);
 	
@@ -33861,13 +33856,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var CartContainer = _react2.default.createClass({
-	  displayName: 'CartContainer',
-	
-	  render: function render() {
-	    return _react2.default.createElement(_Cart2.default, this.props);
-	  }
-	});
+	var CartContainer = function CartContainer(props) {
+	  return _react2.default.createElement(_Cart2.default, props);
+	};
 	
 	var mapStateToProps = function mapStateToProps(_ref) {
 	  var cart = _ref.cart;
@@ -34262,13 +34253,13 @@
 
 	'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
 	var _extends2 = __webpack_require__(381);
 	
 	var _extends3 = _interopRequireDefault(_extends2);
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	
 	var _react = __webpack_require__(198);
 	
@@ -34282,13 +34273,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var PayBoxContainer = _react2.default.createClass({
-	  displayName: 'PayBoxContainer',
-	
-	  render: function render() {
-	    return _react2.default.createElement(_PayBox2.default, this.props);
-	  }
-	});
+	var PayBoxContainer = function PayBoxContainer(props) {
+	  return _react2.default.createElement(_PayBox2.default, props);
+	};
 	
 	var mapStateToProps = function mapStateToProps(_ref) {
 	  var discount = _ref.discount;
@@ -34447,14 +34434,14 @@
 
 	'use strict';
 	
+	var _toConsumableArray2 = __webpack_require__(405);
+	
+	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.default = books;
-	
-	var _toConsumableArray2 = __webpack_require__(405);
-	
-	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 	
 	var _actionTypes = __webpack_require__(379);
 	
@@ -34937,14 +34924,14 @@
 
 	'use strict';
 	
+	var _extends2 = __webpack_require__(381);
+	
+	var _extends3 = _interopRequireDefault(_extends2);
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.default = cart;
-	
-	var _extends2 = __webpack_require__(381);
-	
-	var _extends3 = _interopRequireDefault(_extends2);
 	
 	var _ramda = __webpack_require__(375);
 	
@@ -35010,14 +34997,14 @@
 
 	'use strict';
 	
+	var _extends2 = __webpack_require__(381);
+	
+	var _extends3 = _interopRequireDefault(_extends2);
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.default = discount;
-	
-	var _extends2 = __webpack_require__(381);
-	
-	var _extends3 = _interopRequireDefault(_extends2);
 	
 	var _actionTypes = __webpack_require__(379);
 	
@@ -35564,14 +35551,14 @@
 
 	'use strict';
 	
+	var _regenerator = __webpack_require__(441);
+	
+	var _regenerator2 = _interopRequireDefault(_regenerator);
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.default = fetchBooks;
-	
-	var _regenerator = __webpack_require__(441);
-	
-	var _regenerator2 = _interopRequireDefault(_regenerator);
 	
 	var _reduxSaga = __webpack_require__(436);
 	
@@ -35591,44 +35578,46 @@
 	
 	function fetchBooks() {
 	  var books;
-	  return regeneratorRuntime.wrap(function fetchBooks$(_context) {
-	    while (1) switch (_context.prev = _context.next) {
-	      case 0:
-	        _context.next = 2;
-	        return (0, _reduxSaga.take)(_actionTypes.FETCH_BOOKS);
+	  return _regenerator2.default.wrap(function fetchBooks$(_context) {
+	    while (1) {
+	      switch (_context.prev = _context.next) {
+	        case 0:
+	          _context.next = 2;
+	          return (0, _reduxSaga.take)(_actionTypes.FETCH_BOOKS);
 	
-	      case 2:
-	        if (!_context.sent) {
-	          _context.next = 17;
+	        case 2:
+	          if (!_context.sent) {
+	            _context.next = 17;
+	            break;
+	          }
+	
+	          _context.prev = 3;
+	          _context.next = 6;
+	          return (0, _reduxSaga.call)(_webApi.getBooks);
+	
+	        case 6:
+	          books = _context.sent;
+	          _context.next = 9;
+	          return (0, _reduxSaga.put)(actions.receiveBooks(books));
+	
+	        case 9:
+	          _context.next = 15;
 	          break;
-	        }
 	
-	        _context.prev = 3;
-	        _context.next = 6;
-	        return (0, _reduxSaga.call)(_webApi.getBooks);
+	        case 11:
+	          _context.prev = 11;
+	          _context.t0 = _context['catch'](3);
+	          _context.next = 15;
+	          return (0, _reduxSaga.put)(actions.serverError(_context.t0));
 	
-	      case 6:
-	        books = _context.sent;
-	        _context.next = 9;
-	        return (0, _reduxSaga.put)(actions.receiveBooks(books));
+	        case 15:
+	          _context.next = 0;
+	          break;
 	
-	      case 9:
-	        _context.next = 15;
-	        break;
-	
-	      case 11:
-	        _context.prev = 11;
-	        _context.t0 = _context['catch'](3);
-	        _context.next = 15;
-	        return (0, _reduxSaga.put)(actions.serverError(_context.t0));
-	
-	      case 15:
-	        _context.next = 0;
-	        break;
-	
-	      case 17:
-	      case 'end':
-	        return _context.stop();
+	        case 17:
+	        case 'end':
+	          return _context.stop();
+	      }
 	    }
 	  }, _marked[0], this, [[3, 11]]);
 	};
@@ -37451,14 +37440,14 @@
 
 	'use strict';
 	
+	var _regenerator = __webpack_require__(441);
+	
+	var _regenerator2 = _interopRequireDefault(_regenerator);
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.default = queryDiscount;
-	
-	var _regenerator = __webpack_require__(441);
-	
-	var _regenerator2 = _interopRequireDefault(_regenerator);
 	
 	var _ramda = __webpack_require__(375);
 	
@@ -37480,61 +37469,63 @@
 	
 	function queryDiscount(getState) {
 	  var state, totalPrice, isbns, discount;
-	  return regeneratorRuntime.wrap(function queryDiscount$(_context) {
-	    while (1) switch (_context.prev = _context.next) {
-	      case 0:
-	        _context.next = 2;
-	        return (0, _reduxSaga.take)([_actionTypes.ADD_BOOK_TO_CART, _actionTypes.REMOVE_BOOK_FROM_CART]);
+	  return _regenerator2.default.wrap(function queryDiscount$(_context) {
+	    while (1) {
+	      switch (_context.prev = _context.next) {
+	        case 0:
+	          _context.next = 2;
+	          return (0, _reduxSaga.take)([_actionTypes.ADD_BOOK_TO_CART, _actionTypes.REMOVE_BOOK_FROM_CART]);
 	
-	      case 2:
-	        if (!_context.sent) {
-	          _context.next = 25;
+	        case 2:
+	          if (!_context.sent) {
+	            _context.next = 25;
+	            break;
+	          }
+	
+	          state = getState();
+	          totalPrice = state.cart.totalPrice;
+	          isbns = (0, _ramda.keys)(state.cart.books);
+	          _context.prev = 6;
+	          _context.next = 9;
+	          return (0, _reduxSaga.call)(_webApi.getBestOffer, totalPrice, isbns);
+	
+	        case 9:
+	          discount = _context.sent;
+	          _context.next = 12;
+	          return (0, _reduxSaga.put)(actions.receiveDiscount(discount));
+	
+	        case 12:
+	          _context.next = 23;
 	          break;
-	        }
 	
-	        state = getState();
-	        totalPrice = state.cart.totalPrice;
-	        isbns = (0, _ramda.keys)(state.cart.books);
-	        _context.prev = 6;
-	        _context.next = 9;
-	        return (0, _reduxSaga.call)(_webApi.getBestOffer, totalPrice, isbns);
+	        case 14:
+	          _context.prev = 14;
+	          _context.t0 = _context['catch'](6);
 	
-	      case 9:
-	        discount = _context.sent;
-	        _context.next = 12;
-	        return (0, _reduxSaga.put)(actions.receiveDiscount(discount));
+	          if (!(_context.t0.status === 404)) {
+	            _context.next = 21;
+	            break;
+	          }
 	
-	      case 12:
-	        _context.next = 23;
-	        break;
+	          _context.next = 19;
+	          return (0, _reduxSaga.put)(actions.resetDiscount(null));
 	
-	      case 14:
-	        _context.prev = 14;
-	        _context.t0 = _context['catch'](6);
-	
-	        if (!(_context.t0.status === 404)) {
-	          _context.next = 21;
+	        case 19:
+	          _context.next = 23;
 	          break;
-	        }
 	
-	        _context.next = 19;
-	        return (0, _reduxSaga.put)(actions.resetDiscount(null));
+	        case 21:
+	          _context.next = 23;
+	          return (0, _reduxSaga.put)(actions.serverError(_context.t0));
 	
-	      case 19:
-	        _context.next = 23;
-	        break;
+	        case 23:
+	          _context.next = 0;
+	          break;
 	
-	      case 21:
-	        _context.next = 23;
-	        return (0, _reduxSaga.put)(actions.serverError(_context.t0));
-	
-	      case 23:
-	        _context.next = 0;
-	        break;
-	
-	      case 25:
-	      case 'end':
-	        return _context.stop();
+	        case 25:
+	        case 'end':
+	          return _context.stop();
+	      }
 	    }
 	  }, _marked[0], this, [[6, 14]]);
 	};

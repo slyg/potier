@@ -5,35 +5,31 @@ import BookListContainer  from '../containers/BookListContainer';
 import CartContainer      from '../containers/CartContainer';
 import PayBoxContainer    from '../containers/PayBoxContainer';
 
-const RootContainer = React.createClass({
+const RootContainer = (props) => {
 
-  render: function(){
+  const { hasCart } = props;
 
-    const { hasCart } = this.props;
-
-    return (
-      <div className={hasCart ? 'grid-2-1' : 'grid-4-1'}>
-        <div className='book-list'>
-          <BookListContainer />
-        </div>
-        <div className='cart-box'>
-          {hasCart ? (
-            <div>
-              <div className='cart pbm'>
-                <CartContainer />
-              </div>
-              <div className='offer pbm'>
-                <PayBoxContainer />
-              </div>
-            </div>
-          ) : null}
-        </div>
+  return (
+    <div className={hasCart ? 'grid-2-1' : 'grid-4-1'}>
+      <div className='book-list'>
+        <BookListContainer />
       </div>
-    );
+      <div className='cart-box'>
+        {hasCart ? (
+          <div>
+            <div className='cart pbm'>
+              <CartContainer />
+            </div>
+            <div className='offer pbm'>
+              <PayBoxContainer />
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
 
-  }
-
-});
+};
 
 const mapStateToProps = ({cart}) => ({
   hasCart: (cart.totalPrice > 0)
